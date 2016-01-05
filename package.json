@@ -1,0 +1,25 @@
+{
+  "name": "js-monkeys",
+  "version": "0.0.1",
+  "description": "MEAN stack app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JS-Monkeys/JS-Monkeys.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JS-Monkeys/JS-Monkeys/issues"
+  },
+  "homepage": "https://github.com/JS-Monkeys/JS-Monkeys#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "jade": "^1.11.0",
+    "mongoose": "^4.3.4"
+  }
+}
