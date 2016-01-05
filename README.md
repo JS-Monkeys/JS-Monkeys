@@ -6,13 +6,11 @@
  - db models & data layer abstraction
  - views
 
-## Server route documentation:
+## Project documentation:
 
 + **should be updated frequently**
++ [Server endpoints](https://github.com/JS-Monkeys/JS-Monkeys/docs/SERVER-ENDPOINTS.md)
 
-| Route                   | Method                              | Description                       |
-|:-----------------------:|:-----------------------------------:|:---------------------------------:|
-| /                       | GET                                 | Home page                         |
 
 ## Requirements:
  - [link](https://github.com/TelerikAcademy/Node.js-Course/tree/master/Teamwork)
