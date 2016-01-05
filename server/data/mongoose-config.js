@@ -7,7 +7,11 @@
         
         mongoose.connect(connectionString);
         let db = mongoose.connection;
-
+        
+        // load models
+        require('./models/model-loader');
+        
+        // log events
         db.once('open', function (err) {
             if (err) {
                 console.log('Database could not be opened: ' + err);
