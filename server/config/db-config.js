@@ -9,7 +9,7 @@
         let db = mongoose.connection;
         
         // load models
-        require('./models/model-loader');
+        require('../data/models/model-loader');
         
         // log events
         db.once('open', function (err) {
