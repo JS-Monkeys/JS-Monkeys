@@ -54,7 +54,8 @@
         let dbUser = {
             username: user.username,
             salt: salt,
-            passHash: encryption.hashPassword(salt, user.password)
+            passHash: encryption.hashPassword(salt, user.password),
+            roles: user.roles || ['standard']
         };
 
         let promise = new Promise(function (resolve, reject) {

@@ -17,7 +17,8 @@
         passHash: {
             type: String,
             required: true
-        }
+        },
+        roles: [String]
     });
     
     userSchema.method({
