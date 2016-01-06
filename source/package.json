@@ -19,6 +19,7 @@
   "homepage": "https://github.com/JS-Monkeys/JS-Monkeys#readme",
   "dependencies": {
     "body-parser": "^1.14.2",
+    "connect-busboy": "0.0.2",
     "cookie-parser": "^1.4.0",
     "express": "^4.13.3",
     "express-session": "^1.12.1",
