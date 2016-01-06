@@ -5,6 +5,7 @@
         encryption = require('../../utils/encryption');
     
     let userSchema = new mongoose.Schema({
+        // identity properties
         username: {
             type: String,
             require: true,
@@ -18,7 +19,14 @@
             type: String,
             required: true
         },
-        roles: [String]
+        roles: [String],
+        // other properties
+        points: {
+            type: Number,
+            default: 0,
+            min: 0
+        },
+        submissionIds: [String]
     });
     
     userSchema.method({
