@@ -8,7 +8,8 @@
         if (problem) {
             problem = {
                 name: problem.name,
-                points: problem.points
+                points: problem.points,
+                constraints: problem.constraints
             };
         }
 

@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    
+
     let express = require('express'),
         bodyParser = require('body-parser'),
         cookieParser = require('cookie-parser'),
@@ -28,6 +28,11 @@
     
     // configure routes
     require('./routers/route-loader')(server);
-    
+
+    // require('./utils/js-execution/submission-evaluator')({
+    //     taskName: 'test',
+    //     code: 'console.log("figrata");'
+    // });
+
     server.listen(port, () => console.log(`Server running on ${port}`));
 } ());

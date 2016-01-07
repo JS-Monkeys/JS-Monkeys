@@ -18,6 +18,17 @@
             required: true,
             min: 0
         },
+        constraints: {
+            timeout: {
+                type: Number,
+                required: true,
+                min: 500
+            }
+        },
+        testCount: {
+            type: Number,
+            default: 2
+        },
         submissionIds: [String]
     });
 
