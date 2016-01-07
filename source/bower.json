@@ -28,7 +28,7 @@
     "jquery": "~2.1.4",
     "bootstrap": "~3.3.6",
     "font-awesome": "fontawesome#~4.5.0",
-    "Flot": "flot#~0.8.3",
+    "flot": "flot#~0.8.3",
     "flot.tooltip": "~0.8.5"
   }
 }
