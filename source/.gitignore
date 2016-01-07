@@ -8,3 +8,6 @@ tsd.json
 
 *.iml
 .idea/
+
+# Bower custom folder (remove this ignore if needed)
+public/lib
