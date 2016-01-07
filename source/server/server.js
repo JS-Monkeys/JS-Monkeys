@@ -21,7 +21,13 @@
     
     // passport config
     require('./config/passport-config')(server);
-    
+
+    // static requests config
+    //var path = require('path');
+    //var rootPath = path.normalize(__dirname + '/../');
+    //console.log(rootPath);
+    server.use(express.static(__dirname + '/../public'));
+
     // configure view engine
     server.set('view engine', 'jade');
     server.set('views', __dirname + '/views');

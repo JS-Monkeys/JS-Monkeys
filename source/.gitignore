@@ -3,3 +3,8 @@ node_modules
 # intellisense
 typings
 tsd.json
+
+# Webstorm
+
+*.iml
+.idea/
