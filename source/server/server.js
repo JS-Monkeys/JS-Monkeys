@@ -29,10 +29,5 @@
     // configure routes
     require('./routers/route-loader')(server);
 
-    // require('./utils/js-execution/submission-evaluator')({
-    //     taskName: 'test',
-    //     code: 'console.log("figrata");'
-    // });
-
     server.listen(port, () => console.log(`Server running on ${port}`));
 } ());

@@ -23,14 +23,14 @@
         // prevent function args(and other) shenanigans
         code = "'use strict';\n" + (code || '');
         options.timeout = submission.taskInfo.constraints.timeout || 1000;
-        
+
         for (var i = 0; i < submission.taskInfo.count; i++) {
             
             let index = i;
             
-            fs.readFile(`./server/problems/${submission.taskName}/test.in.${index}.txt`, function (error, file) {
-                if (error) {
-                    console.log('error with reading tests: ' + error);
+            fs.readFile(`./server/problems/${submission.task}/test.in.${index}.txt`, function (readInputError, file) {
+                if (readInputError) {
+                    console.log('error with reading tests: ' + readInputError);
                     return;
                 }
                 try {
@@ -38,7 +38,7 @@
 
                     vm.runInNewContext(code, sandbox, options);
 
-                    fs.readFile(`./server/problems/${submission.taskName}/test.out.${index}.txt`, function (err2, test) {
+                    fs.readFile(`./server/problems/${submission.task}/test.out.${index}.txt`, function (err2, test) {
                         if (err2) {
                             console.log(err2);
                             return;

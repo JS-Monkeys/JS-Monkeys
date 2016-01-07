@@ -21,26 +21,32 @@
 
     function createSubmission(submission) {
         let promise = new Promise(function (resolve, reject) {
-            if (submission.problemId) {
-                Problem.findOne({ id: submission.problemId }, function (error, dbProblem) {
+
+            if (!submission || !submission.problem) {
+                return reject('request is missing the problem id or problem name');
+            }
+
+            Problem.findOne({ name: submission.problem.name }, function (error, dbProblem) {
+                if (error) {
+                    console.log({ error: 'error at submission-services:' + error });
+                    return reject(error);
+                }
+
+                if (!dbProblem) {
+                    return reject({ error: 'no problem with such ID' });
+                }
+                
+                Submission.create(submission, function (error, dbSubmission) {
                     if (error) {
                         return reject(error);
                     }
 
-                    if (!dbProblem) {
-                        return reject(error);
-                    }
-
-                    Submission.create(submission, function (error, dbSubmission) {
-                        if (error) {
-                            return reject(error);
-                        }
-
-                        dbProblem.submissionIds.push(dbSubmission._id);
-                        resolve(dbSubmission);
-                    });
+                    dbProblem.submissionIds.push(dbSubmission._id);
+                    dbProblem.save();
+                    resolve(dbSubmission);
                 });
-            }
+            });
+
         });
 
         return promise;

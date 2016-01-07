@@ -4,13 +4,22 @@
     let mongoose = require('mongoose');
 
     let submissionSchema = new mongoose.Schema({
-        problemId: {
-            type: String,
-            required: true
+        problem: {
+            name: {
+                type: String,
+                required: true
+            },
+            id: String
         },
-        userId: {
-            type: String,
-            required: true
+        user: {
+            username: {
+                type: String,
+                required: true
+            },
+            id: String
+        },
+        code: {
+          type: String
         },
         madeOn: {
             type: Date,

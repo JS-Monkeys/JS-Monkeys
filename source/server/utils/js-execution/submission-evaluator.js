@@ -1,30 +1,24 @@
 (function () {
     'use strict';
 
-    const dummySubmission = {
-        taskInfo: {
-            count: 2,
-            name: 'test',
-        },
-        code: 'console.log(args);'
-    },
-        path = require('path').join(__dirname, 'js-executor.js');
+    const path = require('path').join(__dirname, 'js-executor.js');
 
     let data = require('../../data/data');
 
     module.exports = function (submission) {
-        
+
         let promise = new Promise(function (resolve, reject) {
-            submission = submission || dummySubmission;
             console.log(submission);
+            if (!submission) {
+                return reject({ error: 'invalid submission' });
+            }
+
             data.problems
-                .findProblem({ name: submission.taskName })
+                .findProblem({ name: submission.task })
                 .then(function (problem) {
 
                     if (!problem) {
-                        console.log('alooo');
-                        reject('problem not found in db');
-                        return;
+                        return reject('problem not found in db');
                     }
 
                     submission.taskInfo = {
@@ -35,10 +29,31 @@
                     let process = require('child_process');
 
                     let child = process.spawn('node', [path]);
+                    
+                    // stream the submission to the user
                     child.stdin.write(JSON.stringify(submission));
-                    child.stdout.on('data', d => resolve({
-                        results: d.toString().split(',')
-                    }));
+                    
+                    // on output from the executor
+                    child.stdout.on('data', function (result) {
+                        let testResults = result.toString().split(',');
+                        let passedTests = testResults.map(testResult => (testResult === 'true' ? 1 : 0))
+                                .reduce((memo, val) => memo + val);
+
+                        data.submissions.createSubmission({
+                            problem: {
+                                name: submission.task
+                            },
+                            user: submission.user,
+                            code: submission.code,
+                            points: 100 * passedTests / testResults.length
+                        })
+                            .then(function (dbres) {
+                                resolve(result.toString().split(','));
+                            }, function (e) {
+                                console.log(e);
+                                reject(e);
+                            });
+                    });
                 }, function (error) {
                     console.log('could not load problem from db');
                     reject(error);
