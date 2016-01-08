@@ -11,6 +11,9 @@
     
     // i can't think of another place to extract those middlewares
     server.use(bodyParser.json());
+    server.use(bodyParser.urlencoded({
+        extended: true
+    }));
     server.use(cookieParser());
     
     // file upload middleware
