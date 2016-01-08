@@ -13,3 +13,6 @@
  - [MEAN Stack workshop by Ivaylo Kenov](https://github.com/ivaylokenov/Telerik-Academy-Courses)
  - [scotch.io - local auth](https://scotch.io/tutorials/easy-node-authentication-setup-and-local)
  - **passport** [docs](http://passportjs.org/docs)
+ 
+ ## Mongoose
+ - [Unique records in Mongoose issue](https://www.learnallthenodes.com/episodes/12-unique-records-in-mongoose)

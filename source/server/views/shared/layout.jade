@@ -5,8 +5,12 @@ html(lang="en")
   link(href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css")
   link(href="/css/sb-admin.css" rel="stylesheet" type="text/css")
   link(href="/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css")
+  link(href="/lib/toastr/toastr.css" rel="stylesheet" type="text/css")
+  link(href="/css/site.css" rel="stylesheet" type="text/css")
+  link(rel="icon" href="/favicon.ico" type="image/x-icon")
+  link(rel="shortcut icon" href="/favicon.ico" type="image/x-icon")
 
-  body
+  body(ng-app="app" ng-cloak)
     #wrapper
       nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
         // Brand and toggle get grouped for better mobile display
@@ -20,146 +24,10 @@ html(lang="en")
 
             span.icon-bar
           img(src="assets/js-monkey-cut.png" alt="JS monkey logo" class="navbar-brand")
-          a.navbar-brand(href='index.html') JS Monkey
+          a.navbar-brand(href='/') JS Monkey
           // Top Menu Items
-        ul.nav.navbar-right.top-nav
-          li
-            a(href="/register") Register
+        ul.nav.navbar-right.top-nav(ng-include="'/log-in'")
 
-          li
-            a(href="/login") Login
-
-          li
-            a(href="/logout") Logout
-
-          li.dropdown
-            a.dropdown-toggle(href='#', data-toggle='dropdown')
-              i.fa.fa-envelope
-
-              b.caret
-
-            ul.dropdown-menu.message-dropdown
-              li.message-preview
-                a(href='#')
-                  .media
-                    span.pull-left
-                      img.media-object(src='http://placehold.it/50x50', alt='')
-
-                    .media-body
-                      h5.media-heading
-                        strong John Smith
-
-                      p.small.text-muted
-                        i.fa.fa-clock-o
-                        |  Yesterday at 4:32 PM
-
-                      p Lorem ipsum dolor sit amet, consectetur...
-
-              li.message-preview
-                a(href='#')
-                  .media
-                    span.pull-left
-                      img.media-object(src='http://placehold.it/50x50', alt='')
-
-                    .media-body
-                      h5.media-heading
-                        strong John Smith
-
-                      p.small.text-muted
-                        i.fa.fa-clock-o
-                        |  Yesterday at 4:32 PM
-
-                      p Lorem ipsum dolor sit amet, consectetur...
-
-              li.message-preview
-                a(href='#')
-                  .media
-                    span.pull-left
-                      img.media-object(src='http://placehold.it/50x50', alt='')
-
-                    .media-body
-                      h5.media-heading
-                        strong John Smith
-
-                      p.small.text-muted
-                        i.fa.fa-clock-o
-                        |  Yesterday at 4:32 PM
-
-                      p Lorem ipsum dolor sit amet, consectetur...
-
-              li.message-footer
-                a(href='#') Read All New Messages
-
-          li.dropdown
-            a.dropdown-toggle(href='#', data-toggle='dropdown')
-              i.fa.fa-bell
-
-              b.caret
-
-            ul.dropdown-menu.alert-dropdown
-              li
-                a(href='#')
-                  | Alert Name
-                  span.label.label-default Alert Badge
-
-              li
-                a(href='#')
-                  | Alert Name
-                  span.label.label-primary Alert Badge
-
-              li
-                a(href='#')
-                  | Alert Name
-                  span.label.label-success Alert Badge
-
-              li
-                a(href='#')
-                  | Alert Name
-                  span.label.label-info Alert Badge
-
-              li
-                a(href='#')
-                  | Alert Name
-                  span.label.label-warning Alert Badge
-
-              li
-                a(href='#')
-                  | Alert Name
-                  span.label.label-danger Alert Badge
-
-              li.divider
-
-              li
-                a(href='#') View All
-
-          li.dropdown
-            a.dropdown-toggle(href='#', data-toggle='dropdown')
-              i.fa.fa-user
-              |  John Smith
-              b.caret
-
-            ul.dropdown-menu
-              li
-                a(href='#')
-                  i.fa.fa-fw.fa-user
-                  |  Profile
-
-              li
-                a(href='#')
-                  i.fa.fa-fw.fa-envelope
-                  |  Inbox
-
-              li
-                a(href='#')
-                  i.fa.fa-fw.fa-gear
-                  |  Settings
-
-              li.divider
-
-              li
-                a(href='#')
-                  i.fa.fa-fw.fa-power-off
-                  |  Log Out
         // Sidebar Menu Items - These collapse to the responsive navigation menu on small screens
         .collapse.navbar-collapse.navbar-ex1-collapse
           ul.nav.navbar-nav.side-nav
@@ -218,15 +86,14 @@ html(lang="en")
         // /.navbar-collapse
 
       #page-wrapper
-        block main-content
+        .container-fluid
 
+          block main-content
 
-  br
-  br
-  hr
-  footer
-    p.text-center
-      | &copy; JS Monkeys 2015
+      footer
+        p.text-center
+          | &copy; JS Monkeys 2015
 
-include scripts
+      include scripts
+      include current-user
 

@@ -1,0 +1,148 @@
+
+<ul ng-controller="LoginCtrl" class="nav navbar-right top-nav">
+  <form ng-hide="identity.isAuthenticated()" class="navbar-form">
+    <div class="form-group">
+      <input type="text" placeholder="Username" ng-model="user.username" class="form-control input-sm"/>
+      <input type="password" placeholder="Password" ng-model="user.password" class="form-control input-sm"/>
+    </div>
+    <button ng-click="login(user)" class="btn btn-default btn-sm">Login</button><a href="/sign-up" class="btn btn-success btn-sm">Sign Up</a>
+  </form>
+  <!--ul.nav.navbar-nav.navbar-right(ng-show="identity.isAuthenticated()")-->
+  <li ng-show="identity.isAuthenticated()" class="dropdown"><a href="" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-user"></i>  {{ identity.currentUser.username }}<span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <li ng-show="identity.currentUser.isAdmin()"><a href="/admin/users">Users</a></li>
+      <li ng-show="identity.isAuthenticated()"><a href="/profile/edit"><i class="fa fa-fw fa-user"></i> Edit Profile</a></li>
+      <li class="divider"></li>
+      <li><a href="/" ng-click="logout()"><i class="fa fa-fw fa-power-off"></i> Sign Out</a></li>
+    </ul>
+  </li>
+  <!--li.dropdown
+  //  a.dropdown-toggle(href='#', data-toggle='dropdown')
+  //    i.fa.fa-envelope
+  //
+  //    b.caret
+  //
+  //  ul.dropdown-menu.message-dropdown
+  //    li.message-preview
+  //      a(href='#')
+  //        .media
+  //          span.pull-left
+  //            img.media-object(src='http://placehold.it/50x50', alt='')
+  //
+  //          .media-body
+  //            h5.media-heading
+  //              strong John Smith
+  //
+  //            p.small.text-muted
+  //              i.fa.fa-clock-o
+  //              |  Yesterday at 4:32 PM
+  //
+  //            p Lorem ipsum dolor sit amet, consectetur...
+  //
+  //    li.message-preview
+  //      a(href='#')
+  //        .media
+  //          span.pull-left
+  //            img.media-object(src='http://placehold.it/50x50', alt='')
+  //
+  //          .media-body
+  //            h5.media-heading
+  //              strong John Smith
+  //
+  //            p.small.text-muted
+  //              i.fa.fa-clock-o
+  //              |  Yesterday at 4:32 PM
+  //
+  //            p Lorem ipsum dolor sit amet, consectetur...
+  //
+  //    li.message-preview
+  //      a(href='#')
+  //        .media
+  //          span.pull-left
+  //            img.media-object(src='http://placehold.it/50x50', alt='')
+  //
+  //          .media-body
+  //            h5.media-heading
+  //              strong John Smith
+  //
+  //            p.small.text-muted
+  //              i.fa.fa-clock-o
+  //              |  Yesterday at 4:32 PM
+  //
+  //            p Lorem ipsum dolor sit amet, consectetur...
+  //
+  //    li.message-footer
+  //      a(href='#') Read All New Messages
+  //
+  //li.dropdown
+  //  a.dropdown-toggle(href='#', data-toggle='dropdown')
+  //    i.fa.fa-bell
+  //
+  //    b.caret
+  //
+  //  ul.dropdown-menu.alert-dropdown
+  //    li
+  //      a(href='#')
+  //        | Alert Name
+  //        span.label.label-default Alert Badge
+  //
+  //    li
+  //      a(href='#')
+  //        | Alert Name
+  //        span.label.label-primary Alert Badge
+  //
+  //    li
+  //      a(href='#')
+  //        | Alert Name
+  //        span.label.label-success Alert Badge
+  //
+  //    li
+  //      a(href='#')
+  //        | Alert Name
+  //        span.label.label-info Alert Badge
+  //
+  //    li
+  //      a(href='#')
+  //        | Alert Name
+  //        span.label.label-warning Alert Badge
+  //
+  //    li
+  //      a(href='#')
+  //        | Alert Name
+  //        span.label.label-danger Alert Badge
+  //
+  //    li.divider
+  //
+  //    li
+  //      a(href='#') View All
+  //
+  //li.dropdown
+  //  a.dropdown-toggle(href='#', data-toggle='dropdown')
+  //    i.fa.fa-user
+  //    |  John Smith
+  //    b.caret
+  //
+  //  ul.dropdown-menu
+  //    li
+  //      a(href='#')
+  //        i.fa.fa-fw.fa-user
+  //        |  Profile
+  //
+  //    li
+  //      a(href='#')
+  //        i.fa.fa-fw.fa-envelope
+  //        |  Inbox
+  //
+  //    li
+  //      a(href='#')
+  //        i.fa.fa-fw.fa-gear
+  //        |  Settings
+  //
+  //    li.divider
+  //
+  //    li
+  //      a(href='#')
+  //        i.fa.fa-fw.fa-power-off
+  //        |  Log Out
+  -->
+</ul>

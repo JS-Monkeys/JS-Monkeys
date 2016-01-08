@@ -7,6 +7,7 @@
 
   // TODO: refactor those routes
   router.get('/api/users', usersController.all)
+    .post('/api/users', usersController.registerUser)
     .get('/register', usersController.getRegister)
     .post('/register', usersController.postRegister)
     .get('/login', auth.login)

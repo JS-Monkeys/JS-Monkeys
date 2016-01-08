@@ -1,0 +1,42 @@
+#update-btn{
+    margin-right: 10px;
+}
+
+.navbar-right .navbar-form input {
+    margin-right: 10px;
+}
+.navbar-right .navbar-form a.btn {
+    margin-left: 10px;
+}
+
+.toast-top-right {
+    top: 70px;
+}
+
+.toast-error {
+    background-color: #bc7cad;
+}
+.toast-success {
+    background-color: #01f6cd;
+}
+
+footer p {
+    border-top: 1px solid #222;
+    padding: 15px;
+    color: #222;
+}
+input.ng-dirty.ng-invalid {
+    background-color: #bc7cad; !important
+}
+
+input.ng-dirty.ng-valid {
+    background-color: #01f6cd; !important
+}
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none !important;
+}
+
+.btn-success{
+    background-color: #01b991;
+}

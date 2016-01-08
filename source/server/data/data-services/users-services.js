@@ -53,6 +53,7 @@
         let salt = encryption.generateSalt();
         let dbUser = {
             username: user.username,
+            email: user.email,
             salt: salt,
             passHash: encryption.hashPassword(salt, user.password),
             roles: user.roles || ['standard']
@@ -61,7 +62,9 @@
         let promise = new Promise(function (resolve, reject) {
             User.create(dbUser, function (error, createdUser) {
                 if (error) {
-                    return reject(error);
+
+                    console.log(error);
+                    reject(error);
                 }
 
                 resolve(createdUser);
