@@ -90,11 +90,15 @@
         <!-- /.navbar-collapse-->
       </nav>
       <div id="page-wrapper">
-        <div class="container-fluid">
-          <div class="jumbotron">
-            <h1>Welcome JS Monkeys</h1>
-          </div>
-        </div>
+        <form method="post">
+          <label for="username">Username</label>
+          <input id="username" type="text" name="username" placeholder="Username" class="form-control"><br>
+          <label for="password">Password</label>
+          <input id="password" type="password" name="password" placeholder="Password" class="form-control"><br>
+          <label for="confirm-password">Confirm Password</label>
+          <input id="confirm-password" type="password" name="confirmPassword" placeholder="Confirm password" class="form-control"><br>
+          <input type="submit" value="Register" class="btn btn-lg">
+        </form>
       </div>
     </div>
   </body><br><br>
