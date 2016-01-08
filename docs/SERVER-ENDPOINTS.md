@@ -10,4 +10,5 @@
 | /admin/upload           | POST                                | Upload files(admin only)          |
 | /admin/problems         | GET                                 | Get all problems(admin only)      |
 | /admin/problems         | POST                                | Create a problem(admin only)      |
-| /problems               | POST                                | Make a submission(admin only)     |
+| /problems               | POST                                | Make a submission                 |
+| /problems/:name         | GET                                 | Get problem description           |
