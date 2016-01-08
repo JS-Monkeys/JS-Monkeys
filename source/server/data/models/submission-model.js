@@ -1,36 +1,34 @@
-(function () {
-    'use strict';
+'use strict';
 
-    let mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
-    let submissionSchema = new mongoose.Schema({
-        problem: {
-            name: {
-                type: String,
-                required: true
-            },
-            id: String
+let submissionSchema = new mongoose.Schema({
+    problem: {
+        name: {
+            type: String,
+            required: true
         },
-        user: {
-            username: {
-                type: String,
-                required: true
-            },
-            id: String
+        id: String
+    },
+    user: {
+        username: {
+            type: String,
+            required: true
         },
-        code: {
-          type: String
-        },
-        madeOn: {
-            type: Date,
-            default: new Date()
-        },
-        points: {
-            type: Number,
-            required: true,
-            min: 0
-        }
-    });
+        id: String
+    },
+    code: {
+        type: String
+    },
+    madeOn: {
+        type: Date,
+        default: new Date()
+    },
+    points: {
+        type: Number,
+        required: true,
+        min: 0
+    }
+});
 
-    mongoose.model('Submission', submissionSchema);
-} ());
+mongoose.model('Submission', submissionSchema);
