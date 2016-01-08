@@ -12,3 +12,4 @@
 | /admin/problems         | POST                                | Create a problem(admin only)      |
 | /problems               | POST                                | Make a submission                 |
 | /problems/:name         | GET                                 | Get problem description           |
+| /submissions            | GET                                 | Get all submissions(admin only)   |
