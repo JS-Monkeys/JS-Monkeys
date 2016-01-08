@@ -31,6 +31,8 @@
     // configure view engine
     server.set('view engine', 'jade');
     server.set('views', __dirname + '/views');
+    // md config for view engine
+    require('./config/marked-config');
     
     // configure routes
     require('./routers/route-loader')(server);

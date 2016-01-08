@@ -8,7 +8,6 @@
     module.exports = function (submission) {
 
         let promise = new Promise(function (resolve, reject) {
-            console.log(submission);
             if (!submission) {
                 return reject({ error: 'invalid submission' });
             }
@@ -26,9 +25,8 @@
                         constraints: problem.constraints
                     };
 
-                    let process = require('child_process');
-
-                    let child = process.spawn('node', [path]);
+                    let process = require('child_process'),
+                        child = process.spawn('node', [path]);
                     
                     // stream the submission to the user
                     child.stdin.write(JSON.stringify(submission));
@@ -37,7 +35,7 @@
                     child.stdout.on('data', function (result) {
                         let testResults = result.toString().split(',');
                         let passedTests = testResults.map(testResult => (testResult === 'true' ? 1 : 0))
-                                .reduce((memo, val) => memo + val);
+                            .reduce((memo, val) => memo + val);
 
                         data.submissions.createSubmission({
                             problem: {
@@ -61,11 +59,5 @@
         });
 
         return promise;
-
-        //         let process = require('child_process');
-        // 
-        //         let child = process.spawn('node', [path]);
-        //         child.stdin.write(JSON.stringify(submission));
-        //         child.stdout.on('data', d => console.log(d.toString()));
     }
 } ());
