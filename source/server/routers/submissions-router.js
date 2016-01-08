@@ -8,9 +8,9 @@
     // TODO: refactor those routes
     router
         .post('/', auth.isAuthenticated, submissionsController.makeSubmission)
-        .get('/submissions', auth.isAuthenticated, submissionsController.getSubmissions);
+        .get('/', auth.isAuthenticated, submissionsController.getSubmissions);
 
     module.exports = function (server) {
-        server.use('/problems', router);
+        server.use('/submissions', router);
     }
 } ());
