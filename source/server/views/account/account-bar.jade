@@ -1,6 +1,6 @@
 ul.nav.navbar-right.top-nav(ng-controller="LoginCtrl")
 
-  if(!isAuthenticated)
+  if(!menuResolver.isAuthenticated)
     form.navbar-form
       .form-group
         input.form-control.input-sm(type="text", placeholder="Username", ng-model="user.username")
@@ -11,7 +11,7 @@ ul.nav.navbar-right.top-nav(ng-controller="LoginCtrl")
     li.dropdown
       a.dropdown-toggle(href="", data-toggle="dropdown")
         i.fa.fa-user
-        |   #{user.username}
+        |   #{menuResolver.user.username}
         span.caret
       ul.dropdown-menu
         //li(ng-show="identity.currentUser.isAdmin()")
@@ -21,6 +21,11 @@ ul.nav.navbar-right.top-nav(ng-controller="LoginCtrl")
         //  a(href="/profile/edit")
         //    i.fa.fa-fw.fa-user
         //    |  Edit Profile
+
+        li
+          a(href="/admin/add-contest")
+            i.fa.fa-fw.fa-plus
+            |  Add new contest
 
         li.divider
 

@@ -12,13 +12,7 @@ router.get('/api/users', usersController.all)
 
 
 router.get('/:partial', function (req, res) {
-
-    let options = {
-        isAuthenticated: req.isAuthenticated(),
-        user: req.user
-    };
-
-    res.render('../views/account/' + req.params.partial, options);
+    res.render('../views/account/' + req.params.partial, req);
 });
 
 module.exports = function (server) {

@@ -34,8 +34,8 @@
 
         $http.post('/login', user).success(function(response) {
           if (response.success) {
-            var user = new UsersResource();
-            angular.extend(user, response.user);
+            //var user = new UsersResource();
+            //angular.extend(user, response.user);
             deferred.resolve(true);
           }
           else {

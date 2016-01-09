@@ -3,7 +3,9 @@
 
     $scope.login = function (user) {
 
+      console.log(user);
       auth.login(user).then(function (success) {
+
         if (success) {
           notifier.success('Successful login!');
           window.location.href = "/"

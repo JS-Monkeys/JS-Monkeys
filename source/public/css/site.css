@@ -87,3 +87,7 @@ textarea, .task-desc {
 .modal-footer{
     margin-top: 2em;
 }
+
+.error{
+    color: #bc7cad;
+}

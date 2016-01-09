@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta charset="utf-8">
+  <title>JS Monkey - Java Script ES for monkeys</title>
+  <link href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="/css/sb-admin.css" rel="stylesheet" type="text/css">
+  <link href="/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="/lib/toastr/toastr.css" rel="stylesheet" type="text/css">
+  <link href="/css/site.css" rel="stylesheet" type="text/css">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <body ng-app="app" ng-cloak>
+    <div id="wrapper">
+      <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+        <!-- Brand and toggle get grouped for better mobile display-->
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target=".navbar-ex1-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><img src="/assets/js-monkey-cut.png" alt="JS monkey logo" class="navbar-brand"><a href="/" class="navbar-brand">JS Monkey</a>
+          <!-- Top Menu Items-->
+        </div>
+        <!--ul.nav.navbar-right.top-nav(ng-include="'/log-in'")-->
+        <ul ng-controller="LoginCtrl" class="nav navbar-right top-nav">
+          <form class="navbar-form">
+            <div class="form-group">
+              <input type="text" placeholder="Username" ng-model="user.username" class="form-control input-sm">
+              <input type="password" placeholder="Password" ng-model="user.password" class="form-control input-sm">
+            </div>
+            <button ng-click="login(user)" class="btn btn-default btn-sm">Login</button><a href="/sign-up" class="btn btn-success btn-sm">Sign Up</a>
+          </form>
+        </ul>
+        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screen-->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav side-nav">
+            <li><a href="javascript:;" data-toggle="collapse" data-target="#contests"><i class="fa fa-fw fa-trophy"></i> Contests<i class="fa fa-fw fa-caret-down"></i></a>
+              <ul id="contests" class="collapse">
+                <li><a href="/contests/js-oop-2015">js-oop-2015</a></li>
+                <li><a href="/contests/contest 2">contest 2</a></li>
+              </ul>
+            </li>
+            <li><a href="javascript:;" data-toggle="collapse" data-target="#courses"><i class="fa fa-fw fa-book"></i> Courses<i class="fa fa-fw fa-caret-down"></i></a>
+              <ul id="courses" class="collapse">
+                <li><a href="/courses/course 1">course 1</a></li>
+                <li><a href="/courses/course 2">course 2</a></li>
+              </ul>
+            </li>
+            <li><a href="/rankings"><i class="fa fa-fw fa-star"></i> Rankings</a></li>
+            <li><a href="/about"><i class="fa fa-fw fa-info-circle"></i> About</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div id="page-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-10">
+              <h2 id="nav-tabs">Contest</h2>
+              <div class="bs-component">
+                <ul class="nav nav-tabs">
+                  <li class="active"><a href="#submit" data-toggle="tab">Submit</a></li>
+                  <li><a href="#problem" data-toggle="tab">Problem Description</a></li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                  <div id="submit" class="tab-pane fade active in">
+                    <div class="form-group">
+                      <div class="col-lg-12">
+                        <textarea id="textArea" rows="20" class="form-control"></textarea><span class="help-block"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="problem" class="tab-pane fade">
+                    <p class="task-desc">
+                      Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                      Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                      Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                      Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                      Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                      Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                      Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                      Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                      Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                      Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                      Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                      Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                      Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                      Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                      Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                      Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                      Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                      Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                      Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <div class="pull-right">
+                    <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2 problem-btn">
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <p class="text-center">&copy; JS Monkeys 2015</p>
+      </footer>
+      <script type="text/javascript" src="/lib/jquery/dist/jquery.min.js"></script>
+      <script type="text/javascript" src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="/lib/toastr/toastr.js"></script>
+      <script type="text/javascript" src="/lib/angular/angular.js"></script>
+      <script type="text/javascript" src="/lib/angular-resource/angular-resource.js"></script>
+      <script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
+      <script type="text/javascript" src="/js/app.js"></script>
+      <script type="text/javascript" src="/js/account/auth.js"></script>
+      <script type="text/javascript" src="/js/account/login-controller.js"></script>
+      <script type="text/javascript" src="/js/account/sign-up-controller.js"></script>
+      <script type="text/javascript" src="/js/account/users-resource.js"></script>
+      <script type="text/javascript" src="/js/common/data.js"></script>
+      <script type="text/javascript" src="/js/common/notifier.js"></script>
+      <script type="text/javascript" src="/lib/flot/jquery.flot.js"></script>
+      <script type="text/javascript" src="/lib/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+      <script type="text/javascript" src="/lib/flot/jquery.flot.resize.js"></script>
+      <script type="text/javascript" src="/lib/flot/jquery.flot.pie.js"></script>
+      <script type="text/javascript" src="/js/contest/custom.js"></script>
+    </div>
+  </body>
+</html>
