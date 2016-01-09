@@ -17,7 +17,7 @@ block main-content
             .form-group
               label.col-lg-2.control-label(for='inputEmail') Email
               .col-lg-10
-                input#inputEmail.form-control(name='userMail', type='text', ng-model='user.email', required='required', placeholder='Email', ng-pattern='/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/')
+                input#inputEmail.form-control(name='userMail', type='text', ng-model='user.email', required='required', placeholder='Email', ng-pattern='/^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$/')
 
             .text-center.error(ng-show='registerForm.userPassword.$error.minlength') Pasword must be at least 6 symbols long !
             .form-group

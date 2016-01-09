@@ -58,7 +58,7 @@
                     <div class="form-group">
                       <label for="inputEmail" class="col-lg-2 control-label">Email</label>
                       <div class="col-lg-10">
-                        <input id="inputEmail" name="userMail" type="text" ng-model="user.email" required="required" placeholder="Email" ng-pattern="/^[_a-z0-9]+(.[_a-z0-9]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/" class="form-control">
+                        <input id="inputEmail" name="userMail" type="text" ng-model="user.email" required="required" placeholder="Email" ng-pattern="/^[_a-zA-Z0-9]+(.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(.[a-zA-Z0-9-]+)*(.[a-zA-Z]{2,4})$/" class="form-control">
                       </div>
                     </div>
                     <div ng-show="registerForm.userPassword.$error.minlength" class="text-center error">Pasword must be at least 6 symbols long !</div>

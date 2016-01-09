@@ -8,19 +8,13 @@ let express = require('express'),
     port = process.env.PORT || 2345,
     connectionString = 'mongodb://localhost:27017/jsmonkey';
     
-<<<<<<< HEAD
     // i can't think of another place to extract those middlewares
     server.use(bodyParser.json());
     server.use(bodyParser.urlencoded({
         extended: true
     }));
     server.use(cookieParser());
-=======
-// i can't think of another place to extract those middlewares
-server.use(bodyParser.json());
-server.use(cookieParser());
->>>>>>> master
-    
+
 // file upload middleware
 server.use(busboy({ immediate: false }));
     

@@ -9,4 +9,4 @@ module.exports = {
     byName: function (req, res) {
         data.contests.byName(req.params.name).then(contest => res.json(contest), error => res.json(error));
     }
-}
+};

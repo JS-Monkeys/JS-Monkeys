@@ -13,4 +13,4 @@ router.get('/upload', auth.isInRole('admin'), adminController.uploadPage)
 
 module.exports = function (server) {
     server.use('/admin', router);
-}
+};
