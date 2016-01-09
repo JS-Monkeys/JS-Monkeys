@@ -28,7 +28,8 @@ let problemSchema = new mongoose.Schema({
         type: Number,
         default: 2
     },
-    submissionIds: [String]
+    submissionIds: [String],
+    _contest:{type: mongoose.Schema.ObjectId, ref: 'Contest'}
 });
 
 mongoose.model('Problem', problemSchema);
