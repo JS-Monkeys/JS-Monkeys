@@ -73,6 +73,28 @@
         return promise;
     }
 
+    function findByRank(from,to){
+        let options = {
+            points: {
+                "$gte": from,
+                "$lte": to
+            }
+        };
+        let promise = new Promise(function (resolve, reject) {
+
+            User.find(options, function (error, users) {
+                if (error) {
+                    return reject(error);
+                }
+
+                resolve(users);
+            });
+
+        });
+
+        return promise;
+    }
+
     module.exports = {
         name: 'users',
         services: {
@@ -83,6 +105,9 @@
             },
             byId: function (id) {
                 return findUser({ _id: id });
+            },
+            findByRank: function(from,to){
+                return findByRank(from,to);
             }
         }
     };

@@ -20,5 +20,14 @@ module.exports = {
       }, function (error) {
         res.json(error);
       });
+  },
+  findByRank: function (req, res) {
+    data.users
+    .findByRank(req.query.from,req.query.to)
+    .then(function (response) {
+      res.json(response);
+    }, function (error) {
+      res.json(error);
+    });
   }
 };
