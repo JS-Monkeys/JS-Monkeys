@@ -10,7 +10,7 @@ module.exports = {
         data.contests.byName(req.params.name).then(contest => res.render('contest/contest', contest), error => res.json(error));
     },
     create: function (req,res) {
-        data.contests.create(req.body).then(contest => res.redirect(201, '/contest/' + contest),
+        data.contests.create(req.body).then(contest => res.redirect(201, '/contests/' + contest),
                                             error => res.json(error));
     }
 };

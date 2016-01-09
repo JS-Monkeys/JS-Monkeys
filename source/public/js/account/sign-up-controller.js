@@ -8,7 +8,7 @@
       console.log('here');
       auth.signup(user).then(function() {
         notifier.success('Registration successful!');
-        window.location.href = "/register-success"
+        window.location.href = "/sign-up-success"
       })
     }}
 
