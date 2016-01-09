@@ -1,6 +1,5 @@
 (function () {
-  function LoginController($scope, notifier, identity, auth) {
-    $scope.identity = identity;
+  function LoginController($scope, notifier, auth) {
 
     $scope.login = function (user) {
 
@@ -18,15 +17,11 @@
     $scope.logout = function () {
       auth.logout().then(function () {
         notifier.success('Successful logout!');
-        if ($scope.user) {
-          $scope.user.username = '';
-          $scope.user.password = '';
-        }
         window.location.href = "/"
       })
     }
   }
 
   angular.module('app.controllers')
-    .controller('LoginCtrl', ['$scope', 'notifier', 'identity', 'auth', LoginController]);
+    .controller('LoginCtrl', ['$scope', 'notifier', 'auth', LoginController]);
 }());

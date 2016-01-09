@@ -14,8 +14,6 @@ router.get('/', homeController.homePage)
 
 router.get('/:partial', function (req, res) {
 
-  console.log(req.user);
-
   let options = {
     isAuthenticated: req.isAuthenticated(),
     user: req.user
