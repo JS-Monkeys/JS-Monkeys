@@ -7,9 +7,12 @@ function filter(options) {
     options = options || {};
 
     let promise = new Promise(function (resolve, reject) {
-
-        Contest.find(options, function (dbError, contests) {
+ console.log(options);
+        Contest.find(options)
+            .populate('problems')
+            .exec(function (dbError, contests) {
             if (dbError) {
+                 console.log(contests);
                 console.log(dbError);
                 return reject(dbError);
             }
@@ -32,7 +35,9 @@ function findContest(options) {
     }
 
     let promise = new Promise(function (resolve, reject) {
-        Contest.findOne(options, function (dbError, dbContest) {
+        Contest.findOne(options)
+            .populate('problems')
+            .exec(function (dbError, dbContest) {
             if (dbError) {
                 console.log(dbError);
                 return reject(dbError);
