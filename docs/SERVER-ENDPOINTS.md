@@ -4,6 +4,7 @@
 | /                       | GET                                 | Home page                         |
 | /api/users              | GET                                 | All users                         |
 | /api/users              | POST                                | Register user                     |
+| /api/users/rankings     | GET(query {from,to})                | Get user ranking in range         |
 | /login                  | POST                                | Login user                        |
 | /logout                 | POST                                | Logout                            |
 | /admin/upload           | GET                                 | Get file upload page(admin only)  |
