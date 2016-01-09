@@ -14,5 +14,9 @@ module.exports = {
                 desc: file.toString()
             });
         });
+    },
+    createProblem: function (req, res) {
+        data.problems.createProblem(req.body.problem)
+                     .then(r => res.json(r), err => res.json(err));
     }
 };

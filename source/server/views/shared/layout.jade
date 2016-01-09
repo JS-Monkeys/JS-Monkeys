@@ -3,6 +3,7 @@ html(lang="en")
   meta(charset="utf-8")
   title JS Monkey - Java Script ES for monkeys
   include css
+  include side-bar
   link(rel="icon" href="/favicon.ico" type="image/x-icon")
   link(rel="shortcut icon" href="/favicon.ico" type="image/x-icon")
 
@@ -26,7 +27,8 @@ html(lang="en")
         include ../account/account-bar
 
         // Sidebar Menu Items - These collapse to the responsive navigation menu on small screen
-        include  side-bar
+
+        +sidebar(contests)
 
       #page-wrapper
         .container-fluid

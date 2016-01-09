@@ -5,13 +5,15 @@ let mongoose = require('mongoose'),
 
 function createProblem(problem) {
     if (problem) {
+        
         problem = {
             name: problem.name,
             points: problem.points,
-            constraints: problem.constraints
+            constraints: problem.constraints,
+            _contest: problem.contestId
         };
     }
-
+console.log(problem.constraints);
     let promise = new Promise(function (resolve, reject) {
         Problem.create(problem, function (error, dbProblem) {
             if (error) {
@@ -54,7 +56,7 @@ function all() {
             if (error) {
                 return reject(error);
             }
-
+            console.log(dbProblems);
             resolve(dbProblems);
         });
     });

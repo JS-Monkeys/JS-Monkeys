@@ -1,33 +1,34 @@
-.collapse.navbar-collapse.navbar-ex1-collapse
-  ul.nav.navbar-nav.side-nav
+mixin sidebar(contests)
+    .collapse.navbar-collapse.navbar-ex1-collapse
+        ul.nav.navbar-nav.side-nav
 
-    li
-      a(href='javascript:;', data-toggle='collapse', data-target='#contests')
-        i.fa.fa-fw.fa-trophy
-        |  Contests
-        i.fa.fa-fw.fa-caret-down
+            li
+                a(href='javascript:;', data-toggle='collapse', data-target='#contests')
+                    i.fa.fa-fw.fa-trophy
+                    |  Contests
+                    i.fa.fa-fw.fa-caret-down
 
-      ul#contests.collapse
-        each contest in ['js-oop-2015', 'contest 2']
-          li
-            a(href='contests/' + contest) #{contest}
-    li
-      a(href='javascript:;', data-toggle='collapse', data-target='#courses')
-        i.fa.fa-fw.fa-book
-        |  Courses
-        i.fa.fa-fw.fa-caret-down
+                ul#contests.collapse
+                    each contest in contests
+                        li
+                            a(href='/contests/' + contest.name) #{contest.name}
+            li
+                a(href='javascript:;', data-toggle='collapse', data-target='#courses')
+                    i.fa.fa-fw.fa-book
+                    |  Courses
+                    i.fa.fa-fw.fa-caret-down
 
-      ul#courses.collapse
-        each course in ['course 1', 'course 2']
-          li
-            a(href='course/' + course) #{course}
+                ul#courses.collapse
+                    each course in ['course 1', 'course 2']
+                        li
+                            a(href='course/' + course) #{course}
 
-    li
-      a(href='/rankings')
-        i.fa.fa-fw.fa-star
-        |  Rankings
+            li
+                a(href='/rankings')
+                    i.fa.fa-fw.fa-star
+                    |  Rankings
 
-    li
-      a(href='/about')
-        i.fa.fa-fw.fa-info-circle
-        |  About
+            li
+                a(href='/about')
+                    i.fa.fa-fw.fa-info-circle
+                    |  About
