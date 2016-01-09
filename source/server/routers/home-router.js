@@ -12,15 +12,6 @@ router.get('/favicon.ico', function (req, res) {
 router.get('/', homeController.homePage)
   .get('/private', auth.isAuthenticated, homeController.homePrivate);
 
-router.get('/:partial', function (req, res) {
-
-  let options = {
-    isAuthenticated: req.isAuthenticated(),
-    user: req.user
-  };
-
-  res.render('../views/users/' + req.params.partial, options);
-});
 
 module.exports = function (server) {
   server.use('/', router);

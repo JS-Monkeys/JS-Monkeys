@@ -9,4 +9,4 @@ let router = require('express').Router(),
 
 module.exports = function (server) {
     server.use('/contests', router);
-}
+};

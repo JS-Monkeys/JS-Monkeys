@@ -17,27 +17,35 @@
           <button type="button" data-toggle="collapse" data-target=".navbar-ex1-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><img src="assets/js-monkey-cut.png" alt="JS monkey logo" class="navbar-brand"><a href="/" class="navbar-brand">JS Monkey</a>
           <!-- Top Menu Items-->
         </div>
-        <ul ng-include="'/log-in'" class="nav navbar-right top-nav"></ul>
-        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens-->
+        <!--ul.nav.navbar-right.top-nav(ng-include="'/log-in'")-->
+        <ul ng-controller="LoginCtrl" class="nav navbar-right top-nav">
+          <form class="navbar-form">
+            <div class="form-group">
+              <input type="text" placeholder="Username" ng-model="user.username" class="form-control input-sm">
+              <input type="password" placeholder="Password" ng-model="user.password" class="form-control input-sm">
+            </div>
+            <button ng-click="login(user)" class="btn btn-default btn-sm">Login</button><a href="/sign-up" class="btn btn-success btn-sm">Sign Up</a>
+          </form>
+        </ul>
+        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screen-->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
-            <li><a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a></li>
-            <li><a href="tables.html"><i class="fa fa-fw fa-table"></i> Tables</a></li>
-            <li><a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a></li>
-            <li><a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a></li>
-            <li><a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a></li>
-            <li><a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown<i class="fa fa-fw fa-caret-down"></i></a>
-              <ul id="demo" class="collapse">
-                <li><a href="#">Dropdown Item</a></li>
-                <li><a href="#">Dropdown Item</a></li>
+            <li><a href="javascript:;" data-toggle="collapse" data-target="#contests"><i class="fa fa-fw fa-trophy"></i> Contests<i class="fa fa-fw fa-caret-down"></i></a>
+              <ul id="contests" class="collapse">
+                <li><a href="contests/contest 1">contest 1</a></li>
+                <li><a href="contests/contest 2">contest 2</a></li>
               </ul>
             </li>
-            <li class="active"><a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a></li>
-            <li><a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a></li>
+            <li><a href="javascript:;" data-toggle="collapse" data-target="#courses"><i class="fa fa-fw fa-book"></i> Courses<i class="fa fa-fw fa-caret-down"></i></a>
+              <ul id="courses" class="collapse">
+                <li><a href="courses/course 1">course 1</a></li>
+                <li><a href="courses/course 2">course 2</a></li>
+              </ul>
+            </li>
+            <li><a href="/rankings"><i class="fa fa-fw fa-star"></i> Rankings</a></li>
+            <li><a href="/about"><i class="fa fa-fw fa-info-circle"></i> About</a></li>
           </ul>
         </div>
-        <!-- /.navbar-collapse-->
       </nav>
       <div id="page-wrapper">
         <div class="container-fluid">
