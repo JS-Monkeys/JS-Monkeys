@@ -7,9 +7,12 @@ function filter(options) {
     options = options || {};
 
     let promise = new Promise(function (resolve, reject) {
-
-        Contest.find(options, function (dbError, contests) {
+ console.log(options);
+        Contest.find(options)
+            .populate('problems')
+            .exec(function (dbError, contests) {
             if (dbError) {
+                 console.log(contests);
                 console.log(dbError);
                 return reject(dbError);
             }
@@ -32,7 +35,9 @@ function findContest(options) {
     }
 
     let promise = new Promise(function (resolve, reject) {
-        Contest.findOne(options, function (dbError, dbContest) {
+        Contest.findOne(options)
+            .populate('problems')
+            .exec(function (dbError, dbContest) {
             if (dbError) {
                 console.log(dbError);
                 return reject(dbError);
@@ -45,12 +50,43 @@ function findContest(options) {
     return promise;
 }
 
+function create(contest){
+
+    if(contest){
+        let dbContest = {
+            name: contest.name,
+            startDate:contest.startDate,
+            endDate:contest.endDate,
+            problems: contest.problems
+        };
+
+        let promise = new Promise(function (resolve, reject) {
+            Contest.create(dbContest, function (error, createdContest) {
+                if (error) {
+                    return reject(error);
+                }
+                if(dbContest.problems){
+                    for (var i = 0; i < dbContest.problems.length; i += 1) {
+                        dbContest.problems[i]._contest = createdContest._id;
+                    }
+                }
+                resolve(createdContest.name);
+            });
+        });
+
+        return promise;
+    }
+}
+
 module.exports = {
     name: 'contests',
     services: {
         all: filter,
         byName: function (name) {
             return findContest({ name });
+        },
+        create(contest){
+            return create(contest);
         }
     }
 }
