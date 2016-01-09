@@ -1,4 +1,4 @@
-extends layout
+extends ../shared/layout
 block main-content
     .row
         .col-lg-10
@@ -40,19 +40,8 @@ block main-content
             .col-lg-12
                  .form-group
                     .pull-right
-                        button.btn.btn-primary(type='submit') Submit
+                        button.btn.btn-lg.btn-primary(type='submit') Submit
         .col-lg-2.problem-btn
-            each problem in competition
-                button.btn.btn-primary.btn-lg.btn-block(type='button')=problem.name
-//.bs-component
-      //     ul.nav.nav-tabs
-      //         each problem,index in competition
-      //             if index !== 0
-      //                 li.active
-      //                     a(href='#' + problem.name, data-toggle='tab', aria-expanded='true')= problem.name
-      //             else
-      //                 li.active
-      //                     a(href='#' + problem.name, data-toggle='tab', aria-expanded='false')= problem.name
-      //             #myTabContent.tab-content
-      //             #problem.name.tab-pane.fade.active.in
-      //                 p=problem.uploadedOn
+            if problems
+                each problem in problems
+                    button.btn.btn-primary.btn-lg.btn-block(type='button')=problem.name

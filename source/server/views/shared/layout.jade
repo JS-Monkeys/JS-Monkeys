@@ -2,11 +2,7 @@ doctype
 html(lang="en")
   meta(charset="utf-8")
   title JS Monkey - Java Script ES for monkeys
-  link(href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css")
-  link(href="/css/sb-admin.css" rel="stylesheet" type="text/css")
-  link(href="/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css")
-  link(href="/lib/toastr/toastr.css" rel="stylesheet" type="text/css")
-  link(href="/css/site.css" rel="stylesheet" type="text/css")
+  include css
   link(rel="icon" href="/favicon.ico" type="image/x-icon")
   link(rel="shortcut icon" href="/favicon.ico" type="image/x-icon")
 
@@ -23,7 +19,7 @@ html(lang="en")
             span.icon-bar
 
             span.icon-bar
-          img(src="assets/js-monkey-cut.png" alt="JS monkey logo" class="navbar-brand")
+          img(src="/assets/js-monkey-cut.png" alt="JS monkey logo" class="navbar-brand")
           a.navbar-brand(href='/') JS Monkey
           // Top Menu Items
         ul.nav.navbar-right.top-nav(ng-include="'/log-in'")
@@ -32,9 +28,9 @@ html(lang="en")
         .collapse.navbar-collapse.navbar-ex1-collapse
           ul.nav.navbar-nav.side-nav
             li
-              a(href='/contests/js-oop-2015')
+              a(href='/contests/js-fundamentals-21118')
                 i.fa.fa-fw.fa-dashboard
-                |  Contest by name
+                |  Contest by name for testing
 
             li
               a(href='charts.html')

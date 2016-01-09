@@ -40,3 +40,50 @@ input.ng-dirty.ng-valid {
 .btn-success{
     background-color: #01b991;
 }
+
+body {
+    padding-top: 50px
+}
+
+body > .navbar {
+    -webkit-transition: background-color 300ms ease-in;
+    transition: background-color 300ms ease-in
+}
+
+.bs-docs-section h1 {
+    padding-top: 100px;
+}
+
+.bs-component {
+    position: relative;
+}
+
+form {
+    display: block;
+    margin-top: 0em;
+}
+
+textarea, .task-desc {
+    overflow-y: auto;
+    resize: none;
+    vertical-align: top;
+}
+
+.task-desc{
+    height:29.578em;
+    border: 1px solid lightgray;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.problem-btn{
+    padding-top: 9em;
+}
+
+.nav-tabs {
+    margin-bottom: 15px;
+}
+
+.modal-footer{
+    margin-top: 2em;
+}

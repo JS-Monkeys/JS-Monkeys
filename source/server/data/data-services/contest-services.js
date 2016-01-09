@@ -7,12 +7,10 @@ function filter(options) {
     options = options || {};
 
     let promise = new Promise(function (resolve, reject) {
- console.log(options);
         Contest.find(options)
             .populate('problems')
             .exec(function (dbError, contests) {
             if (dbError) {
-                 console.log(contests);
                 console.log(dbError);
                 return reject(dbError);
             }
