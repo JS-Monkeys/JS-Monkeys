@@ -17,7 +17,7 @@ let contestSchema = new mongoose.Schema({
         default: new Date()
     },
     // TODO: put tasks model here(performance improvement)
-    tasks: [String],
+    problems: [{type: mongoose.Schema.ObjectId, ref: 'Problem'}],
     ranking: [{
         participants: {
             name: {
