@@ -2,7 +2,7 @@
 
 let router = require('express').Router(),
   auth = require('../config/auth'),
-  adminController = require('../controllers/admin-controller');
+  adminController = require('../controllers/admin-controller')(require('../data/data'));
 
 // TODO: auth middleware
 router.get('/upload', auth.isInRole('admin'), adminController.uploadPage)

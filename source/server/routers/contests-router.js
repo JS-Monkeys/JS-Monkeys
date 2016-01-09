@@ -1,7 +1,7 @@
 'use strict';
 
 let router = require('express').Router(),
-  contestsController = require('../controllers/contests-controller');
+  contestsController = require('../controllers/contests-controller')(require('../data/data'));
 
 router.get('/:name', contestsController.byName)
   .get('/', contestsController.all)

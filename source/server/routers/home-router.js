@@ -1,7 +1,7 @@
 'use strict';
 
 let router = require('express').Router(),
-  homeController = require('../controllers/home-controller'),
+  homeController = require('../controllers/home-controller')(require('../data/data')),
   auth = require('../config/auth'),
   path = require('path');
 
