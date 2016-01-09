@@ -11,7 +11,7 @@ module.exports = {
     data.contests.byName(req.params.name)
       .then(contest => res.render('contest/contest', {
         menuResolver: req.menuResolver,
-        contest: contest
+        currentContest: contest
       }), error => res.json(error));
   },
   create: function (req, res) {

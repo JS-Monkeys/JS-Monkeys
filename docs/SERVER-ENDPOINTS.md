@@ -13,3 +13,6 @@
 | /problems               | POST                                | Make a submission                 |
 | /problems/:name         | GET                                 | Get problem description           |
 | /submissions            | GET                                 | Get all submissions(admin only)   |
+| /contests               | GET                                 | Get all contests                  |
+| /contests/:name         | GET                                 | Gets a contest by name            |
+| /contests               | POST                                | Post a contest(admin only)        |

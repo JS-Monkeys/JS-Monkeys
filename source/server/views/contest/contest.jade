@@ -42,6 +42,6 @@ block main-content
                     .pull-right
                         button.btn.btn-lg.btn-primary(type='submit') Submit
         .col-lg-2.problem-btn
-            if problems
-                each problem in problems
+            if currentContest.problems
+                each problem in currentContest.problems
                     button.btn.btn-primary.btn-lg.btn-block(type='button')=problem.name
