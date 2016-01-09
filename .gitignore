@@ -1,0 +1,13 @@
+# npm modules
+node_modules
+# intellisense
+typings
+tsd.json
+
+# Webstorm
+
+*.iml
+.idea/
+
+# Bower custom folder (remove this ignore if needed)
+public/lib
