@@ -15,7 +15,13 @@ router.get('/', homeController.homePage)
 router.get('/:partial', function (req, res) {
 
   console.log(req.user);
-  res.render('../views/users/' + req.params.partial, {currentUser: req.user});
+
+  let options = {
+    isAuthenticated: req.isAuthenticated(),
+    user: req.user
+  };
+
+  res.render('../views/users/' + req.params.partial, options);
 });
 
 module.exports = function (server) {

@@ -1,21 +1,12 @@
 
 <ul ng-controller="LoginCtrl" class="nav navbar-right top-nav">
-  <form ng-hide="identity.isAuthenticated()" class="navbar-form">
+  <form class="navbar-form">
     <div class="form-group">
       <input type="text" placeholder="Username" ng-model="user.username" class="form-control input-sm"/>
       <input type="password" placeholder="Password" ng-model="user.password" class="form-control input-sm"/>
     </div>
     <button ng-click="login(user)" class="btn btn-default btn-sm">Login</button><a href="/sign-up" class="btn btn-success btn-sm">Sign Up</a>
   </form>
-  <!--ul.nav.navbar-nav.navbar-right(ng-show="identity.isAuthenticated()")-->
-  <li ng-show="identity.isAuthenticated()" class="dropdown"><a href="" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-user"></i>  {{ identity.currentUser.username }}<span class="caret"></span></a>
-    <ul class="dropdown-menu">
-      <li ng-show="identity.currentUser.isAdmin()"><a href="/admin/users">Users</a></li>
-      <li ng-show="identity.isAuthenticated()"><a href="/profile/edit"><i class="fa fa-fw fa-user"></i> Edit Profile</a></li>
-      <li class="divider"></li>
-      <li><a href="/" ng-click="logout()"><i class="fa fa-fw fa-power-off"></i> Sign Out</a></li>
-    </ul>
-  </li>
   <!--li.dropdown
   //  a.dropdown-toggle(href='#', data-toggle='dropdown')
   //    i.fa.fa-envelope
