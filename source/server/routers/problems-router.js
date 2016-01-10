@@ -6,6 +6,7 @@ let router = require('express').Router(),
     
 // TODO: refactor those routes
 router
+      .get('/:problem/tests', auth.isInRole('admin'), problemsController.tests)
       .post('/', problemsController.createProblem)
       .all('/all', problemsController.problemsAsJson);
 

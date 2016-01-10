@@ -1,0 +1,28 @@
+extends ../shared/layout
+
+block main-content
+    .container(ng-controller='TestsController as vm')
+        button.btn.btn-md.btn-success(style='margin-bottom: 10px', ng-click='vm.toggleUploadForm()') Upload tests
+        br
+        ul.list-group.col-lg-4
+            each test, i in tests
+                li.list-group-item
+                    button(ng-click='vm.toggleUpdateForm('+i+')').badge Change
+                    button(ng-click='vm.toggleUpdateForm('+i+')').badge Download
+                    != test
+        form.col-lg-5(action='/upload', method='put', enctype='multipart/form-data', ng-show='vm.toggledUpdate')
+            label Change test {{vm.testName}}
+            .form-group
+                input.form-control(type='file', name='upload', multiple='multiple')
+            .form-group
+                input.form-control(type='text', name='fileName', value='vm.testName', ng-hide='true')
+            .form-group
+                input.form-control(type='submit', value='Upload File', ng-disabled='!vm.testName')
+        form.col-lg-5(action='/problems/' + problem + '/tests', name="uploadform", method='post', enctype='multipart/form-data', ng-show='vm.toggledUpload')
+            label Upload tests
+            .form-group
+                input.form-control(type='file', name='upload', multiple='multiple')
+            .form-group
+                input.form-control(type='text', name='', value=tests.length, ng-hide='true')
+            .form-group
+                input.form-control(type='submit', value='Upload File')

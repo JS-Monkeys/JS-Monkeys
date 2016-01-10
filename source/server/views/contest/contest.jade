@@ -13,7 +13,7 @@ block main-content
                     #submit.tab-pane.fade.active.in
                         .form-group
                             .col-lg-12
-                                textarea#textArea.form-control(rows='20')
+                                textarea#textArea.form-control(rows='20' name="code")
                                 span.help-block
                     #problem.tab-pane.fade.in.active
                         each problem, i in currentContest.problems
@@ -26,8 +26,12 @@ block main-content
                         button.btn.btn-lg.btn-primary(type='submit') Submit
                     .pull-right(style="margin-right: 10px")
                         if(isAdmin)
-                                a.btn.btn-lg.btn-primary(href=currentContest.name + '/addproblem') Add a problem    
+                                a.btn.btn-lg.btn-primary(href=currentContest.name + '/addproblem') Add a problem
+                           
         .col-lg-2.problem-btn
             if currentContest.problems
                 each problem, i in currentContest.problems
                     button.btn.btn-primary.btn-lg.btn-block(type='button' ng-click="vm.toggle("+i+");")=problem.name
+                    if(isAdmin)
+                        a.btn.btn-sm.btn-info(href='/problems/' + problem.name + '/tests', style="margin-top: 10px; margin-bottom: 10px") Tests
+ 
