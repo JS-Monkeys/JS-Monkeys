@@ -1,4 +1,7 @@
 'use strict';
+const TOP_TEN_USERS = 10,
+    MIN_RANK = 0,
+    MAX_RANK = 100;
 
 module.exports = function (data) {
     return {
@@ -21,13 +24,21 @@ module.exports = function (data) {
                 });
         },
         findByRank: function (req, res) {
-            data.users
-                .findByRank(req.query.from, req.query.to)
-                .then(function (response) {
-                    res.json(response);
-                }, function (error) {
-                    res.json(error);
-                });
+            if (!(req.query.from && req.query.to)) {
+                data.users
+                    .findByRank(MIN_RANK,MAX_RANK,TOP_TEN_USERS)
+                    .then(function (response) {
+                        res.json(response);
+                    });
+            } else {
+                data.users
+                    .findByRank(req.query.from, req.query.to, Number.MAX_SAFE_INTEGER)
+                    .then(function (response) {
+                        res.json(response);
+                    }, function (error) {
+                        res.json(error);
+                    });
+            }
         }
     };
-}
+};
