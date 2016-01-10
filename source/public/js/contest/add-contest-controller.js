@@ -5,10 +5,7 @@
     var vm = this;
 
     vm.add = function(contest) {
-      console.log('here');
       contests.add(contest).then(function(res) {
-        console.log(res);
-        notifier.success(res);
         window.location.href = "/contests/" + res.contest
       },
       function(err){

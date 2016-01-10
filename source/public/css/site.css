@@ -91,3 +91,7 @@ textarea, .task-desc {
 .error{
     color: #bc7cad;
 }
+
+.full-width {
+    width: 100%;
+}

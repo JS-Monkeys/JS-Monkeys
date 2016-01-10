@@ -4,21 +4,26 @@ block main-content
   br
   .row
     .container(ng-controller="AddContestController as vm")
-      .col-md-6.col-md-offset-3
+      .well
         form.form-horizontal(name='addContestForm', ng-submit='addContestForm.$valid')
           fieldset
             legend Create new contest
             .text-center.error(ng-show='addContestForm.inputcontestname.$error.minlength || addContestForm.inputcontestname.$error.minlength') contestname must be between 6 and 50 symbols
             .form-group
-              label.col-lg-2.control-label(for='inputcontestname') contest Name
-              .col-lg-10
-                input#inputcontestname.form-control(type='text', name='inputcontestname', ng-model='contest.name', ng-minlength='6', ng-maxlength='50' required='required', placeholder='contest Name')
-            //.text-center.error(ng-show='addContestForm.contestMail.$error.pattern') Email is not valid !
-            //.form-group
-            //  label.col-lg-2.control-label(for='inputEmail') Email
-            //  .col-lg-10
-            //    input#inputEmail.form-control(name='contestMail', type='text', ng-model='contest.email', required='required', placeholder='Email', ng-pattern='/^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$/')
-            //
+              label.col-lg-3.control-label(for='inputcontestname') Contest Name
+              .col-lg-7
+                input#inputcontestname.form-control(type='text', name='inputcontestname', ng-model='contest.name', ng-minlength='6', ng-maxlength='50', required='required', placeholder='contest name')
+
+            .form-group
+              label.col-lg-3.control-label(for='start-date') Starting date
+              .col-lg-7
+                input#start-date.form-control.full-width(kendo-date-time-picker, k-format="'yyyy-MM-dd HH:mm:ss'", k-ng-model="contest.startDate", required='required', placeholder='start date', )
+
+            .form-group
+              label.col-lg-3.control-label(for='end-date') End date
+              .col-lg-7
+                input#end-date.form-control.full-width(kendo-date-time-picker, k-format="'yyyy-MM-dd HH:mm:ss'", k-ng-model='contest.endDate', required='required', placeholder='end date', )
+
             //.text-center.error(ng-show='addContestForm.contestPassword.$error.minlength') Pasword must be at least 6 symbols long !
             //.form-group
             //  label.col-lg-2.control-label(for='inputPassword') Password
