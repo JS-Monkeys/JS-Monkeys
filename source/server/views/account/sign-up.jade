@@ -10,9 +10,9 @@ block main-content
             legend Register User
             .text-center.error(ng-show='registerForm.inputUsername.$error.minlength || registerForm.inputUsername.$error.minlength') Username must be between 6 and 50 symbols
             .form-group
-              label.col-lg-2.control-label(for='inputUsername') User Name
+              label.col-lg-2.control-label(for='inputUsername') Username
               .col-lg-10
-                input#inputUsername.form-control(type='text', name='inputUsername', ng-model='user.username', ng-minlength='6', ng-maxlength='50' required='required', placeholder='User Name')
+                input#inputUsername.form-control(type='text', name='inputUsername', ng-model='user.username', ng-minlength='6', ng-maxlength='50' required='required', placeholder='Username')
             .text-center.error(ng-show='registerForm.userMail.$error.pattern') Email is not valid !
             .form-group
               label.col-lg-2.control-label(for='inputEmail') Email

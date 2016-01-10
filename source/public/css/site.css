@@ -99,16 +99,14 @@ textarea, .task-desc {
 .champ {
  float: left;
 }
+
 table{
-    font-size: 2.5em;
+    font-size: 1.3em;
     width:50% !important;
 }
 .topUsers{
-    list-style: none;
     width: 50px;
-    height:50px;
-    display: inline-flex;
-    background-repeat: no-repeat;
+    height: 50px;
 }
 
 #goldUser{

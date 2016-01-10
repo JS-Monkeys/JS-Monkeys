@@ -32,7 +32,6 @@ module.exports = function (data) {
                             usersByRank: response,
                             menuResolver: req.menuResolver
                         });
-                        //res.json(response);
                     });
             } else {
                 data.users
