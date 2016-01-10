@@ -24,6 +24,9 @@ block main-content
                  .form-group
                     .pull-right
                         button.btn.btn-lg.btn-primary(type='submit') Submit
+                    .pull-right(style="margin-right: 10px")
+                        if(isAdmin)
+                                a.btn.btn-lg.btn-primary(href=currentContest.name + '/addproblem') Add a problem    
         .col-lg-2.problem-btn
             if currentContest.problems
                 each problem, i in currentContest.problems

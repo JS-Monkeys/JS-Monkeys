@@ -15,11 +15,29 @@ module.exports = function (data) {
                     res.render('contest/contest', {
                         menuResolver: req.menuResolver,
                         currentContest: contest,
-                        marked: marked
+                        marked: marked,
+                        isAdmin: req.user && req.user.roles.indexOf('admin') !== -1
                     });
                 }, error => res.json(error));
-
-
+        },
+        addProblemPage: function (req, res) {
+            res.render('contest/add-problem', {
+                currentContest: { name: req.params.name },
+                menuResolver: req.menuResolver
+            });
+        },
+        addProblemToContest: function (req, res) {
+            
+            let problem = {
+                name: req.body.name,
+                description: req.body.description,
+                points: req.body.points,
+                constraints: { timeout: req.body.timeout }
+            };
+            console.log(problem);
+            data.contests.addProblemToContest(req.params.name, problem)
+                .then(dbRes => res.json(dbRes),
+                    err => res.json(err));
         },
         create: function (req, res) {
             data.contests.create(req.body)
