@@ -27,22 +27,22 @@ module.exports = function (data) {
             });
         },
         addProblemToContest: function (req, res) {
-            
+
             let problem = {
                 name: req.body.name,
                 description: req.body.description,
                 points: req.body.points,
                 constraints: { timeout: req.body.timeout }
             };
-            console.log(problem);
+
             data.contests.addProblemToContest(req.params.name, problem)
-                .then(dbRes => res.json(dbRes),
-                    err => res.json(err));
+                .then(dbRes => res.status(201).redirect('/contests/' + req.params.name),
+                    err => res.status(500).json(err));
         },
         create: function (req, res) {
             data.contests.create(req.body)
                 .then(contest => res.redirect(201, '/contests/' + contest),
-                    error => res.json(error));
+                    error => res.status(500).json(error));
         },
         createJsonResponse: function (req, res) {
             data.contests.create(req.body)

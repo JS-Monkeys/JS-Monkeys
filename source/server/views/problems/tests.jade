@@ -10,14 +10,14 @@ block main-content
                     button(ng-click='vm.toggleUpdateForm('+i+')').badge Change
                     button(ng-click='vm.toggleUpdateForm('+i+')').badge Download
                     != test
-        form.col-lg-5(action='/upload', method='put', enctype='multipart/form-data', ng-show='vm.toggledUpdate')
+        form.col-lg-5(action='/problems/' + problem + '/tests', method='put', enctype='multipart/form-data', ng-show='vm.toggledUpdate')
             label Change test {{vm.testName}}
             .form-group
                 input.form-control(type='file', name='upload', multiple='multiple')
             .form-group
                 input.form-control(type='text', name='fileName', value='vm.testName', ng-hide='true')
             .form-group
-                input.form-control(type='submit', value='Upload File', ng-disabled='!vm.testName')
+                input.form-control(type='submit', value='Upload File')
         form.col-lg-5(action='/problems/' + problem + '/tests', name="uploadform", method='post', enctype='multipart/form-data', ng-show='vm.toggledUpload')
             label Upload tests
             .form-group
