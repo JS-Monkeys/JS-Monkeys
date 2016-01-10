@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test-runner.js"
+    "test": "mocha controller-tests.js"
   },
   "author": "charlie the unicorn",
   "license": "MIT",
