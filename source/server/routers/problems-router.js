@@ -5,8 +5,9 @@ let router = require('express').Router(),
     auth = require('../config/auth');
     
 // TODO: refactor those routes
-router.get('/:name', problemsController.getDescription)
-      .post('/', problemsController.createProblem);
+router
+      .post('/', problemsController.createProblem)
+      .all('/all', problemsController.problemsAsJson);
 
 module.exports = function (server) {
     server.use('/problems', router);

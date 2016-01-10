@@ -24,6 +24,9 @@ let problemSchema = new mongoose.Schema({
             min: 500
         }
     },
+    description: {
+        type: String
+    },
     testCount: {
         type: Number,
         default: 2

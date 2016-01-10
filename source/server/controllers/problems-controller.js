@@ -5,19 +5,14 @@ let marked = require('marked'),
 
 module.exports = function (data) {
     return {
-        getDescription: function (req, res) {
-
-            fs.readFile(`./server/problems/${req.params.name}/DESCRIPTION.md`, function (error, file) {
-                res.render('problem', {
-                    name: req.params.name,
-                    marked: marked,
-                    desc: file.toString()
-                });
-            });
-        },
         createProblem: function (req, res) {
             data.problems.createProblem(req.body.problem)
                 .then(r => res.json(r), err => res.json(err));
+        },
+        problemsAsJson: function (req, res) {
+            data.problems.all()
+                         .then(problems => res.json(problems),
+                               error => res.json(error));
         }
     };
 }

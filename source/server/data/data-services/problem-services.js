@@ -10,7 +10,8 @@ function createProblem(problem) {
             name: problem.name,
             points: problem.points,
             constraints: problem.constraints,
-            _contest: problem.contestId
+            _contest: problem.contestId,
+            description: problem.description
         };
     }
 console.log(problem.constraints);
