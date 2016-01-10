@@ -1,6 +1,6 @@
 extends ../shared/layout
 block main-content
-    .row(ng-controller="ContestController")
+    .row(ng-controller="ContestController as vm")
         .col-lg-10
             h2#nav-tabs Contest
             .bs-component
@@ -17,7 +17,7 @@ block main-content
                                 span.help-block
                     #problem.tab-pane.fade.in.active
                         each problem, i in currentContest.problems
-                            div.task-desc(ng-show="isActive" + i)
+                            div.task-desc(ng-show="vm.isActive" + i)
                                 != marked(problem.description)
 
             .col-lg-12
@@ -27,4 +27,4 @@ block main-content
         .col-lg-2.problem-btn
             if currentContest.problems
                 each problem, i in currentContest.problems
-                    button.btn.btn-primary.btn-lg.btn-block(type='button' ng-click="toggle("+i+");")=problem.name
+                    button.btn.btn-primary.btn-lg.btn-block(type='button' ng-click="vm.toggle("+i+");")=problem.name
