@@ -1,7 +1,10 @@
 'use strict';
 
+let _ = require('underscore');
+
 let mongoose = require('mongoose'),
-    Problem = mongoose.model('Problem');
+    Problem = mongoose.model('Problem'),
+    Contest = mongoose.model('Contest');
 
 function createProblem(problem) {
     if (problem) {
@@ -10,7 +13,6 @@ function createProblem(problem) {
             name: problem.name,
             points: problem.points,
             constraints: problem.constraints,
-            _contest: problem.contestId,
             description: problem.description
         };
     }
@@ -53,12 +55,13 @@ function findProblem(options) {
 
 function all() {
     let promise = new Promise(function (resolve, reject) {
-        Problem.find({}, function (error, dbProblems) {
-            if (error) {
-                return reject(error);
-            }
-            console.log(dbProblems);
-            resolve(dbProblems);
+        Contest.find({}, function (error, contests) {
+           if(error) {
+               return reject(error);
+           } 
+           
+           let result = _.pluck(contests, 'problems');
+           resolve(result);
         });
     });
 

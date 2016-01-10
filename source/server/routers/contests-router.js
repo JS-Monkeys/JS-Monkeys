@@ -6,6 +6,7 @@ let router = require('express').Router(),
 
 router.get('/:name', contestsController.byName)
       .get('/:name/addproblem', auth.isInRole('admin'), contestsController.addProblemPage)
+      .post('/:name/addproblem', auth.isInRole('admin'), contestsController.addProblemToContest)
         .get('/', contestsController.all)
         .post('/', contestsController.create)
         .post('/add', contestsController.createJsonResponse);

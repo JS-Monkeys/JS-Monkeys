@@ -26,6 +26,19 @@ module.exports = function (data) {
                 menuResolver: req.menuResolver
             });
         },
+        addProblemToContest: function (req, res) {
+            
+            let problem = {
+                name: req.body.name,
+                description: req.body.description,
+                points: req.body.points,
+                constraints: { timeout: req.body.timeout }
+            };
+            console.log(problem);
+            data.contests.addProblemToContest(req.params.name, problem)
+                .then(dbRes => res.json(dbRes),
+                    err => res.json(err));
+        },
         create: function (req, res) {
             data.contests.create(req.body)
                 .then(contest => res.redirect(201, '/contests/' + contest),
