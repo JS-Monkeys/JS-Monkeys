@@ -100,9 +100,14 @@ textarea, .task-desc {
  float: left;
 }
 
+#search-bar{
+    float: right;
+}
+
 table{
     font-size: 1.3em;
     width:50% !important;
+    float:left;
 }
 .topUsers{
     width: 50px;

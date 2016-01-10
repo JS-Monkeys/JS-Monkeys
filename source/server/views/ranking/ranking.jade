@@ -20,6 +20,30 @@ block main-content
                         td=i+1
                     td=user.username
                     td=user.points
-
-
+    #search-bar
+        form.form-horizontal
+            fieldset
+                legend Search by range
+                .form-group
+                    label.col-lg-2.control-label(for='from') From
+                    .col-lg-10
+                        input#from.form-control(type='number', placeholder='From')
+                .form-group
+                    label.col-lg-2.control-label(for='to') To
+                    .col-lg-10
+                        input#to.form-control(type='number', placeholder='To')
+                .form-group
+                    .col-lg-10.col-lg-offset-2
+                        button.btn.btn-primary(type='submit') Submit
+        br
+        form.form-horizontal
+            filedset
+                legend Search by username
+                .form-group
+                    label.col-lg-2.control-label(for='user') User
+                    .col-lg-10
+                        input#user.form-control(type='text', placeholder='Username')
+                .form-group
+                    .col-lg-10.col-lg-offset-2
+                        button.btn.btn-primary(type='submit') Submit
 
