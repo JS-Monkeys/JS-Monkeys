@@ -28,7 +28,11 @@ module.exports = function (data) {
                 data.users
                     .findByRank(MIN_RANK,MAX_RANK,TOP_TEN_USERS)
                     .then(function (response) {
-                        res.json(response);
+                        res.render('ranking/ranking',{
+                            usersByRank: response,
+                            menuResolver: req.menuResolver
+                        });
+                        //res.json(response);
                     });
             } else {
                 data.users
