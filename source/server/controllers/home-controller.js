@@ -6,9 +6,6 @@ module.exports = function (data) {
 
         homePage: function (req, res) {
 
-            console.log("Home cotrl")
-            console.log(req.menuResolver);
-
             //data.contests.all()
             //  .then(function (response) {
             //    let options = {
