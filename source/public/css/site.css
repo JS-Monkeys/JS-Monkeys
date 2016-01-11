@@ -105,6 +105,20 @@ textarea, .task-desc {
     float: left;
 }
 
+.profile-pic {
+    display: inline;
+    float: left;
+}
+
+.profile-info {
+    margin-left: 13em;
+    margin-top: 2em;
+}
+
+.table-profile {
+    font-size: 1.5em;
+}
+
 .angry {
     margin: 2em;
 }

@@ -23,6 +23,7 @@ block main-content
                         each user,i in usersByRank
                             tr.text-center
                                 td=i + 1
-                                td=user.username
+                                td
+                                    a(href="/api/users/details?username=" + user.username)=user.username
                                 td=user.points
                 img(src="/assets/thinking.png")

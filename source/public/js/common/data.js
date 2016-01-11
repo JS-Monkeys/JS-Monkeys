@@ -68,8 +68,8 @@
 
     function getErrorMessage(response) {
 
-      console.log("in error");
-      console.log(response);
+      //console.log("in error");
+      //console.log(response);
 
       var error = response.data;
       if (error && error[Object.keys(error)[0]][0]) {

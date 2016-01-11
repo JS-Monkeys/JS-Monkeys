@@ -22,13 +22,12 @@ module.exports = function (data) {
             data.users
                 .all()
                 .then(function (response) {
-                    let users = response.slice((page-1)*pageSize, page*pageSize);
+                    let dbUsers = response.slice((page-1)*pageSize, page*pageSize);
                     res.render('all-users',{
-                        users: response,
+                        users: dbUsers,
                         page: page,
                         menuResolver: req.menuResolver
                     });
-                    //res.json(response);
                 }, function (error) {
                     res.json(error);
                 });
@@ -57,6 +56,18 @@ module.exports = function (data) {
                         res.json(error);
                     });
             }
+        },
+        byUsername: function (req, res) {
+            data.users
+                .findByUsername(req.query.username)
+            .then(function (response) {
+                res.render('user-details', {
+                    user: response,
+                    menuResolver: req.menuResolver
+                });
+            }, function (error) {
+                res.json(error);
+            });
         }
     };
 };

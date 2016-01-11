@@ -6,15 +6,16 @@ let router = require('express').Router(),
     
 // TODO: refactor those routes
 router.get('/api/users', usersController.all)
+    .get('/api/users/details', usersController.byUsername)
     .get('/api/users/rankings', usersController.findByRank)
     .get('/rankings', usersController.findByRank)
     .post('/api/users', usersController.registerUser)
     .post('/login', auth.login)
     .post('/logout', auth.logout);
 
-// router.get('/:partial', function (req, res) {
-//     res.render('../views/account/' + req.params.partial, req);
-// });
+ router.get('/:partial', function (req, res) {
+     res.render('../views/account/' + req.params.partial, req);
+ });
 
 module.exports = function (server) {
     server.use('/', router);

@@ -18,9 +18,10 @@ block main-content
                         td#bronzeUser.topUsers=i+1
                     else
                         td=i+1
-                    td=user.username
+                    td
+                        a(href="/api/users/details?username=" + user.username)=user.username
                     td=user.points
-    #search-bar
+    #search-bar.well
         form.form-horizontal(name="byRank" action="/api/users/rankings")
             fieldset
                 legend Search by range
@@ -36,13 +37,13 @@ block main-content
                     .col-lg-10.col-lg-offset-2
                         input.btn.btn-primary(type="submit" value="Submit")
         br
-        form.form-horizontal
+        form.form-horizontal(name="byUsername" action="/api/users/details")
             filedset
                 legend Search by username
                 .form-group
-                    label.col-lg-2.control-label(for='user') User
+                    label.col-lg-2.control-label(for="user") User
                     .col-lg-10
-                        input#user.form-control(type='text', placeholder='Username')
+                        input#user.form-control(type="text", placeholder="Username" name="username")
                 .form-group
                     .col-lg-10.col-lg-offset-2
                         button.btn.btn-primary(type='submit') Submit
