@@ -7,7 +7,7 @@ let router = require('express').Router(),
 // TODO: refactor those routes
 router
     .post('/', submissionsController.makeSubmission)
-    .get('/', auth.isAuthenticated, submissionsController.getSubmissions);
+    .get('/', submissionsController.getSubmissions);
 
 module.exports = function (server) {
     server.use('/submissions', router);

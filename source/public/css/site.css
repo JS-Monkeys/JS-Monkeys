@@ -106,7 +106,7 @@ textarea, .task-desc {
 }
 
 .angry {
-  margin:2em;
+    margin: 2em;
 }
 
 #search-bar {
@@ -117,6 +117,16 @@ textarea, .task-desc {
     font-size: 1.3em;
     width: 50% !important;
     float: left;
+}
+
+.table-all-users, .table-half-size {
+    font-size: 1.3em;
+    width: 50% !important;
+    margin: 0 auto;
+}
+
+.full-width {
+    font-size: 1.3em;
 }
 
 .topUsers {
