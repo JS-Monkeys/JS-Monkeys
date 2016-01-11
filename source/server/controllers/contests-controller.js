@@ -15,8 +15,7 @@ module.exports = function (data) {
                     res.render('contest/contest', {
                         menuResolver: req.menuResolver,
                         currentContest: contest,
-                        marked: marked,
-                        isAdmin: req.user && req.user.roles.indexOf('admin') !== -1
+                        marked: marked
                     });
                 }, error => res.json(error));
         },
@@ -50,4 +49,4 @@ module.exports = function (data) {
                     error => res.json(error));
         }
     };
-}
+};

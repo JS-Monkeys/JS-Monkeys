@@ -8,16 +8,17 @@ ul.nav.navbar-right.top-nav(ng-controller="LoginCtrl")
       button.btn.btn-default.btn-sm(ng-click="login(user)") Login
       a.btn.btn-success.btn-sm(href="/sign-up") Sign Up
   else
-    li.dropdown
-      a.dropdown-toggle(href="", data-toggle="dropdown")
-        i.fa.fa-gears
-        |   Admin
-        span.caret
-      ul.dropdown-menu.alert-dropdown
-        li
-          a(href="/admin/add-contest")
-            i.fa.fa-fw.fa-plus
-            |  Add new contest
+    if(menuResolver.isAdmin)
+      li.dropdown
+        a.dropdown-toggle(href="", data-toggle="dropdown")
+          i.fa.fa-gears
+          |   Admin
+          span.caret
+        ul.dropdown-menu.alert-dropdown
+          li
+            a(href="/admin/add-contest")
+              i.fa.fa-fw.fa-plus
+              |  Add new contest
 
     li.dropdown
       a.dropdown-toggle(href="", data-toggle="dropdown")
