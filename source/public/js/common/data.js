@@ -2,7 +2,7 @@
   'use strict';
 
   function data($http, $q, authorization, baseServiceUrl, notifier) {
-
+    // TODO missing authorization service. How are we actually sending the headers???
     var headers = authorization.getAuthorizationHeader();
 
     function get(url, params) {

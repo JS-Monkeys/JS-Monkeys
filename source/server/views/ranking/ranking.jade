@@ -21,20 +21,20 @@ block main-content
                     td=user.username
                     td=user.points
     #search-bar
-        form.form-horizontal
+        form.form-horizontal(name="byRank" action="/api/users/rankings")
             fieldset
                 legend Search by range
                 .form-group
-                    label.col-lg-2.control-label(for='from') From
+                    label.col-lg-2.control-label(for="from") From
                     .col-lg-10
-                        input#from.form-control(type='number', placeholder='From')
+                        input#from.form-control(type="number", placeholder="From", name="from")
                 .form-group
-                    label.col-lg-2.control-label(for='to') To
+                    label.col-lg-2.control-label(for="to") To
                     .col-lg-10
-                        input#to.form-control(type='number', placeholder='To')
+                        input#to.form-control(type="number", placeholder="To", name="to")
                 .form-group
                     .col-lg-10.col-lg-offset-2
-                        button.btn.btn-primary(type='submit') Submit
+                        input.btn.btn-primary(type="submit" value="Submit")
         br
         form.form-horizontal
             filedset

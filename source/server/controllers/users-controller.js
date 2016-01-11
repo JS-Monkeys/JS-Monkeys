@@ -37,7 +37,13 @@ module.exports = function (data) {
                 data.users
                     .findByRank(req.query.from, req.query.to, Number.MAX_SAFE_INTEGER)
                     .then(function (response) {
-                        res.json(response);
+                        res.render('ranking/ranking-range', {
+                            usersByRank: response,
+                            menuResolver: req.menuResolver,
+                            queryFrom: req.query.from,
+                            queryTo: req.query.to
+                        });
+                        //res.json(response);
                     }, function (error) {
                         res.json(error);
                     });

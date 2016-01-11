@@ -1,10 +1,11 @@
-#update-btn{
+#update-btn {
     margin-right: 10px;
 }
 
 .navbar-right .navbar-form input {
     margin-right: 10px;
 }
+
 .navbar-right .navbar-form a.btn {
     margin-left: 10px;
 }
@@ -16,6 +17,7 @@
 .toast-error {
     background-color: #bc7cad;
 }
+
 .toast-success {
     background-color: #01f6cd;
 }
@@ -25,19 +27,22 @@ footer p {
     padding: 15px;
     color: #222;
 }
+
 input.ng-dirty.ng-invalid {
-    background-color: #bc7cad; !important
+    background-color: #bc7cad;
+!important
 }
 
 input.ng-dirty.ng-valid {
-    background-color: #01f6cd; !important
+    background-color: #01f6cd;
+!important
 }
 
 [ng\:cloak], [ng-cloak], .ng-cloak {
     display: none !important;
 }
 
-.btn-success{
+.btn-success {
     background-color: #01b991;
 }
 
@@ -69,14 +74,14 @@ textarea, .task-desc {
     vertical-align: top;
 }
 
-.task-desc{
-    height:29.578em;
+.task-desc {
+    height: 29.578em;
     border: 1px solid lightgray;
     padding: 7px;
     border-radius: 5px;
 }
 
-.problem-btn{
+.problem-btn {
     padding-top: 9em;
 }
 
@@ -84,11 +89,11 @@ textarea, .task-desc {
     margin-bottom: 15px;
 }
 
-.modal-footer{
+.modal-footer {
     margin-top: 2em;
 }
 
-.error{
+.error {
     color: #bc7cad;
 }
 
@@ -97,31 +102,36 @@ textarea, .task-desc {
 }
 
 .champ {
- float: left;
+    float: left;
 }
 
-#search-bar{
+.angry {
+  margin:2em;
+}
+
+#search-bar {
     float: right;
 }
 
-table{
+table {
     font-size: 1.3em;
-    width:50% !important;
-    float:left;
+    width: 50% !important;
+    float: left;
 }
-.topUsers{
+
+.topUsers {
     width: 50px;
     height: 50px;
 }
 
-#goldUser{
+#goldUser {
     background: url('../assets/trophies.JPG') 0 0;
 }
 
-#silverUser{
+#silverUser {
     background: url('../assets/trophies.JPG') -51px 0;
 }
 
-#bronzeUser{
+#bronzeUser {
     background: url('../assets/trophies.JPG') -102px 0;
 }
