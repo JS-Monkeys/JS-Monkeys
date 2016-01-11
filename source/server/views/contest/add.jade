@@ -17,12 +17,12 @@ block main-content
             .form-group
               label.col-lg-3.control-label(for='start-date') Starting date
               .col-lg-7
-                input#start-date.form-control.full-width(kendo-date-time-picker,type='datetime' ,name='startDate' ,k-format="'yyyy-MM-dd - HH:mm:ss'", k-ng-model="contest.startDate", required='required', placeholder='start date', )
+                input#start-date.form-control.full-width(kendo-date-time-picker,type='datetime' ,name='startDate' ,k-format="'yyyy-MM-dd HH:mm:ss'", k-ng-model="contest.startDate", required='required', placeholder='start date', )
 
             .form-group
               label.col-lg-3.control-label(for='end-date') End date
               .col-lg-7
-                input#end-date.form-control.full-width(kendo-date-time-picker, type='datetime' ,name='endDate', k-format="'yyyy-MM-dd - HH:mm:ss'", k-ng-model='contest.endDate', required='required', placeholder='end date', )
+                input#end-date.form-control.full-width(kendo-date-time-picker, type='datetime' ,name='endDate', k-format="'yyyy-MM-dd HH:mm:ss'", k-ng-model='contest.endDate', required='required', placeholder='end date', )
 
             //.text-center.error(ng-show='addContestForm.contestPassword.$error.minlength') Pasword must be at least 6 symbols long !
             //.form-group
