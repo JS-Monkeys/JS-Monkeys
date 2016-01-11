@@ -2,6 +2,7 @@
 
 let mongoose = require('mongoose'),
     Problem = mongoose.model('Problem'),
+    problems = require('./problem-services'),
     Submission = mongoose.model('Submission');
 
 function all() {
@@ -24,27 +25,26 @@ function createSubmission(submission) {
         if (!submission || !submission.problem) {
             return reject('request is missing the problem id or problem name');
         }
-
-        Problem.findOne({ name: submission.problem.name }, function (error, dbProblem) {
-            if (error) {
-                console.log({ error: 'error at submission-services:' + error });
-                return reject(error);
-            }
-
-            if (!dbProblem) {
-                return reject({ error: 'no problem with such ID' });
-            }
-
-            Submission.create(submission, function (error, dbSubmission) {
-                if (error) {
-                    return reject(error);
-                }
-
-                dbProblem.submissionIds.push(dbSubmission._id);
-                dbProblem.save();
-                resolve(dbSubmission);
-            });
-        });
+        //console.log('tok sme');
+        problems.services
+                .findProblemByContest(submission.contest, submission.problem.name)
+                .then(function (problem) {
+                    //console.log('in the promise');
+                    submission.problemId = problem._id;
+                    Submission.create(submission, function (error, sub) {
+                        //console.log('in create callback');
+                        problem.submissionIds.push(sub._id);
+                        // problem.save(function (err, savedProblem){
+                        //     if(err) {
+                        //         console.log('err');
+                        //         return reject(err);
+                        //     }
+                        //     resolve(savedProblem);
+                        // })
+                        
+                        resolve(sub);
+                    });
+                }, error => { console.log(error); reject(error);});
 
     });
 

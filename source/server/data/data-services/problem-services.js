@@ -8,7 +8,7 @@ let mongoose = require('mongoose'),
 
 function createProblem(problem) {
     if (problem) {
-        
+
         problem = {
             name: problem.name,
             points: problem.points,
@@ -16,7 +16,7 @@ function createProblem(problem) {
             description: problem.description
         };
     }
-console.log(problem.constraints);
+    //console.log(problem.constraints);
     let promise = new Promise(function (resolve, reject) {
         Problem.create(problem, function (error, dbProblem) {
             if (error) {
@@ -30,24 +30,25 @@ console.log(problem.constraints);
     return promise;
 }
 
-function findProblem(options) {
-    options = options || {};
-
-    if (options.id) {
-        options._id = options.id;
-        options.id = undefined;
-    }
+function findProblemByContest(contestName, problemName) {
 
     let promise = new Promise(function (resolve, reject) {
-
-        Problem.findOne(options, function (error, problem) {
-            if (error) {
-                return reject(error);
+        Contest.findOne({ name: contestName }, function (dbError, contest) {
+            if (dbError) {
+                return reject(dbError);
+            }
+            
+            for (let i = 0, length = contest.problems.length; i < length; i += 1) {
+                if (contest.problems[i].name === problemName) {
+                    console.log('found problem');
+                    return resolve(contest.problems[i]);
+                }
             }
 
-            resolve(problem);
+            reject({
+                error: `no problem with name "${problemName}" in contest "${contestName}"`
+            });
         });
-
     });
 
     return promise;
@@ -56,12 +57,12 @@ function findProblem(options) {
 function all() {
     let promise = new Promise(function (resolve, reject) {
         Contest.find({}, function (error, contests) {
-           if(error) {
-               return reject(error);
-           } 
-           
-           let result = _.pluck(contests, 'problems');
-           resolve(result);
+            if (error) {
+                return reject(error);
+            }
+
+            let result = _.pluck(contests, 'problems');
+            resolve(result);
         });
     });
 
@@ -72,7 +73,7 @@ module.exports = {
     name: 'problems',
     services: {
         createProblem,
-        findProblem,
+        findProblemByContest,
         all
     }
 };
