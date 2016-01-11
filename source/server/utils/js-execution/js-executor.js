@@ -35,11 +35,11 @@ process.stdin.on('data', function (submission) {
     options.timeout = submission.taskInfo.constraints.timeout || 1000;
 
     let testCount = fs.readdirSync(path.join(__dirname, `../../problems/${submission.task}`)).length / 2;
-    process.stderr.write(testCount.toString());
+    
     for (let i = 0; i < testCount; i++) {
 
         let index = i + 0;
-        //process.stderr.write('outside' + index.toString());
+        
         fs.readFile(path.join(__dirname, `../../problems/${submission.task}/test.in.${index}.txt`), function (readInputError, file) {
             if (readInputError) {
                 process.stderr.write(readInputError.toString());
@@ -50,13 +50,13 @@ process.stdin.on('data', function (submission) {
                 sandbox.args = [file.toString()];
 
                 vm.runInNewContext(code, sandbox, options);
-                process.stderr.write('vm finished');
+                
                 fs.readFile(path.join(__dirname, `../../problems/${submission.task}/test.out.${index}.txt`), function (readOutputError, test) {
                     if (readOutputError) {
                         process.stderr.write(readOutputError.toString());
                         return;
                     }
-                    process.stderr.write('in output testing' + index.toString());
+                    
                     // store test results
                     results[index] = (output[index] === test.toString());
                         

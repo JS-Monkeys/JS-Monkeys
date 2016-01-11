@@ -2,8 +2,8 @@
 
 let mongoose = require('mongoose'),
     Problem = mongoose.model('Problem'),
-    problems = require('./problem-services'),
-    Submission = mongoose.model('Submission');
+    Submission = mongoose.model('Submission'),
+    Users = mongoose.model('User');
 
 function all() {
     let promise = new Promise(function (resolve, reject) {
@@ -21,30 +21,49 @@ function all() {
 
 function createSubmission(submission) {
     let promise = new Promise(function (resolve, reject) {
+        let data = require('../data');
 
         if (!submission || !submission.problem) {
             return reject('request is missing the problem id or problem name');
         }
-        //console.log('tok sme');
-        problems.services
-                .findProblemByContest(submission.contest, submission.problem.name)
-                .then(function (problem) {
-                    //console.log('in the promise');
-                    submission.problemId = problem._id;
+
+        data.problems
+            .findProblemByContest(submission.contest, submission.problem.name)
+            .then(function (problem) {
+                submission.problemId = problem._id;
+                Submission.find({ problem: { name: problem.name }, user: { username: submission.user } }, function (err, contestSubs) {
+                    console.log(contestSubs);
+                    let best = contestSubs.sort((x, y) => y.points - x.points)[0];
+                    console.log('best:');
+                    console.log(best);
+                    if ((best && best.points > submission.points) || !best) {
+                        Users.findOne({ username: submission.user.username }, function (err, user) {
+                            if (err) {
+                                console.log(err);
+                                return reject(err);
+                            }
+                            console.log('hereeeeeees');
+                            if(best) {
+                                user.points += submission.points + best.points;
+                            } else {
+                                user.points += submission.points;
+                            }
+                            console.log('in callback for user');
+                            console.log(user);
+                            user.save();
+                        });
+                    }
+
                     Submission.create(submission, function (error, sub) {
-                        //console.log('in create callback');
                         problem.submissionIds.push(sub._id);
-                        // problem.save(function (err, savedProblem){
-                        //     if(err) {
-                        //         console.log('err');
-                        //         return reject(err);
-                        //     }
-                        //     resolve(savedProblem);
-                        // })
-                        
+
                         resolve(sub);
                     });
-                }, error => { console.log(error); reject(error);});
+                });
+
+            }, function (error) {
+                reject(error);
+            });
 
     });
 
