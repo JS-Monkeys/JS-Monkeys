@@ -21,11 +21,14 @@ module.exports = {
                 if (error) {
                     return next(error);
                 }
-
+                
                 res.send({
                     success: true,
                     user: user
                 });
+                res.redirect(req.get('referer'));
+                
+                
             });
         });
 

@@ -5,9 +5,11 @@ let se = require('../utils/js-execution/submission-evaluator');
 module.exports = function (data) {
     return {
         makeSubmission: function (req, res) {
+            console.log('controller');
             se({
-                task: req.body.submission.name,
-                code: req.body.submission.code,
+                contest: req.body.contest,
+                task: req.params.name,
+                code: req.body.code,
                 user: {
                     username: req.user.username,
                     id: req.user._id
