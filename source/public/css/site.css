@@ -113,7 +113,7 @@ textarea, .task-desc {
     float: right;
 }
 
-table {
+.table-half-size {
     font-size: 1.3em;
     width: 50% !important;
     float: left;

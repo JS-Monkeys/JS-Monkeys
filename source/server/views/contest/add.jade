@@ -3,26 +3,26 @@ extends ../shared/layout
 block main-content
   br
   .row
-    .container(ng-controller="AddContestController as vm")
+    .container
       .well
-        form.form-horizontal(name='addContestForm', ng-submit='addContestForm.$valid')
+        form.form-horizontal(name='addContestForm', ng-submit='addContestForm.$valid', action='/contests', method="POST")
           fieldset
             legend Create new contest
-            .text-center.error(ng-show='addContestForm.inputcontestname.$error.minlength || addContestForm.inputcontestname.$error.minlength') contestname must be between 6 and 50 symbols
+            .text-center.error(ng-show='addContestForm.inputcontestname.$error.minlength || addContestForm.inputcontestname.$error.maxlength') Contest name must be between 6 and 50 symbols
             .form-group
               label.col-lg-3.control-label(for='inputcontestname') Contest Name
               .col-lg-7
-                input#inputcontestname.form-control(type='text', name='inputcontestname', ng-model='contest.name', ng-minlength='6', ng-maxlength='50', required='required', placeholder='contest name')
+                input#inputcontestname.form-control(type='text', name='name', ng-model='contest.name', ng-minlength='6', ng-maxlength='50', required='required', placeholder='contest name')
 
             .form-group
               label.col-lg-3.control-label(for='start-date') Starting date
               .col-lg-7
-                input#start-date.form-control.full-width(kendo-date-time-picker, k-format="'yyyy-MM-dd HH:mm:ss'", k-ng-model="contest.startDate", required='required', placeholder='start date', )
+                input#start-date.form-control.full-width(kendo-date-time-picker,type='datetime' ,name='startDate' ,k-format="'yyyy-MM-dd - HH:mm:ss'", k-ng-model="contest.startDate", required='required', placeholder='start date', )
 
             .form-group
               label.col-lg-3.control-label(for='end-date') End date
               .col-lg-7
-                input#end-date.form-control.full-width(kendo-date-time-picker, k-format="'yyyy-MM-dd HH:mm:ss'", k-ng-model='contest.endDate', required='required', placeholder='end date', )
+                input#end-date.form-control.full-width(kendo-date-time-picker, type='datetime' ,name='endDate', k-format="'yyyy-MM-dd - HH:mm:ss'", k-ng-model='contest.endDate', required='required', placeholder='end date', )
 
             //.text-center.error(ng-show='addContestForm.contestPassword.$error.minlength') Pasword must be at least 6 symbols long !
             //.form-group
@@ -35,5 +35,5 @@ block main-content
             //  .col-lg-10
             //    input#confirmPassword.form-control(type='password', name='confirmPassword', ng-model='contest.confirmPassword', ng-minlength='6', required='required', placeholder='Confirm Password')
             .form-group
-              .col-lg-10.col-lg-offset-2.pull-right
-                button.btn.btn-primary(ng-click='vm.add(contest)', ng-disabled='addContestForm.$invalid || contest.password != contest.confirmPassword') Submit
+              .col-lg-3.col-lg-offset-7
+                button.btn.btn-primary.full-width(type="submit", ng-disabled='addContestForm.$invalid || (contest.startDate >= contest.endDate) || !contest.startDate || !contest.endDate') Submit

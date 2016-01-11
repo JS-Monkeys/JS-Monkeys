@@ -24,14 +24,14 @@ block main-content
                  .form-group
                     .pull-right
                         button.btn.btn-lg.btn-primary(style="margin-top: 5px;" ng-click='vm.submit("' + currentContest.name +'")' ng-disabled='!vm.toggledName') Submit
-                    .pull-right(style="margin-right: 10px")
+                    .pull-right(style="margin-right: 10px; margin-top: 5px;")
                         if(isAdmin)
                                 a.btn.btn-lg.btn-primary(href=currentContest.name + '/addproblem') Add a problem
             .bs-component(style="margin-left: 20px;")
                     ol.block(style="margin-bottom: 20px;" ng-repeat="submission in vm.submissions")
                         li.label(ng-repeat="result in submission track by $index" style="margin-right: 10px; font-size: 20px" class='{{ result ? "label-success" : "label-danger" }}') {{$index + 1}}
-                        
-                            
+
+
         .col-lg-2.problem-btn
             if currentContest.problems
                 each problem, i in currentContest.problems
