@@ -13,7 +13,7 @@
             vm['isActive' + i] = true;
             vm.toggledName = ': ' + name;
             toggled = i;
-        }
+        };
 
         vm.submit = function (contestName) {
             // TODO: refactor this terrible beast
