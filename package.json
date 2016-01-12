@@ -4,8 +4,8 @@
   "description": "MEAN stack app",
   "main": "source/server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon source/server/server.js",
+    "test": "mocha tests/controller-tests.js",
+    "start": "node source/server/server.js",
     "postinstall": "bower install"
   },
   "repository": {
