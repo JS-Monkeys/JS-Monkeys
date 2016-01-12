@@ -2,10 +2,10 @@
   "name": "js-monkeys",
   "version": "0.0.1",
   "description": "MEAN stack app",
-  "main": "/source/server/server.js",
+  "main": "source/server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server/server.js",
+    "start": "nodemon source/server/server.js",
     "postinstall": "bower install"
   },
   "repository": {
