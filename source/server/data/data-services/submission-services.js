@@ -55,11 +55,11 @@ function createSubmission(submission) {
                             }
 
                             if (best) {
-                                user.points += submission.points + best.points;
-                                // console.log('points update 1: ' + (submission.points + best.points));
+                                user.points += submission.points - best.points;
+                                console.log('points update 1: ' + (submission.points + best.points));
                             } else {
                                 user.points += submission.points;
-                                // console.log('points update 2: ' + submission.points);
+                                console.log('points update 2: ' + submission.points);
                             }
 
                             user.save(function (err, res) {
