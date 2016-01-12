@@ -14,7 +14,10 @@ router.get('/api/users', usersController.all)
     .post('/login', auth.login)
     .post('/logout', auth.logout);
 
+router.get('/:partial', function (req, res) {
+    res.render('../views/account/' + req.params.partial, req);
+});
+
 module.exports = function (server) {
     server.use('/', router);
 };
-
