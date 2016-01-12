@@ -3,13 +3,14 @@
   "version": "0.0.1",
   "description": "MEAN stack app",
   "engines": {
-      "node": "5.3.0",
-      "npm": "3.5.3"
-      },
+    "node": "5.3.0",
+    "npm": "3.5.3"
+  },
   "main": "source/server/server.js",
   "scripts": {
     "test": "mocha tests/controller-tests.js",
-    "start": "node source/server/server.js"
+    "start": "node source/server/server.js",
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   "homepage": "https://github.com/JS-Monkeys/JS-Monkeys#readme",
   "dependencies": {
     "body-parser": "^1.14.2",
+    "bower": "^1.7.2",
     "connect-busboy": "0.0.2",
     "cookie-parser": "^1.4.0",
     "express": "^4.13.3",
