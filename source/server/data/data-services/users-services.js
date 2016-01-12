@@ -34,14 +34,14 @@ function getUsers(options) {
 
     let promise = new Promise(function (resolve, reject) {
 
-        User.find(options, function (error, users) {
-            if (error) {
-                return reject(error);
-            }
-
-            resolve(users);
-        });
-
+        User.find(options)
+            .sort({ points: -1 })
+            .exec(function (error, users) {
+                if (error) {
+                    return reject(error);
+                }
+                resolve(users);
+            });
     });
 
     return promise;
