@@ -5,16 +5,21 @@ block main-content
             h2#nav-tabs #{currentContest.name} {{vm.toggledName}}
             .bs-component
                 ul.nav.nav-tabs
-                    li.active
-                        a(href='#submit', data-toggle='tab') Submit
                     li
-                        a(href='#problem', data-toggle='tab') Problem Description
+                        a(href='/#submit', data-toggle='tab') Submit
+                    li.active
+                        a(href='/#problem', data-toggle='tab') Problem Description
                 #myTabContent.tab-content
-                    #submit.tab-pane.fade.active.in
+                    #submit.tab-pane.fade.in
                         .form-group
                             .col-lg-12
                                 textarea#textArea.form-control(rows='20' ng-model='vm.code')
                                 span.help-block
+                        h3 Submissions:
+                            br
+                            br
+                            ol.block(style="margin-bottom: 20px;" ng-repeat="submission in vm.submissions")
+                                li.label(ng-repeat="result in submission track by $index" style="margin-right: 10px; font-size: 20px" class='{{ result ? "label-success" : "label-danger" }}') {{$index + 1}}
                     #problem.tab-pane.fade.in.active
                         each problem, i in currentContest.problems
                             div.task-desc(ng-show="vm.isActive" + i)
@@ -26,11 +31,7 @@ block main-content
                         button.btn.btn-lg.btn-primary(style="margin-top: 5px;" ng-click='vm.submit("' + currentContest.name +'")' ng-disabled='!vm.toggledName') Submit
                     .pull-right(style="margin-right: 10px")
                         if(isAdmin)
-                                a.btn.btn-lg.btn-primary(href=currentContest.name + '/addproblem') Add a problem
-            .bs-component(style="margin-left: 20px;")
-                    ol.block(style="margin-bottom: 20px;" ng-repeat="submission in vm.submissions")
-                        li.label(ng-repeat="result in submission track by $index" style="margin-right: 10px; font-size: 20px" class='{{ result ? "label-success" : "label-danger" }}') {{$index + 1}}
-                        
+                                a.btn.btn-lg.btn-primary(href=currentContest.name + '/addproblem') Add a problem                        
                             
         .col-lg-2.problem-btn
             if currentContest.problems
