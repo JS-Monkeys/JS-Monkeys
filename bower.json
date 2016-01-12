@@ -1,0 +1,38 @@
+{
+  "name": "js-monkeys",
+  "description": "App for JavaScript monkeys",
+  "main": "server.js",
+  "authors": [
+    "https://github.com/JS-Monkeys"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "monkey",
+    "js",
+    "JavaScript"
+  ],
+  "homepage": "https://github.com/JS-Monkeys/JS-Monkeys",
+  "moduleType": [
+    "globals",
+    "yui"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.6",
+    "font-awesome": "fontawesome#~4.5.0",
+    "flot": "flot#~0.8.3",
+    "flot.tooltip": "~0.8.5",
+    "angular": "~1.4.8",
+    "angular-resource": "~1.4.8",
+    "angular-route": "~1.4.8",
+    "toastr": "~2.1.2"
+  }
+}
