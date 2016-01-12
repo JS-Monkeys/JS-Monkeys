@@ -6,9 +6,9 @@ let router = require('express').Router(),
     
 // TODO: refactor those routes
 router
-    .post('/', submissionsController.makeSubmission)
-    .get('/', submissionsController.getSubmissions);
+    .post('/', auth.isAuthenticated, submissionsController.makeSubmission)
+    .get('/', auth.isInRole('admin'), submissionsController.getSubmissions);
 
 module.exports = function (server) {
     server.use('/submissions', router);
-}
+};

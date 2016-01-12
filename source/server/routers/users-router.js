@@ -6,10 +6,10 @@ let router = require('express').Router(),
     
 // TODO: refactor those routes
 router.get('/api/users', usersController.all)
-    .get('/api/users/details', usersController.byUsername)
+    .get('/api/users/details',auth.isAuthenticated, usersController.byUsername)
     .get('/api/users/rankings', usersController.findByRank)
     .post('/api/users', usersController.registerUser)
-    .get('/users', usersController.allJson)
+    .get('/users',auth.isInRole('admin'), usersController.allJson)
     .post('/login', auth.login)
     .post('/logout', auth.logout);
 

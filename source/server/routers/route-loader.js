@@ -7,4 +7,4 @@ module.exports = function routeConfig(server) {
         .readdirSync(path.join(__dirname, './'))
         .filter(fn => fn !== 'route-loader.js')
         .forEach(fn => require(`./${fn}`)(server));
-}
+};
