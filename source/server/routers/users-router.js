@@ -8,7 +8,6 @@ let router = require('express').Router(),
 router.get('/api/users', usersController.all)
     .get('/api/users/details', usersController.byUsername)
     .get('/api/users/rankings', usersController.findByRank)
-    .get('/rankings', usersController.findByRank)
     .post('/api/users', usersController.registerUser)
     .post('/login', auth.login)
     .post('/logout', auth.logout);

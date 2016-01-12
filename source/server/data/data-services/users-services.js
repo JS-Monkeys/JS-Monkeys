@@ -101,7 +101,7 @@ module.exports = {
     services: {
         all: getUsers,
         createUser: createUser,
-        findByUsername: function (username) {
+        byUsername: function (username) {
             return findUser({ username });
         },
         byId: function (id) {

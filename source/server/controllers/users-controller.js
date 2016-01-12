@@ -59,7 +59,7 @@ module.exports = function (data) {
         },
         byUsername: function (req, res) {
             data.users
-                .findByUsername(req.query.username)
+                .byUsername(req.query.username)
             .then(function (response) {
                 res.render('user-details', {
                     user: response,
