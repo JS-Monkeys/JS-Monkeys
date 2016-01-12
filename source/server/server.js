@@ -41,4 +41,12 @@ require('./config/marked-config');
 // configure routes
 require('./routers/route-loader')(server);
 
+server.get('/*', function (req, res) {
+  res.redirect('/not-found');
+});
+
+server.get('/:partial', function (req, res) {
+  res.render('../views/account/' + req.params.partial, req);
+});
+
 server.listen(port, () => console.log(`Server running on ${port}`));
