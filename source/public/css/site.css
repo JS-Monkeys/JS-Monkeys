@@ -119,12 +119,21 @@ textarea, .task-desc {
     font-size: 1.5em;
 }
 
+.unauthorized-msg {
+    font-size: 5em;
+    font-weight: bold;
+}
+
 .angry {
     margin: 2em;
 }
 
 #search-bar {
     float: right;
+}
+
+#page-wrapper {
+    min-height: 55em;
 }
 
 .table-half-size {
