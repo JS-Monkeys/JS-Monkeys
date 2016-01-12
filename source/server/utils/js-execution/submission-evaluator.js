@@ -53,10 +53,8 @@ module.exports = function (submission) {
                         points: problem.points * passedTests / testResults.length
                     })
                         .then(function (dbres) {
-                            //console.log(dbres);
                             resolve(parseBoolArr(result.toString()));
                         }, function (e) {
-                            //console.log(e);
                             reject(e);
                         });
                 });

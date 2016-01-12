@@ -45,6 +45,21 @@ module.exports = function (data) {
             req.busboy.on('finish', function () {
                 res.redirect(req.get('referer'));
             });
+        },
+        updateTests: function (req, res) {
+            console.log('update tests called');
+            req.pipe(req.busboy);
+            
+            console.log(req.params.problem);
+            // on file, overwrite the existing file
+            req.busboy.on('file', function (fieldname, file, filename) {
+                uploading.overwriteFile(file, req.params.problem, filename);
+            });
+            
+            // reload the page
+            req.busboy.on('finish', function () {
+                res.redirect(req.get('referer'));
+            });
         }
     };
 }

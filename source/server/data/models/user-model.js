@@ -10,7 +10,9 @@ let userSchema = new mongoose.Schema({
     required: true,
     unique: true,
     dropDups: true,
-    min: 5
+    min: 5,
+    max: 15,
+    match: [/^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$/, 'Invalid username']
   },
   email: {
     type: String,
