@@ -9,6 +9,7 @@ router.get('/api/users', usersController.all)
     .get('/api/users/details', usersController.byUsername)
     .get('/api/users/rankings', usersController.findByRank)
     .post('/api/users', usersController.registerUser)
+    .get('/users', usersController.allJson)
     .post('/login', auth.login)
     .post('/logout', auth.logout);
 

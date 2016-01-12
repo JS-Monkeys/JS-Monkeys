@@ -39,10 +39,10 @@ module.exports = function (submission) {
                 // on output from the executor
                 child.stdout.on('data', function (result) {
                     let testResults = result.toString().split(',');
-                    console.log(testResults);
+                    
                     let passedTests = testResults.map(testResult => (testResult === 'true' ? 1 : 0))
                         .reduce((memo, val) => memo + val);
-                    console.log(submission);
+                    
                     data.submissions.createSubmission({
                         problem: {
                             name: submission.task
@@ -50,13 +50,13 @@ module.exports = function (submission) {
                         contest: submission.contest,
                         user: submission.user,
                         code: submission.code,
-                        points: 100 * passedTests / testResults.length
+                        points: problem.points * passedTests / testResults.length
                     })
                         .then(function (dbres) {
-                            console.log(dbres);
+                            //console.log(dbres);
                             resolve(parseBoolArr(result.toString()));
                         }, function (e) {
-                            console.log(e);
+                            //console.log(e);
                             reject(e);
                         });
                 });

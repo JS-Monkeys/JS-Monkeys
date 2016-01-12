@@ -29,13 +29,13 @@ block main-content
                  .form-group
                     .pull-right
                         button.btn.btn-lg.btn-primary(style="margin-top: 5px;" ng-click='vm.submit("' + currentContest.name +'")' ng-disabled='!vm.toggledName') Submit
-                    .pull-right(style="margin-right: 10px")
+                    .pull-right(style="margin-right: 10px; margin-top: 5px;")
                         if(menuResolver.isAdmin)
                                 a.btn.btn-lg.btn-primary(href=currentContest.name + '/addproblem') Add a problem                        
         .col-lg-2.problem-btn
             if currentContest.problems
                 each problem, i in currentContest.problems
                     button.btn.btn-primary.btn-lg.btn-block(type='button' ng-click="vm.toggle("+ i +",'" + problem.name + "');")=problem.name
-                    if(isAdmin)
+                    if(menuResolver.isAdmin)
                         a.btn.btn-sm.btn-info(href='/problems/' + problem.name + '/tests', style="margin-top: 10px; margin-bottom: 10px") Tests
  

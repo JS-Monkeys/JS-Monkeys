@@ -16,7 +16,7 @@ function createProblem(problem) {
             description: problem.description
         };
     }
-    //console.log(problem.constraints);
+    
     let promise = new Promise(function (resolve, reject) {
         Problem.create(problem, function (error, dbProblem) {
             if (error) {
@@ -40,7 +40,7 @@ function findProblemByContest(contestName, problemName) {
             
             for (let i = 0, length = contest.problems.length; i < length; i += 1) {
                 if (contest.problems[i].name === problemName) {
-                    console.log('found problem');
+                    
                     return resolve(contest.problems[i]);
                 }
             }

@@ -32,6 +32,15 @@ module.exports = function (data) {
                     res.json(error);
                 });
         },
+        allJson: function (req, res) {
+            data.users
+                .all()
+                .then(function (response) {
+                    res.json(response);
+                }, function (error) {
+                    res.json(error);
+                });
+        },
         findByRank: function (req, res) {
             if (!(req.query.from && req.query.to)) {
                 data.users

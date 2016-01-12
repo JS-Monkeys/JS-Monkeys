@@ -46,8 +46,8 @@ function createSubmission(submission) {
                 Submission.find(searchOptions, function (err, contestSubs) {
 
                     let best = contestSubs.sort((x, y) => y.points - x.points)[0];
-
-                    if ((best && best.points > submission.points) || !best) {
+                    //console.log(best);
+                    if ((best && submission.points >= best.points) || !best) {
                         Users.findOne({ username: submission.user.username }, function (err, user) {
                             if (err) {
                                 console.log(err);
@@ -56,11 +56,21 @@ function createSubmission(submission) {
 
                             if (best) {
                                 user.points += submission.points + best.points;
+                                // console.log('points update 1: ' + (submission.points + best.points));
                             } else {
                                 user.points += submission.points;
+                                // console.log('points update 2: ' + submission.points);
                             }
 
-                            user.save();
+                            user.save(function (err, res) {
+                                if(err) {
+                                    console.log(err);
+                                    return;
+                                }
+                                
+                                console.log(res);
+                            });
+                            
                         });
                     }
 

@@ -1,6 +1,6 @@
 'use strict';
 
-let fs = require('fs'),
+let uploading = require('../utils/uploading'),
     marked = require('marked');
 
 module.exports = function (data) {
@@ -35,12 +35,17 @@ module.exports = function (data) {
             };
 
             data.contests.addProblemToContest(req.params.name, problem)
-                .then(dbRes => res.status(201).redirect('/contests/' + req.params.name),
+                .then(function (dbRes) {
+                    res.status(201)
+                    .redirect('/contests/' + req.params.name);
+                    
+                    uploading.createDir('', dbRes.name);
+                },
                     err => res.status(500).json(err));
         },
         create: function (req, res) {
             data.contests.create(req.body)
-                .then(contest => res.status(201).redirect( '/contests/' + contest),
+                .then(contest => res.status(201).redirect('/contests/' + contest),
                     error => res.status(500).json(error));
         },
         createJsonResponse: function (req, res) {

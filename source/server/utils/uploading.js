@@ -15,7 +15,6 @@ module.exports = {
         }
 
         let fstream = fs.createWriteStream(filesDir + path + '/' + fileName);
-        console.log(filesDir + path);
         file.pipe(fstream);
     }
 };
