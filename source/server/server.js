@@ -21,7 +21,7 @@ server.use(busboy({immediate: false}));
 
 // db config
 // require('./config/db-config')(connectionString)
-require('./config/db-config')(connectionString);
+require('./config/db-config')(mongoLabConnectionString);
 
 // passport config
 require('./config/passport-config')(server);
