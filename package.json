@@ -5,7 +5,7 @@
   "main": "source/server/server.js",
   "scripts": {
     "test": "mocha tests/controller-tests.js",
-    "start": "nodemon source/server/server.js",
+    "start": "node source/server/server.js",
     "postinstall": "bower install"
   },
   "repository": {
