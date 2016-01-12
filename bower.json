@@ -1,7 +1,7 @@
 {
   "name": "js-monkeys",
   "description": "App for JavaScript monkeys",
-  "main": "server.js",
+  "main": "source/server/server.js",
   "authors": [
     "https://github.com/JS-Monkeys"
   ],
@@ -12,17 +12,15 @@
     "JavaScript"
   ],
   "homepage": "https://github.com/JS-Monkeys/JS-Monkeys",
-  "moduleType": [
-    "globals",
-    "yui"
-  ],
+  "moduleType": [],
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "./public/lib",
     "test",
-    "tests"
+    "tests",
+    "./source/public/lib"
   ],
   "dependencies": {
     "jquery": "~2.1.4",

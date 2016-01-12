@@ -3,6 +3,7 @@
 let express = require('express'),
   bodyParser = require('body-parser'),
   cookieParser = require('cookie-parser'),
+  path = require('path'),
   busboy = require('connect-busboy'),
   server = express(),
   port = process.env.PORT || 2345,
@@ -21,7 +22,7 @@ server.use(busboy({immediate: false}));
 
 // db config
 // require('./config/db-config')(connectionString)
-require('./config/db-config')(connectionString);
+require('./config/db-config')(mongoLabConnectionString);
 
 // passport config
 require('./config/passport-config')(server);
@@ -30,7 +31,7 @@ require('./config/passport-config')(server);
 require('./config/menus-resolver')(server);
 
 // static requests config
-server.use(express.static(__dirname + '/../public'));
+server.use(express.static(path.join(__dirname, '/../public')));
 
 // configure view engine
 server.set('view engine', 'jade');
