@@ -105,18 +105,42 @@ textarea, .task-desc {
     float: left;
 }
 
+.profile-pic {
+    display: inline;
+    float: left;
+}
+
+.profile-info {
+    margin-left: 13em;
+    margin-top: 2em;
+}
+
+.table-profile {
+    font-size: 1.5em;
+}
+
 .angry {
-  margin:2em;
+    margin: 2em;
 }
 
 #search-bar {
     float: right;
 }
 
-table {
+.table-half-size {
     font-size: 1.3em;
     width: 50% !important;
     float: left;
+}
+
+.table-all-users, .table-half-size {
+    font-size: 1.3em;
+    width: 50% !important;
+    margin: 0 auto;
+}
+
+.full-width {
+    font-size: 1.3em;
 }
 
 .topUsers {

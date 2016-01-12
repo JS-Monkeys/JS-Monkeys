@@ -1,4 +1,5 @@
 'use strict';
+// TODO set as app constants
 const TOP_TEN_USERS = 10,
     MIN_RANK = 0,
     MAX_RANK = 100;
@@ -15,10 +16,18 @@ module.exports = function (data) {
                 });
         },
         all: function (req, res) {
+            let pageSize = 10,
+                page = (req.query.page != undefined && +req.query.page > 0) ? +req.query.page : 1;
+
             data.users
                 .all()
                 .then(function (response) {
-                    res.json(response);
+                    let dbUsers = response.slice((page-1)*pageSize, page*pageSize);
+                    res.render('all-users',{
+                        users: dbUsers,
+                        page: page,
+                        menuResolver: req.menuResolver
+                    });
                 }, function (error) {
                     res.json(error);
                 });
@@ -43,11 +52,22 @@ module.exports = function (data) {
                             queryFrom: req.query.from,
                             queryTo: req.query.to
                         });
-                        //res.json(response);
                     }, function (error) {
                         res.json(error);
                     });
             }
+        },
+        byUsername: function (req, res) {
+            data.users
+                .byUsername(req.query.username)
+            .then(function (response) {
+                res.render('user-details', {
+                    user: response,
+                    menuResolver: req.menuResolver
+                });
+            }, function (error) {
+                res.json(error);
+            });
         }
     };
 };

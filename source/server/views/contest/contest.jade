@@ -30,9 +30,8 @@ block main-content
                     .pull-right
                         button.btn.btn-lg.btn-primary(style="margin-top: 5px;" ng-click='vm.submit("' + currentContest.name +'")' ng-disabled='!vm.toggledName') Submit
                     .pull-right(style="margin-right: 10px")
-                        if(isAdmin)
+                        if(menuResolver.isAdmin)
                                 a.btn.btn-lg.btn-primary(href=currentContest.name + '/addproblem') Add a problem                        
-                            
         .col-lg-2.problem-btn
             if currentContest.problems
                 each problem, i in currentContest.problems

@@ -1,7 +1,7 @@
 // 'use strict';
-// 
+//
 // let mongoose = require('mongoose');
-// 
+//
 // let problemSchema = new mongoose.Schema({
 //     name: {
 //         type: String,
@@ -34,5 +34,5 @@
 //     submissionIds: [String],
 //     _contest:{type: mongoose.Schema.ObjectId, ref: 'Contest'}
 // });
-// 
+//
 // mongoose.model('Problem', problemSchema);

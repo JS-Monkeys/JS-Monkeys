@@ -1,15 +1,15 @@
 (function () {
   'use strict';
 
-  function data($http, $q, authorization, baseServiceUrl, notifier) {
+  function data($http, $q, notifier) {
     // TODO missing authorization service. How are we actually sending the headers???
-    var headers = authorization.getAuthorizationHeader();
+    var headers = {};
 
     function get(url, params) {
       var defered = $q.defer();
 
       $http
-        .get(baseServiceUrl + url, { params: params, headers: headers })
+        .get(url, {params: params, headers: headers})
         .then(function (response) {
           defered.resolve(response.data);
         }, function (err) {
@@ -22,7 +22,7 @@
     function getById(url) {
       var defered = $q.defer();
       $http
-        .get(baseServiceUrl + url, { headers: headers })
+        .get(url, {headers: headers})
         .then(function (response) {
           defered.resolve(response.data);
         }, function (error) {
@@ -38,7 +38,7 @@
       var defered = $q.defer();
 
       $http
-        .post(baseServiceUrl + url, data, { headers: headers })
+        .post(url, data, {headers: headers})
         .then(function (response) {
           defered.resolve(response.data);
         }, function (error) {
@@ -54,7 +54,7 @@
       var defered = $q.defer();
 
       $http
-        .put(baseServiceUrl + url, data, { headers: headers })
+        .put(url, data, {headers: headers})
         .then(function (response) {
           defered.resolve(response.data);
         }, function (error) {
@@ -67,7 +67,11 @@
     }
 
     function getErrorMessage(response) {
-      var error = response.data.modelState;
+
+      //console.log("in error");
+      //console.log(response);
+
+      var error = response.data;
       if (error && error[Object.keys(error)[0]][0]) {
         error = error[Object.keys(error)[0]][0];
       }
@@ -87,5 +91,5 @@
   }
 
   angular.module('app.services')
-    .factory('data', ['$http', '$q', 'authorization', 'baseServiceUrl', 'notifier', data]);
+    .factory('data', ['$http', '$q', 'notifier', data]);
 }());

@@ -46,6 +46,8 @@ function findContest(options) {
 
 function create(contest) {
 
+    console.log(contest);
+
     if (contest) {
         let dbContest = {
             name: contest.name,

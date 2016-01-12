@@ -26,9 +26,8 @@ module.exports = {
                     success: true,
                     user: user
                 });
-                res.redirect(req.get('referer'));
-                
-                
+
+               // res.redirect(req.get('referer'));
             });
         });
 

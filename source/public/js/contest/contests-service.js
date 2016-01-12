@@ -1,16 +1,16 @@
 (function () {
   'use strict';
 
-  function contestsService($http, $q, UsersResource) {
+  function contestsService($http, $q, data) {
     return {
       add: function (contest) {
         var deferred = $q.defer();
 
-        $http.post('/contests/add', contest).then(function (response) {
+        data.post('/contests', contest).then(function (response) {
 
             console.log(response);
 
-            deferred.resolve(response.data);
+            deferred.resolve(response);
 
           },
           function (error) {
@@ -24,5 +24,5 @@
 
   angular
     .module('app.services')
-    .factory('contests', ['$http', '$q', 'UsersResource', contestsService]);
+    .factory('contests', ['$http', '$q', 'data', contestsService]);
 }());

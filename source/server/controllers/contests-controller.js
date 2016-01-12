@@ -15,8 +15,7 @@ module.exports = function (data) {
                     res.render('contest/contest', {
                         menuResolver: req.menuResolver,
                         currentContest: contest,
-                        marked: marked,
-                        isAdmin: req.user && req.user.roles.indexOf('admin') !== -1
+                        marked: marked
                     });
                 }, error => res.json(error));
         },
@@ -41,7 +40,7 @@ module.exports = function (data) {
         },
         create: function (req, res) {
             data.contests.create(req.body)
-                .then(contest => res.redirect(201, '/contests/' + contest),
+                .then(contest => res.status(201).redirect( '/contests/' + contest),
                     error => res.status(500).json(error));
         },
         createJsonResponse: function (req, res) {
@@ -50,4 +49,4 @@ module.exports = function (data) {
                     error => res.json(error));
         }
     };
-}
+};
