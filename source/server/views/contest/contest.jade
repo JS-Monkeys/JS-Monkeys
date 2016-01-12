@@ -35,7 +35,7 @@ block main-content
         .col-lg-2.problem-btn
             if currentContest.problems
                 each problem, i in currentContest.problems
-                    button.btn.btn-primary.btn-lg.btn-block(type='button' ng-click="vm.toggle("+i+",'" + problem.name +"');")=problem.name
+                    button.btn.btn-primary.btn-lg.btn-block(type='button' ng-click="vm.toggle("+ i +",'" + problem.name + "');")=problem.name
                     if(isAdmin)
                         a.btn.btn-sm.btn-info(href='/problems/' + problem.name + '/tests', style="margin-top: 10px; margin-bottom: 10px") Tests
  

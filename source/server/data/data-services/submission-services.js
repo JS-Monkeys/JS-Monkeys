@@ -31,25 +31,35 @@ function createSubmission(submission) {
             .findProblemByContest(submission.contest, submission.problem.name)
             .then(function (problem) {
                 submission.problemId = problem._id;
-                Submission.find({ problem: { name: problem.name }, user: { username: submission.user } }, function (err, contestSubs) {
-                    console.log(contestSubs);
+
+                let searchOptions = {
+                    problem: {
+                        name:
+                        problem.name
+                    },
+                    user: {
+                        username: submission.user.username,
+                        id: submission.user.id + ''
+                    }
+                };
+
+                Submission.find(searchOptions, function (err, contestSubs) {
+
                     let best = contestSubs.sort((x, y) => y.points - x.points)[0];
-                    console.log('best:');
-                    console.log(best);
+
                     if ((best && best.points > submission.points) || !best) {
                         Users.findOne({ username: submission.user.username }, function (err, user) {
                             if (err) {
                                 console.log(err);
                                 return reject(err);
                             }
-                            console.log('hereeeeeees');
-                            if(best) {
+
+                            if (best) {
                                 user.points += submission.points + best.points;
                             } else {
                                 user.points += submission.points;
                             }
-                            console.log('in callback for user');
-                            console.log(user);
+
                             user.save();
                         });
                     }
@@ -80,7 +90,7 @@ function findSubmission(options) {
 
     let promise = new Promise(function (resolve, reject) {
 
-        Submission.findOne(options, function (error, dbSub) {
+        Submission.find(options, function (error, dbSub) {
             if (error) {
                 return reject(error);
             }
