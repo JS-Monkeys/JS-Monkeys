@@ -2,6 +2,7 @@
   "name": "js-monkeys",
   "version": "0.0.1",
   "description": "MEAN stack app",
+  "engine": "node 5.4.0",
   "main": "source/server/server.js",
   "scripts": {
     "test": "mocha tests/controller-tests.js",
