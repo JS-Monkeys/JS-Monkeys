@@ -2,12 +2,14 @@
   "name": "js-monkeys",
   "version": "0.0.1",
   "description": "MEAN stack app",
-  "engine": "node 5.4.0",
+  "engines": {
+      "node": "5.3.0",
+      "npm": "3.5.3"
+      },
   "main": "source/server/server.js",
   "scripts": {
     "test": "mocha tests/controller-tests.js",
-    "start": "node source/server/server.js",
-    "postinstall": "bower install"
+    "start": "node source/server/server.js"
   },
   "repository": {
     "type": "git",
