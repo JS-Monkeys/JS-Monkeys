@@ -7,18 +7,24 @@ block main-content
       .col-md-12
         form
           input.btn-lg.btn-info.full-width(type="button" VALUE="Go back" onClick="history.go(-1);return true;")
-    each sub in submissions
-     .row(ng-click='vm.getCode("#{sub.id}")')
-       .col-md-12
-         .btn-sm.btn-default.full-width
-            span Submitted at: #{sub.madeOn}
 
-            strong.label-info.pull-right Points:  #{sub.points}
+    .panel.panel-primary
+      .panel-heading
+        h3 Latest submissions:
+      .panel-body
+        table.table.table-striped.table-hover
+          thead
+            tr
+              th Submitted at:
+              th Points
+          tbody
+            each sub in submissions
+              tr(ng-click='vm.getCode("#{sub.id}")')
+                td #{sub.madeOn}
+                td #{sub.points}
 
-       //.col-md-6
-       //  .btn-sm.btn-success.full-width Points:  #{sub.points}
   .col-md-8
     .panel.panel-default
-      .panel-heading  Submission from: {{vm.CurrentSubmittion.madeOn | date :'MM/dd/yyyy @ h:mma'}}
+      .panel-heading Code for submission from: {{vm.CurrentSubmittion.madeOn | date :'MM/dd/yyyy @ HH:mm:ss'}}
       .panel-body {{vm.CurrentSubmittion.code}}
 

@@ -66,7 +66,7 @@ module.exports = function (data) {
         .then(function (subs) {
           let formated = subs.map(function (s) {
             return {
-              madeOn: moment(s.madeOn).startOf("hour").fromNow(),
+              madeOn: moment(s.madeOn).fromNow(),
               points: s.points,
               id: s._id
             }
