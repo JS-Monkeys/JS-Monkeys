@@ -6,10 +6,11 @@ let sinon = require('sinon'),
     db = require('./db-mock'),
     expect = chai.expect;
 
+let moment = require('moment');
+
 let homeController = require('../source/server/controllers/home-controller')(db),
     contestsController = require('../source/server/controllers/contests-controller')(db),
     usersController = require('../source/server/controllers/users-controller')(db);
-// submissionsController = require('../source/server/controllers/submissions-controller')(db);
 
 function hasStatusCode(code) {
     return function (statusCode) {
@@ -28,18 +29,6 @@ describe('Home controller', function () {
             homeController.homePage(req, res);
 
             expect(spy.calledOnce).to.equal(true);
-        });
-    });
-
-    describe('GET /private', function () {
-        it('should return <h1>Authorized!</h1> when authorized', function () {
-            let result,
-                req = { isAuthenticated: () => true },
-                res = { send: html => result = html };
-
-            homeController.homePrivate(req, res);
-
-            expect(result).to.equal('<h1>Authorized!</h1>');
         });
     });
 });
@@ -245,6 +234,75 @@ describe('Users controller', function () {
                 };
 
             usersController.registerUser(req, res);
+        });
+    });
+});
+
+describe('Submissions controller', function () {
+
+    let mockedEvaluate = function (submission) {
+        let promise = new Promise(function (resolve, reject) {
+            submission ? resolve(submission) : reject('problem with submission evaluation');
+        });
+
+        return promise;
+    }
+
+    describe('/contests/:name', function () {
+
+        it('POST: should respond with 200 and json response from submission evaluator', function () {
+
+            let controller = require('../source/server/controllers/submissions-controller')(db, mockedEvaluate, moment);
+
+            let req = {
+                body: {
+                    contest: 'cooking',
+                    code: '<script>alert("azsymnakon");</script>',
+                },
+                user: {
+                    username: 'penka',
+                    _id: '1234'
+                },
+                params: {
+                    name: 'cooking veggies'
+                }
+            },
+                res = {
+                    status: hasStatusCode(200),
+                    json: function (response) {
+                        expect(response.contest).to.equal(req.body.contest);
+                    }
+                };
+
+            controller.makeSubmission(req, res);
+        });
+
+        it('POST: should respond with 400 and json error in case of invalid submission', function () {
+            
+            let controller = require('../source/server/controllers/submissions-controller')(db, mockedEvaluate, moment);
+            
+            let req = {
+                body: {
+
+                },
+                params: {
+                    name: 'cooking veggies'
+                },
+                user: {
+                    
+                }
+            },
+                res = {
+                    status: function (code) {
+                        expect(code).to.equal(400);
+                        return this;
+                    },
+                    json: function (error) {
+                        expect(error).to.equal('invalid submission');
+                    }
+                };
+
+            controller.makeSubmission(req, res);
         });
     });
 });

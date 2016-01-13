@@ -96,6 +96,15 @@ module.exports = {
             let promise = new Promise(function (resolve, reject) {
                 return user ? resolve(user) : reject('error');
             });
+
+            return promise;
+        }
+    },
+    submissions: {
+        all: function (shouldResolve) {
+            let promise = new Promise(function (resolve, reject) {
+                shouldResolve ? resolve([{ id: '12' }, { id: '45' }, { id: '12342' }, { id: '1' }, { id: '9' }]) : reject('submission for user not found');
+            });
             
             return promise;
         }

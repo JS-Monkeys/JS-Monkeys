@@ -1,10 +1,6 @@
 'use strict';
 
-let uploading = require('../utils/uploading'),
-  marked = require('marked'),
-  moment = require('moment');
-
-module.exports = function (data) {
+module.exports = function (data, uploadingService, markdownRenderer) {
   return {
     all: function (req, res) {
       data.contests.all()
@@ -18,7 +14,7 @@ module.exports = function (data) {
             .render('contest/contest', {
             menuResolver: req.menuResolver,
             currentContest: contest,
-            marked: marked
+            marked: markdownRenderer
           });
           
         }, function (error) { 
@@ -52,7 +48,7 @@ module.exports = function (data) {
             res.status(201)
               .redirect('/contests/' + req.params.name);
 
-            uploading.createDir('', dbRes.name);
+            uploadingService.createDir('', dbRes.name);
           },
           err => res.status(500).json(err));
     },
