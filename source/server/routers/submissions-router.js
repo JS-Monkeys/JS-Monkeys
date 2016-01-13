@@ -7,8 +7,9 @@ let router = require('express').Router(),
 // TODO: refactor those routes
 router
     .post('/', submissionsController.makeSubmission)
-    .get('/', submissionsController.getSubmissions);
+    .get('/', submissionsController.getSubmissions)
+    .get('/:id', submissionsController.getById);
 
 module.exports = function (server) {
     server.use('/submissions', router);
-}
+};

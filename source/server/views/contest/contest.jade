@@ -1,41 +1,46 @@
 extends ../shared/layout
 block main-content
-    .row(ng-controller="ContestController as vm")
-        .col-lg-10
-            h2#nav-tabs #{currentContest.name} {{vm.toggledName}}
-            .bs-component
-                ul.nav.nav-tabs
-                    li
-                        a(href='/#submit', data-toggle='tab') Submit
-                    li.active
-                        a(href='/#problem', data-toggle='tab') Problem Description
-                #myTabContent.tab-content
-                    #submit.tab-pane.fade.in
-                        .form-group
-                            .col-lg-12
-                                textarea#textArea.form-control(rows='20' ng-model='vm.code')
-                                span.help-block
-                        h3 Submissions:
-                            br
-                            br
-                            ol.block(style="margin-bottom: 20px;" ng-repeat="submission in vm.submissions")
-                                li.label(ng-repeat="result in submission track by $index" style="margin-right: 10px; font-size: 20px" class='{{ result ? "label-success" : "label-danger" }}') {{$index + 1}}
-                    #problem.tab-pane.fade.in.active
-                        each problem, i in currentContest.problems
-                            div.task-desc(ng-show="vm.isActive" + i)
-                                != marked(problem.description)
+  .row(ng-controller="ContestController as vm")
+    .col-lg-10
+      h2#nav-tabs #{currentContest.name} {{vm.toggledName}}
+      .bs-component
+        ul.nav.nav-tabs
+          li
+            a(href='/#submit', data-toggle='tab') Submit
+          li.active
+            a(href='/#problem', data-toggle='tab') Problem Description
 
-            .col-lg-12
-                 .form-group
-                    .pull-right
-                        button.btn.btn-lg.btn-primary(style="margin-top: 5px;" ng-click='vm.submit("' + currentContest.name +'")' ng-disabled='!vm.toggledName') Submit
-                    .pull-right(style="margin-right: 10px; margin-top: 5px;")
-                        if(menuResolver.isAdmin)
-                                a.btn.btn-lg.btn-primary(href=currentContest.name + '/addproblem') Add a problem                        
-        .col-lg-2.problem-btn
-            if currentContest.problems
-                each problem, i in currentContest.problems
-                    button.btn.btn-primary.btn-lg.btn-block(type='button' ng-click="vm.toggle("+ i +",'" + problem.name + "');")=problem.name
-                    if(menuResolver.isAdmin)
-                        a.btn.btn-sm.btn-info(href='/problems/' + problem.name + '/tests', style="margin-top: 10px; margin-bottom: 10px") Tests
+        #myTabContent.tab-content
+          #submit.tab-pane.fade.in
+            .form-group
+              .col-lg-12
+                textarea#textArea.form-control(rows='20' ng-model='vm.code')
+                span.help-block
+
+            .row
+              .col-lg-3.hea
+                 a(href="#{currentContest.name} {{vm.currentProblem}}")
+                  h3 Submissions
+              .col-lg-3.col-lg-offset-3
+                if(menuResolver.isAdmin)
+                  a.btn.btn-lg.btn-primary.full-width(href=currentContest.name + '/addproblem') Add a problem
+              .col-lg-3
+                button.btn.btn-lg.btn-primary.full-width(ng-click='vm.submit("' + currentContest.name + '")' ng-disabled='!vm.toggledName') Submit
+
+            .row
+              br
+              br
+              ol.block(style="margin-bottom: 20px;" ng-repeat="submission in vm.submissions")
+                li.label(ng-repeat="result in submission track by $index" style="margin-right: 10px; font-size: 20px" class='{{ result ? "label-success" : "label-danger" }}') {{$index + 1}}
+          #problem.tab-pane.fade.in.active
+            each problem, i in currentContest.problems
+              div.task-desc(ng-show="vm.isActive" + i)
+                != marked(problem.description)
+
+    .col-lg-2.problem-btn
+      if currentContest.problems
+        each problem, i in currentContest.problems
+          button.btn.btn-primary.btn-lg.btn-block(type='button' ng-click="vm.toggle(" + i + ",'" + problem.name + "');")=problem.name
+          if(menuResolver.isAdmin)
+            a.btn.btn-sm.btn-info(href='/problems/' + problem.name + '/tests', style="margin-top: 10px; margin-bottom: 10px") Tests
  

@@ -1,0 +1,24 @@
+extends ../shared/layout
+block main-content
+
+ .container(ng-controller="SubmissionController as vm")
+  .col-md-4
+    .row
+      .col-md-12
+        form
+          input.btn-lg.btn-info.full-width(type="button" VALUE="Go back" onClick="history.go(-1);return true;")
+    each sub in submissions
+     .row(ng-click='vm.getCode("#{sub.id}")')
+       .col-md-12
+         .btn-sm.btn-default.full-width
+            span Submitted at: #{sub.madeOn}
+
+            strong.label-info.pull-right Points:  #{sub.points}
+
+       //.col-md-6
+       //  .btn-sm.btn-success.full-width Points:  #{sub.points}
+  .col-md-8
+    .panel.panel-default
+      .panel-heading  Submission from: {{vm.CurrentSubmittion.madeOn | date :'MM/dd/yyyy @ h:mma'}}
+      .panel-body {{vm.CurrentSubmittion.code}}
+

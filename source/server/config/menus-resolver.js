@@ -7,8 +7,8 @@ module.exports = function (server) {
    server.use(function (req, res, next) {
      req.menuResolver = {
        isAuthenticated: req.isAuthenticated(),
-       user: req.user,
-       contests: data.cache.contests,
+       user: req.user || {},
+       contests: data.cache.contests || [],
        isAdmin: req.user && req.user.roles.indexOf('admin') !== -1
      };
 
