@@ -13,15 +13,22 @@ module.exports = function (data) {
     byName: function (req, res) {
       data.contests.byName(req.params.name)
         .then(function (contest) {
-          res.render('contest/contest', {
+           
+          res.status(200)
+            .render('contest/contest', {
             menuResolver: req.menuResolver,
             currentContest: contest,
             marked: marked
           });
-        }, error => res.json(error));
+          
+        }, function (error) { 
+            res.status(404)
+               .render('not-found', {})
+       });
     },
     addProblemPage: function (req, res) {
-      res.render('contest/add-problem', {
+      res.status(200)
+        .render('contest/add-problem', {
         currentContest: {name: req.params.name},
         menuResolver: req.menuResolver
       });
@@ -34,6 +41,11 @@ module.exports = function (data) {
         points: req.body.points,
         constraints: {timeout: req.body.timeout}
       };
+      
+      if(!problem.name || !problem.description) {
+          res.status(400)
+             .render('<h1>Bad request!</h1>');
+      }
 
       data.contests.addProblemToContest(req.params.name, problem)
         .then(function (dbRes) {

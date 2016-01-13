@@ -6,7 +6,6 @@ let vm = require('vm'),
     fs = require('fs'),
     path = require('path'),
     results = [],
-    stuff = [],
     tests = [],
     options = {};
     
