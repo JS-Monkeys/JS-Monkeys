@@ -1,32 +1,37 @@
 extends ../shared/layout
 block main-content
-
-  .container
+  .jumbotron
     h1.text-center Welcome JS Monkeys
-    .list-group.text-center
-      a.list-group-item(href="/courses")
-        i.fa.fa-graduation-cap.fa-4x
-        h3.list-group-item-heading Courses
-        p.list-group-item-text
-          | Learn the basics of JavaScript.
-          | Enroll in courses and study at a rate that suits you.
-      a.list-group-item(href="/contests")
-        i.fa.fa-flag-checkered.fa-4x
-        h3.list-group-item-heading Contests
-        p.list-group-item-text
-          | Test your knowledge by taking part in the competitions.
-      a.list-group-item(href="/api/users")
-        i.fa.fa-users.fa-4x
-        h3.list-group-item-heading Users
-        p.list-group-item-text
-          | Find out how you rank amongst all the users
-      a.list-group-item(href="/api/users")
-        i.fa.fa-trophy.fa-4x
-        h3.list-group-item-heading Top 10 users
-        p.list-group-item-text
-         | Check out the top 10 users or search for a user by rank or username here
-      a.list-group-item(href="/about")
-        i.fa.fa-github-square.fa-4x
-        i.fa.fa-css3.fa-4x
-        i.fa.fa-html5.fa-4x
-        h3.list-group-item-heading About
+    h3.row
+      .list-group.text-center
+        a.list-group-item.block.col-md-6(href="/courses")
+          i.fa.fa-graduation-cap.fa-4x
+          h3.list-group-item-heading Courses
+          p.list-group-item-text
+            | Learn the basics of JavaScript.
+            | Enroll in courses and study at a rate that suits you.
+        a.list-group-item.block.col-md-6(href="/contests")
+          i.fa.fa-flag-checkered.fa-4x
+          h3.list-group-item-heading Contests
+          p.list-group-item-text
+            | Test your knowledge by taking part in the competitions.
+            | Check out the latest competions here
+    h3.row
+      .list-group.text-center
+        a.list-group-item.block.col-md-6(href="/api/users")
+          i.fa.fa-users.fa-4x
+          h3.list-group-item-heading Users
+          p.list-group-item-text
+            | Find out how you rank amongst all the users
+        a.list-group-item.block.col-md-6(href="/api/users")
+          i.fa.fa-trophy.fa-4x
+          h3.list-group-item-heading Top 10 users
+          p.list-group-item-text
+           | Check out the top 10 users or search for a user by rank or username here
+    h3.row
+      .list-group.text-center
+        a.list-group-item.col-md-12(href="/about")
+          i.fa.fa-github-square.fa-4x
+          i.fa.fa-css3.fa-4x
+          i.fa.fa-html5.fa-4x
+          h3.list-group-item-heading About
