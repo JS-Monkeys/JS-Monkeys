@@ -10,9 +10,11 @@ module.exports = function (data) {
             data.users
                 .createUser(req.body)
                 .then(function (response) {
-                    res.json(response);
+                    res.status(201)
+                        .json(response);
                 }, function (error) {
-                    res.json(error);
+                    res.status(400)
+                        .json(error);
                 });
         },
         all: function (req, res) {
@@ -23,11 +25,12 @@ module.exports = function (data) {
                 .all()
                 .then(function (response) {
                     let dbUsers = response.slice((page - 1) * pageSize, page * pageSize);
-                    res.render('all-users', {
-                        users: dbUsers,
-                        page: page,
-                        menuResolver: req.menuResolver
-                    });
+                    res.status(200)
+                        .render('all-users', {
+                            users: dbUsers,
+                            page: page,
+                            menuResolver: req.menuResolver
+                        });
                 }, function (error) {
                     res.json(error);
                 });
@@ -70,21 +73,22 @@ module.exports = function (data) {
             data.users
                 .byUsername(req.query.username)
                 .then(function (response) {
-                    res.render('user-details', {
-                        user: response,
-                        menuResolver: req.menuResolver
-                    });
+                    res.status(200)
+                        .render('user-details', {
+                            user: response,
+                            menuResolver: req.menuResolver
+                        });
                 }, function (error) {
-                    res.json(error);
+                    res.status(404).render('not-found');
                 });
         },
-        getSignUp: function(req, res) {
+        getSignUp: function (req, res) {
             res.render('account/sign-up', req)
         },
-        getSignUpSuccess: function(req, res) {
+        getSignUpSuccess: function (req, res) {
             res.render('account/sign-up-success', req)
         },
-        getUnauthorized: function(req, res) {
+        getUnauthorized: function (req, res) {
             res.status(403).render('shared/unauthorized', req)
         }
     };

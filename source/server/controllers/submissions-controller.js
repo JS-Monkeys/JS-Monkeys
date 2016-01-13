@@ -7,7 +7,7 @@ module.exports = function (data) {
   return {
     makeSubmission: function (req, res) {
 
-      evaluateSubmission({
+      let newSubmission = {
         contest: req.body.contest,
         task: req.params.name,
         code: req.body.code,
@@ -15,7 +15,9 @@ module.exports = function (data) {
           username: req.user.username,
           id: req.user._id
         }
-      }).then(function (response) {
+      };
+
+      evaluateSubmission(newSubmission).then(function (response) {
         res.status(200)
           .json(response);
       }, function (error) {
@@ -50,14 +52,14 @@ module.exports = function (data) {
 
       console.log("gertting subs");
 
-      var query = {
+      let query = {
         'user.username': req.user.username,
         'problem.name': req.params.problem
       };
 
       console.log(query);
 
-      var sort = {
+      let sort = {
         sort: {
           madeOn: -1
         }
@@ -80,9 +82,10 @@ module.exports = function (data) {
 
           console.log(options);
 
-          res.render('submissions/submissions-by-problem-single', options);
+          res.status(200)
+            .render('submissions/submissions-by-problem-single', options);
         }, function (error) {
-          res.send(error)
+          res.status(404).render('not-found', {});
         });
     }
   };
