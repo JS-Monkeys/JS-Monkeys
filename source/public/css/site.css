@@ -101,6 +101,10 @@ textarea, .task-desc {
     width: 100%;
 }
 
+.welcome-heading {
+ margin-bottom: 50px;
+}
+
 .champ {
     float: left;
 }
