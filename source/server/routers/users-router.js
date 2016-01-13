@@ -1,7 +1,9 @@
 'use strict';
 
 let router = require('express').Router(),
-    usersController = require('../controllers/users-controller')(require('../data/data')),
+    data = require('../data/data');
+    
+let usersController = require('../controllers/users-controller')(data),
     auth = require('../config/auth');
     
 // TODO: refactor those routes

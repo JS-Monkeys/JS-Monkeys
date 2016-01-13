@@ -1,9 +1,9 @@
 'use strict';
 
-let evaluateSubmission = require('../utils/js-execution/submission-evaluator'),
-  moment = require('moment');
+// let evaluateSubmission = require('../utils/js-execution/submission-evaluator'),
+//   moment = require('moment');
 
-module.exports = function (data) {
+module.exports = function (data, evaluateSubmission, dateFormatter) {
   return {
     makeSubmission: function (req, res) {
 
@@ -69,7 +69,7 @@ module.exports = function (data) {
         .then(function (subs) {
           let formated = subs.map(function (s) {
             return {
-              madeOn: moment(s.madeOn).startOf("hour").fromNow(),
+              madeOn: dateFormatter(s.madeOn).startOf("hour").fromNow(),
               points: s.points,
               id: s._id
             }
