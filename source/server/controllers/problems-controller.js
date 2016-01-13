@@ -2,6 +2,7 @@
 
 let marked = require('marked'),
     fs = require('fs'),
+    _ = require('underscore'),
     path = require('path'),
     uploading = require('../utils/uploading');
 
@@ -19,7 +20,7 @@ module.exports = function (data) {
                     error => res.json(error));
         },
         testsPage: function (req, res) {
-            
+            console.log(req.query);
             if(!fs.existsSync(testsPath + req.params.problem)) {
                 
                 fs.mkdirSync(testsPath + req.params.problem);
@@ -29,11 +30,16 @@ module.exports = function (data) {
                 if (error) {
                     return res.json(error);
                 }
+                
+                let paginatedFiles = _.chain(files)
+                                            .rest(((req.query.page - 1) || 0) * 10)
+                                            .take(10)
+                                            .value();
 
                 res.render('problems/tests', {
                     problem: req.params.problem,
                     menuResolver: req.menuResolver,
-                    tests: files.map(String)
+                    tests: paginatedFiles.map(String)
                 });
             });
         },

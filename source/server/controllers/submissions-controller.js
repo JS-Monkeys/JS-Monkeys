@@ -1,13 +1,13 @@
 'use strict';
 
-let se = require('../utils/js-execution/submission-evaluator'),
-  moment = require('moment');;
+let evaluateSubmission = require('../utils/js-execution/submission-evaluator'),
+  moment = require('moment');
 
 module.exports = function (data) {
   return {
     makeSubmission: function (req, res) {
-      console.log('controller');
-      se({
+
+      evaluateSubmission({
         contest: req.body.contest,
         task: req.params.name,
         code: req.body.code,
@@ -38,6 +38,7 @@ module.exports = function (data) {
 
       data.submissions.findById(id)
         .then(function (response) {
+            
           res.status(200)
             .json(response);
         }, function (error) {
