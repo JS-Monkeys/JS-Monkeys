@@ -19,7 +19,12 @@ module.exports = function (data) {
                     error => res.json(error));
         },
         testsPage: function (req, res) {
-
+            
+            if(!fs.existsSync(testsPath + req.params.problem)) {
+                
+                fs.mkdirSync(testsPath + req.params.problem);
+            }
+            
             fs.readdir(testsPath + req.params.problem, function (error, files) {
                 if (error) {
                     return res.json(error);
