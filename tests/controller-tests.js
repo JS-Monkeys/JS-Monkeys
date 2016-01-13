@@ -7,8 +7,9 @@ let sinon = require('sinon'),
     expect = chai.expect;
 
 let homeController = require('../source/server/controllers/home-controller')(db),
-    contestsController = require('../source/server/controllers/contests-controller')(db);
-    // submissionsController = require('../source/server/controllers/submissions-controller')(db);
+    contestsController = require('../source/server/controllers/contests-controller')(db),
+    usersController = require('../source/server/controllers/users-controller')(db);
+// submissionsController = require('../source/server/controllers/submissions-controller')(db);
 
 function hasStatusCode(code) {
     return function (statusCode) {
@@ -59,7 +60,7 @@ describe('Contests controller', function () {
                     },
                     status: hasStatusCode(200)
                 };
-                
+
             contestsController.byName(req, res);
         });
     });
@@ -81,11 +82,11 @@ describe('Contests controller', function () {
                         expect(statusCode).to.equal(404);
                     }
                 };
-                
+
             contestsController.byName(req, res);
         });
     });
-    
+
     describe('/contests/:name/addproblem', function () {
         it('GET: should respond with 200 and render contest/add-problem template', function () {
             let req = {
@@ -94,15 +95,18 @@ describe('Contests controller', function () {
                 }
             },
                 res = {
+                    status: function (code) {
+                        expect(code).to.equal(200);
+                        return this;
+                    },
                     render: function (a, b) {
                         expect(b.currentContest.name).to.equal('C#2');
-                    },
-                    status: hasStatusCode(200)
+                    }
                 };
-                
+
             contestsController.addProblemPage(req, res);
         });
-        
+
         it('POST: should respond with 201 and redirect to /contests/:name', function () {
             let req = {
                 body: {
@@ -119,62 +123,128 @@ describe('Contests controller', function () {
                     },
                     status: hasStatusCode(201)
                 };
-                
+
             contestsController.addProblemToContest(req, res);
         });
     });
 });
 
 describe('Submissions controller', function () {
-   
-   describe('/submissions/:id', function () {
-       
-       
-   });
-   
-   describe('/contests/:name', function () {
-       
-      // dependency injection
-   });
-   
-   describe('/contests/:name/:problem', function () {
-       
-    //    it('GET: should respond with status 200 and user submissions', function () {
-    //        let req = {
-    //            user: {
-    //                username: 'penka'
-    //            },
-    //            problem: {
-    //                name: 'dish washing'
-    //            }
-    //        },
-    //            res = {
-    //                status: hasStatusCode(200),
-    //                render: function (path, opts) {
-    //                    expect(path).to.equal('submissions/submissions-by-problem-single');
-    //                    expect(opts[0].id).to.equal('1234');
-    //                }
-    //            };
-    //        submissionsController.userSubmissions(req, res)
-    //    });
-    
-    // it('GET: should respond with status 200 and user submissions', function () {
-    //        let req = {
-    //            user: {
-    //                username: 'ginka'
-    //            },
-    //            problem: {
-    //                name: 'dish washing'
-    //            }
-    //        },
-    //            res = {
-    //                status: hasStatusCode(200),
-    //                render: function (path, opts) {
-    //                    expect(path).to.equal('submissions/submissions-by-problem-single');
-    //                    expect(opts[0].id).to.equal('1234');
-    //                }
-    //            };
-    //        //submissionsController.userSubmissions(req, res)
-    //    });
-   });
+
+    describe('/unauthorized', function () {
+        it('GET: should respond with 404 and render template', function () {
+
+        });
+
+    });
+
+    describe('/users/rankings', function () {
+        it('GET: should respond with 200 and list users ordered by rank', function () {
+            let req = {
+                query: {
+                    page: 1
+                }
+            },
+                res = {
+                    status: hasStatusCode(200),
+                    render: function (path, opts) {
+                        expect(path).to.equal('all-users');
+                        expect(opts.map(x => x.username)).to.equal(['penka', 'ginka', 'minka']);
+                    }
+                };
+
+            usersController.findByRank(req, res);
+        });
+
+        it('GET: filter by point query should work', function () {
+            let res = {
+                status: hasStatusCode(200),
+                render: function (path, opts) {
+                    expect(path).to.equal('all-users');
+                    expect(opts.map(x => x.points).filter(x => x < 25 || x > 40).length).to.be.false;
+                }
+            };
+
+            usersController.findByRank({ query: { from: 25, to: 40 } }, res);
+        });
+
+    });
+
+    describe('/users/details', function () {
+        it('GET: should respond with code 200 and render user-details template', function () {
+            let req = {
+                query: {
+                    username: 'penka'
+                }
+            },
+                res = {
+                    status: hasStatusCode(200),
+                    render: function (path, opts) {
+                        expect(path).to.equal('user-details');
+                        expect(opts.user.username).to.equal('penka');
+                    }
+                };
+
+            usersController.byUsername(req, res);
+        });
+
+        it('GET: should respond with code 404 and render not-found with bad query', function () {
+            let req = {
+                query: {
+                    username: 'asdsadasda_fsdf'
+                }
+            },
+                res = {
+                    status: hasStatusCode(404),
+                    render: function (path, opts) {
+                        expect(path).to.equal('not-found');
+                    }
+                };
+
+            usersController.byUsername(req, res);
+        });
+    });
+
+
+});
+
+describe('Users controller', function () {
+
+    describe('/users', function () {
+
+        it('POST: should respond with 201 and json user in case of success', function () {
+            let req = {
+                body: {
+                    user: {
+                        username: 'kaka',
+                        password: 'ginka'
+                    }
+                }
+            },
+                res = {
+                    status: hasStatusCode(201),
+                    json: function (opts) {
+                        expect(opts).to.equal(req.body.user);
+                    }
+                };
+
+            usersController.registerUser(req, res);
+        });
+
+        it('POST: should respond with 400 and json error in case of error', function () {
+            let req = {
+                body: {
+
+                }
+            },
+                res = {
+                    status: hasStatusCode(400),
+                    json: function (error) {
+                        expect(error).to.equal('error');
+                    }
+                };
+
+            usersController.registerUser(req, res);
+        });
+    });
 });
