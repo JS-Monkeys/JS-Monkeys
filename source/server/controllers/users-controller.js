@@ -83,6 +83,9 @@ module.exports = function (data) {
         },
         getSignUpSuccess: function(req, res) {
             res.render('account/sign-up-success', req)
+        },
+        getUnauthorized: function(req, res) {
+            res.status(403).render('shared/unauthorized', req)
         }
     };
 };

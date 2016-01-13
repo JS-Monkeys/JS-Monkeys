@@ -12,8 +12,8 @@ router
   .post('/:name/addproblem', auth.isInRole('admin'), contestsController.addProblemToContest)
   .get('/:name/:problem', auth.isAuthenticated, submissionsController.userSubmissions)
   .get('/', contestsController.all)
-  .post('/', contestsController.create);
+  .post('/',auth.isInRole('admin'), contestsController.create);
 
 module.exports = function (server) {
-  server.use('/contests', router);
+    server.use('/contests', router);
 };

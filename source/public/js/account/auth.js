@@ -32,12 +32,16 @@
       login: function (user) {
         var deferred = $q.defer();
 
-        $http.post('/login', user)
-          .then(function (response) {
-            deferred.resolve(response);
-          }, function (error) {
-            deferred.reject(error)
-          });
+        $http.post('/login', user).success(function (response) {
+          if (response.success) {
+            //var user = new UsersResource();
+            //angular.extend(user, response.user);
+            deferred.resolve(true);
+          }
+          else {
+            deferred.resolve(false);
+          }
+        });
 
         return deferred.promise;
       },
@@ -56,4 +60,4 @@
   angular
     .module('app.services')
     .factory('auth', ['$http', '$q', 'UsersResource', authService]);
-}());
+} ());

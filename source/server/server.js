@@ -42,4 +42,8 @@ require('./config/marked-config');
 // configure routes
 require('./routers/route-loader')(server);
 
+server.get('*', function(req, res){
+  res.status(404).render('shared/not-found', req);
+});
+
 server.listen(port, () => console.log(`Server running on ${port}`));

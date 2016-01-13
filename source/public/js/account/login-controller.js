@@ -5,12 +5,14 @@
 
       console.log(user);
       auth.login(user).then(function (success) {
-        console.log(success)
 
+        if (success) {
           notifier.success('Successful login!');
-         // window.location.href = "/"
-      }, function(error){
-        notifier.error('Username/Password combination is not valid!');
+          window.location.href = "/"
+        }
+        else {
+          notifier.error('Username/Password combination is not valid!');
+        }
       });
     };
 
