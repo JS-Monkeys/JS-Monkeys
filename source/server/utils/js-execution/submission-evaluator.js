@@ -47,7 +47,7 @@ module.exports = function (submission) {
                         contest: submission.contest,
                         user: submission.user,
                         code: submission.code,
-                        points: problem.points * passedTests / testResults.length
+                        points: (problem.points * passedTests / testResults.length) | 0
                     })
                         .then(function (dbres) {
                             let response = result.toString().split(',').map(x => x === 'true');
