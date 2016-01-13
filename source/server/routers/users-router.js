@@ -5,19 +5,21 @@ let router = require('express').Router(),
     auth = require('../config/auth');
     
 // TODO: refactor those routes
+
 router.get('/api/users', usersController.all)
-    .get('/api/users/details', usersController.byUsername)
+    .get('/api/users/details',auth.isAuthenticated, usersController.byUsername)
     .get('/api/users/rankings', usersController.findByRank)
     .post('/api/users', usersController.registerUser)
-    .get('/users', usersController.allJson)
+    .get('/users',auth.isInRole('admin'), usersController.allJson)
     .post('/login', auth.login)
-    .post('/logout', auth.logout);
+    .post('/logout', auth.logout)
+    .get('/sign-up', usersController.getSignUp)
+    .get('/sign-up-success', usersController.getSignUpSuccess);
 
- router.get('/:partial', function (req, res) {
-     res.render('../views/account/' + req.params.partial, req);
- });
+//router.get('/:partial', function (req, res) {
+//    res.render('../views/account/' + req.params.partial, req);
+//});
 
 module.exports = function (server) {
     server.use('/', router);
 };
-

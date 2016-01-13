@@ -34,7 +34,8 @@ function createSubmission(submission) {
 
         let searchOptions = {
           problem: {
-            name: problem.name
+            name:
+            problem.name
           },
           user: {
             username: submission.user.username,
@@ -47,22 +48,22 @@ function createSubmission(submission) {
           let best = contestSubs.sort((x, y) => y.points - x.points)[0];
           //console.log(best);
           if ((best && submission.points >= best.points) || !best) {
-            Users.findOne({username: submission.user.username}, function (err, user) {
+            Users.findOne({ username: submission.user.username }, function (err, user) {
               if (err) {
                 console.log(err);
                 return reject(err);
               }
 
               if (best) {
-                user.points += submission.points + best.points;
-                // console.log('points update 1: ' + (submission.points + best.points));
+                user.points += submission.points - best.points;
+                console.log('points update 1: ' + (submission.points + best.points));
               } else {
                 user.points += submission.points;
-                // console.log('points update 2: ' + submission.points);
+                console.log('points update 2: ' + submission.points);
               }
 
               user.save(function (err, res) {
-                if (err) {
+                if(err) {
                   console.log(err);
                   return;
                 }

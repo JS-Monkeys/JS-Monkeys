@@ -8,7 +8,7 @@ let router = require('express').Router(),
 router.get('/upload', auth.isInRole('admin'), adminController.uploadPage)
   .get('/problems', auth.isInRole('admin'), adminController.getProblems)
   .post('/problems', auth.isInRole('admin'), adminController.addProblem)
-  .get('/add-contest', function (req, res) {
+  .get('/add-contest',auth.isInRole('admin'), function (req, res) {
     let options = {
       isAuthenticated: req.isAuthenticated(),
       user: req.user

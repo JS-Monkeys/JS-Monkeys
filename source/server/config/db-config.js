@@ -1,6 +1,7 @@
 'use strict';
 
-let mongoose = require('mongoose');
+let mongoose = require('mongoose'),
+    path = require('path');
 
 module.exports = function (connectionString) {
 
@@ -8,7 +9,7 @@ module.exports = function (connectionString) {
     let db = mongoose.connection;
         
     // load models
-    require('../data/models/model-loader');
+    require(path.join(__dirname, '../data/models/model-loader'));
         
     // log events
     db.once('open', function (err) {

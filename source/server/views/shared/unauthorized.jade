@@ -1,0 +1,12 @@
+extends layout
+block main-content
+    .jumbotron.text-center
+        img(src="/assets/not-authorized.gif")
+    .unauthorized-msg.text-center
+        | You must
+        if menuResolver.isAuthenticated
+            span  be an admin
+        else
+            span  log in
+    .unauthorized-msg.text-center
+        | to get your banana!

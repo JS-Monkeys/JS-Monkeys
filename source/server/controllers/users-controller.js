@@ -2,7 +2,7 @@
 // TODO set as app constants
 const TOP_TEN_USERS = 10,
     MIN_RANK = 0,
-    MAX_RANK = 100;
+    MAX_RANK = Number.MAX_SAFE_INTEGER;
 
 module.exports = function (data) {
     return {
@@ -22,8 +22,8 @@ module.exports = function (data) {
             data.users
                 .all()
                 .then(function (response) {
-                    let dbUsers = response.slice((page-1)*pageSize, page*pageSize);
-                    res.render('all-users',{
+                    let dbUsers = response.slice((page - 1) * pageSize, page * pageSize);
+                    res.render('all-users', {
                         users: dbUsers,
                         page: page,
                         menuResolver: req.menuResolver
@@ -44,9 +44,9 @@ module.exports = function (data) {
         findByRank: function (req, res) {
             if (!(req.query.from && req.query.to)) {
                 data.users
-                    .findByRank(MIN_RANK,MAX_RANK,TOP_TEN_USERS)
+                    .findByRank(MIN_RANK, MAX_RANK, TOP_TEN_USERS)
                     .then(function (response) {
-                        res.render('ranking/ranking',{
+                        res.render('ranking/ranking', {
                             usersByRank: response,
                             menuResolver: req.menuResolver
                         });
@@ -69,14 +69,20 @@ module.exports = function (data) {
         byUsername: function (req, res) {
             data.users
                 .byUsername(req.query.username)
-            .then(function (response) {
-                res.render('user-details', {
-                    user: response,
-                    menuResolver: req.menuResolver
+                .then(function (response) {
+                    res.render('user-details', {
+                        user: response,
+                        menuResolver: req.menuResolver
+                    });
+                }, function (error) {
+                    res.json(error);
                 });
-            }, function (error) {
-                res.json(error);
-            });
+        },
+        getSignUp: function(req, res) {
+            res.render('account/sign-up', req)
+        },
+        getSignUpSuccess: function(req, res) {
+            res.render('account/sign-up-success', req)
         }
     };
 };

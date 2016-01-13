@@ -3,13 +3,13 @@
 
   function authService($http, $q, UsersResource) {
     return {
-      signup: function(user) {
+      signup: function (user) {
         var deferred = $q.defer();
 
         var user = new UsersResource(user);
-        user.$save().then(function() {
+        user.$save().then(function () {
           deferred.resolve();
-        }, function(response) {
+        }, function (response) {
           deferred.reject(response);
         });
 
@@ -29,26 +29,22 @@
       //
       //  return deferred.promise;
       //},
-      login: function(user){
+      login: function (user) {
         var deferred = $q.defer();
 
-        $http.post('/login', user).success(function(response) {
-          if (response.success) {
-            //var user = new UsersResource();
-            //angular.extend(user, response.user);
-            deferred.resolve(true);
-          }
-          else {
-            deferred.resolve(false);
-          }
-        });
+        $http.post('/login', user)
+          .then(function (response) {
+            deferred.resolve(response);
+          }, function (error) {
+            deferred.reject(error)
+          });
 
         return deferred.promise;
       },
-      logout: function() {
+      logout: function () {
         var deferred = $q.defer();
 
-        $http.post('/logout').success(function() {
+        $http.post('/logout').success(function () {
           deferred.resolve();
         });
 
