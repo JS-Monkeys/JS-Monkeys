@@ -282,6 +282,21 @@ describe('Courses controller', function () {
              controller.byName(req, res);
         });
 
+        it('GET: should respond withd json error in case of error', function () {
+            let req = {
+                    query: {
+                        name: 'blahblah'
+                    }
+                },
+                res = {
+                    json: function (error) {
+                        expect(error).to.equal('error');
+                    }
+                };
+
+            controller.add(req, res);
+        });
+
     });
     
     describe('/add', function () {
@@ -301,5 +316,42 @@ describe('Courses controller', function () {
              controller.getAddCourse(req, res);
         });
 
+    });
+
+    describe('/courses/add', function () {
+
+        it('POST: should respond with 201 and json user in case of success', function () {
+            let req = {
+                    params: {
+                        course: {
+                            name: 'JS UI and DOM',
+                            videoUrl: 'https://www.youtube.com/embed/videoseries?list=PLF4lVL1sPDSkzfQ4veHmi-Os1OYo-n4FW'
+                        }
+                    }
+                },
+                res = {
+                    render: function (path, opts) {
+                        expect(path).to.equal('/courses/' + course.name);
+                    }
+                };
+
+            controller.add(req, res);
+        });
+
+        it('POST: should respond with 500 and json error in case of error', function () {
+            let req = {
+                    body: {
+
+                    }
+                },
+                res = {
+                    status: hasStatusCode(500),
+                    json: function (error) {
+                        expect(error).to.equal('error');
+                    }
+                };
+
+            controller.add(req, res);
+        });
     });
 });

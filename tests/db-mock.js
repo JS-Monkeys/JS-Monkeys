@@ -110,6 +110,34 @@ module.exports = {
         }
     },
     courses: {
+        courses: [
+            {
+                name: 'Hello Node',
+                videoUrl: 'https://www.youtube.com/embed/_MygxywLO9U'
+            },
+            {
+                name: 'Single Page Apps',
+                videoUrl: 'https://www.youtube.com/embed/videoseries?list=PLF4lVL1sPDSngf7odstKoqYv0eqLUMdIb'
+            },
+            {
+                name: 'End To End JS Apps',
+                videoUrl: '//www.youtube.com/embed/videoseries?list=PLF4lVL1sPDSklbh-BPnT5KPE9Vs3x33Nt'
+            }
+        ],
+        all: function (res) {
+            let promise = new Promise(function (resolve, reject) {
+                resolve(this.courses);
+            });
+
+            return promise;
+        },
+        add: function (course) {
+            let promise = new Promise(function (resolve, reject) {
+                return course ? resolve(course) : reject('error');
+            });
+
+            return promise;
+        },
         byName: function (name) {
             let promise = new Promise(function (resolve, reject) {
                 resole(name);
