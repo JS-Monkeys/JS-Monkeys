@@ -108,5 +108,14 @@ module.exports = {
             
             return promise;
         }
+    },
+    courses: {
+        byName: function (name) {
+            let promise = new Promise(function (resolve, reject) {
+                resole(name);
+            });
+            
+            return promise;
+        }
     }
 };

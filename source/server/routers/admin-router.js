@@ -3,7 +3,6 @@
 let router = require('express').Router(),
     auth = require('../config/auth');
 
-// TODO: auth middleware
 router
     .get('/add-contest', auth.isInRole('admin'), function (req, res) {
         let options = {

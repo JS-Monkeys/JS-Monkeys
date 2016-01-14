@@ -6,7 +6,8 @@ let sinon = require('sinon'),
     db = require('./db-mock'),
     expect = chai.expect;
 
-let moment = require('moment');
+let moment = require('moment'),
+    uploading = require('../source/server/utils/uploading');
 
 let homeController = require('../source/server/controllers/home-controller')(db),
     contestsController = require('../source/server/controllers/contests-controller')(db),
@@ -238,71 +239,67 @@ describe('Users controller', function () {
     });
 });
 
-describe('Submissions controller', function () {
+describe('Courses controller', function () {
+    
+    let controller = require('../source/server/controllers/courses-controller')(db);
+    
+    describe('/courses', function () {
 
-    let mockedEvaluate = function (submission) {
-        let promise = new Promise(function (resolve, reject) {
-            submission ? resolve(submission) : reject('problem with submission evaluation');
-        });
-
-        return promise;
-    }
-
-    describe('/contests/:name', function () {
-
-        it('POST: should respond with 200 and json response from submission evaluator', function () {
-
-            let controller = require('../source/server/controllers/submissions-controller')(db, mockedEvaluate, moment);
-
-            let req = {
-                body: {
-                    contest: 'cooking',
-                    code: '<script>alert("azsymnakon");</script>',
-                },
-                user: {
-                    username: 'penka',
-                    _id: '1234'
-                },
-                params: {
-                    name: 'cooking veggies'
-                }
-            },
+        it('GET: should respond with 200 and render all-courses with all courses', function () {
+            let req = {},
                 res = {
-                    status: hasStatusCode(200),
-                    json: function (response) {
-                        expect(response.contest).to.equal(req.body.contest);
+                    status: function (code) {
+                        return this;
+                    },
+                    render: function (path, opts) {
+                        expect(path).to.equal('course/all');
                     }
                 };
-
-            controller.makeSubmission(req, res);
+             
+             controller.renderAll(req, res);
         });
 
-        it('POST: should respond with 400 and json error in case of invalid submission', function () {
-            
-            let controller = require('../source/server/controllers/submissions-controller')(db, mockedEvaluate, moment);
-            
-            let req = {
-                body: {
+    });
+    
+    describe('/courses/:name', function () {
 
-                },
+        it('GET: should respond with 200 and render course with found course as option', function () {
+            let req = {
                 params: {
-                    name: 'cooking veggies'
-                },
-                user: {
-                    
+                    name: 'bop'
                 }
             },
                 res = {
                     status: function (code) {
-                        expect(code).to.equal(400);
                         return this;
                     },
-                    json: function (error) {
-                        expect(error).to.equal('invalid submission');
+                    render: function (path, opts) {
+                        expect(path).to.equal('course/course');
+                        expect(opts).to.equal('bop');
                     }
                 };
-
-            controller.makeSubmission(req, res);
+             
+             controller.byName(req, res);
         });
+
+    });
+    
+    describe('/add', function () {
+
+        it('GET: should respond with 200 and render add course', function () {
+            let req = {},
+                res = {
+                    status: function (code) {
+                        expect(code).to.equal(200);
+                        return this;
+                    },
+                    render: function (path, opts) {
+                        expect(path).to.equal('course/add-course');
+                    }
+                };
+             
+             controller.getAddCourse(req, res);
+        });
+
     });
 });

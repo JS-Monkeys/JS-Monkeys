@@ -1,10 +1,8 @@
 'use strict';
 
 let marked = require('marked'),
-    // fs = require('fs'),
     _ = require('underscore'),
     path = require('path');
-    // uploading = require('../utils/uploading');
 
 const testsPath = path.join(__dirname, '../problems/');
 
@@ -36,7 +34,8 @@ module.exports = function (data, uploadingService, fs) {
                                             .take(10)
                                             .value();
 
-                res.render('problems/tests', {
+                res.status(200)
+                    .render('problems/tests', {
                     problem: req.params.problem,
                     menuResolver: req.menuResolver,
                     tests: paginatedFiles.map(String)
