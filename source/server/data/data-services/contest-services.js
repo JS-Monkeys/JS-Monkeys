@@ -3,19 +3,24 @@ let mongoose = require('mongoose'),
     Contest = mongoose.model('Contest'),
     Problem = mongoose.model('Problem');
 
-function filter(options) {
+function filter(filter, sort) {
 
-    options = options || {};
+    filter = filter || {};
+
+    if (filter.id) {
+        filter._id = filter.id;
+        filter.id = undefined;
+    }
 
     let promise = new Promise(function (resolve, reject) {
-        Contest.find(options, function (error, contests) {
-            if(error) {
+
+        Contest.find(filter, null, sort, function (error, dbSub) {
+            if (error) {
                 return reject(error);
             }
-            
-            resolve(contests);
+
+            resolve(dbSub);
         });
-               
 
     });
 

@@ -6,6 +6,7 @@
 | /api/users                         | POST                                           | Register user                                |
 | /api/users/rankings                | GET                                            | Get Top Ten Users                            |
 | /api/users/rankings                | GET(query {from,to})                           | Get user ranking in range                    |
+| /api/users/details                 | GET(query{username})                           | Get user by username
 | /login                             | POST                                           | Login user                                   |
 | /logout                            | POST                                           | Logout                                       |
 | /unauthorized                      | GET                                            | Unauthorized page                            |
@@ -25,3 +26,7 @@
 | /contests                          | POST                                           | Creates a contest(admin only)                |
 | /contests/:name/addproblem         | POST                                           | Adds a problem to the contest(admin only)    |
 | /contests/:name/addproblem         | GET                                            | Gets add problem page (admin only)           |
+| /courses                           | GET                                            | Gets all courses                             |
+| /courses/add                       | GET                                            | Gets add-course form (admin only)            |
+| /courses/add                       | POST                                           | Create a new course                          |   
+| /courses/:name
