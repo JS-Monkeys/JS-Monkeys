@@ -25,7 +25,7 @@ block main-content
                 if(menuResolver.isAdmin)
                   a.btn.btn-lg.btn-primary.full-width(href=currentContest.name + '/addproblem') Add a problem
               .col-lg-3
-                button.btn.btn-lg.btn-primary.full-width(ng-click='vm.submit("' + currentContest.name + '")' ng-disabled='!vm.toggledName') Submit
+                button.btn.btn-lg.btn-primary.full-width(ng-click='vm.submit("' + currentContest.name + '")' ng-disabled='!vm.toggledName || !vm.canSubmit') Submit
 
             .row
               br

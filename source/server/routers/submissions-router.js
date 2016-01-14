@@ -1,7 +1,11 @@
 'use strict';
 
 let router = require('express').Router(),
-    submissionsController = require('../controllers/submissions-controller')(require('../data/data')),
+    moment = require('moment'),
+    data = require('../data/data'),
+    evaluateSubmission = require('../utils/js-execution/submission-evaluator');
+
+let submissionsController = require('../controllers/submissions-controller')(data, evaluateSubmission, moment),
     auth = require('../config/auth');
 
 // TODO: refactor those routes

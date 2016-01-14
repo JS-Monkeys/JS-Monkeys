@@ -1,27 +1,30 @@
 extends shared/layout
 block main-content
-    img.profile-pic(src="/assets/cutmypic.png")
-    h1.profile-info Detailed information for #{user.username}
-    table.table-profile.table.table-striped.table-hover
-        thead
-            tr
-                th Username
-                th Points
-                th Roles
-                th SubmissionIds
-        tbody
-            tr
-                td=user.username
-                td=user.points
-                td
-                    if user.roles.length !== 0
-                        each role in user.roles
-                            div=role
-                    else
-                        div This user has no roles!
-                td
-                    if user.submissionIds.length !== 0
-                        each submission in user.submissionIds
-                            div=submission
-                    else
-                        div This user has no submissions yet
+    if !user
+        include shared/not-found
+    else
+        img.profile-pic(src="/assets/cutmypic.png")
+        h1.profile-info Detailed information for #{user.username}
+        table.table-profile.table.table-striped.table-hover
+            thead
+                tr
+                    th Username
+                    th Points
+                    th Roles
+                    th SubmissionIds
+            tbody
+                tr
+                    td=user.username
+                    td=user.points
+                    td
+                        if user.roles.length !== 0
+                            each role in user.roles
+                                div=role
+                        else
+                            div This user has no roles!
+                    td
+                        if user.submissionIds.length !== 0
+                            each submission in user.submissionIds
+                                div=submission
+                        else
+                            div This user has no submissions yet

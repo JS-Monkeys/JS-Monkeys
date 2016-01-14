@@ -17,8 +17,10 @@ block main-content
                 td #{sub.madeOn}
                 td #{sub.points}
 
+
     .col-md-8
       .panel.panel-default
         .panel-heading Code for submission from: {{vm.CurrentSubmittion.madeOn | date :'MM/dd/yyyy @ HH:mm:ss'}}
         .panel-body {{vm.CurrentSubmittion.code}}
+
 

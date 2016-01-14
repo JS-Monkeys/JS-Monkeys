@@ -2,13 +2,12 @@
 
 let se = require('../utils/js-execution/submission-evaluator'),
   moment = require('moment');
-;
 
-module.exports = function (data) {
+module.exports = function (data, evaluateSubmission, dateFormatter) {
   return {
     makeSubmission: function (req, res) {
-      console.log('controller');
-      se({
+
+      let newSubmission = {
         contest: req.body.contest,
         task: req.params.name,
         code: req.body.code,
@@ -16,11 +15,18 @@ module.exports = function (data) {
           username: req.user.username,
           id: req.user._id
         }
-      }).then(function (response) {
+      };
+
+      if (!newSubmission.contest || !newSubmission.task) {
+        res.status(400)
+          .json('invalid submission');
+      }
+
+      evaluateSubmission(newSubmission).then(function (response) {
         res.status(200)
           .json(response);
       }, function (error) {
-        res.status(500)
+        res.status(400)
           .json(error);
       });
     },
@@ -42,34 +48,32 @@ module.exports = function (data) {
           res.status(200)
             .json(response);
         }, function (error) {
-          res.status(500)
-            .json(error);
+          res.status(404)
+            .render('not-found', {});
         });
     },
     userSubmissions: function (req, res) {
 
       console.log("gertting subs");
 
-      var query = {
+      let query = {
         'user.username': req.user.username,
         'problem.name': req.params.problem
       };
 
-      //  console.log(query);
+      console.log(query);
 
-      var sort = {
+      let sort = {
         sort: {
           madeOn: -1
-        },
-        skip: 0,
-        limit: 0
+        }
       };
 
       data.submissions.findSubmission(query, sort)
         .then(function (subs) {
           let formated = subs.map(function (s) {
             return {
-              madeOn: moment(s.madeOn).fromNow(),
+              madeOn: dateFormatter(s.madeOn).startOf("hour").fromNow(),
               points: s.points,
               id: s._id
             }
@@ -80,11 +84,12 @@ module.exports = function (data) {
             submissions: formated
           };
 
-          // console.log(options);
+          console.log(options);
 
-          res.render('submissions/submissions-by-problem-single', options);
+          res.status(200)
+            .render('submissions/submissions-by-problem-single', options);
         }, function (error) {
-          res.send(error)
+          res.status(404).render('not-found', {});
         });
     },
     getFilteredSubmissions: function (req, res) {
@@ -163,12 +168,7 @@ module.exports = function (data) {
             }
           });
 
-        //  res.render('submissions/submissions-listed-paging', options);
-
-
           data.problems.all().then(function (problems) {
-
-            //console.log(problems)
 
             var options = {
               menuResolver: req.menuResolver,
@@ -181,8 +181,8 @@ module.exports = function (data) {
             res.render('shared/not-found', req);
           });
         }, function(err){
-          console.log(err)
+          res.render('shared/not-found', req); // TODO: redirect 500
         });
     }
-  }
+  };
 };

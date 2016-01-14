@@ -1,16 +1,38 @@
 extends layout
 block main-content
-    .col-xs-5.col-sm-3.text-center
-        img(src="/assets/3monkeys.png")
-        h4 Hear no eval, see no eval, speak no eval.
-    .col-sm-4.col-md-offset-2
-        h2.text-center About this project
-        p
-            | This project was built as part of the "End-to-end JavaScript applications"
-            | team work&nbsp;
-            a(href="telerikacademy.com") Telerik Academy 2014-2015.
-            | &nbsp;The authors are the three wise JSMonkeys
-            a(href="https://github.com/KonstantinSimeonov") &nbsp;Konstantin Simeonov,
-            a(href="https://github.com/IvoPaunov") &nbsp;Ivo Paunov
-            |  and
-            a(href="https://github.com/Alex-Bubblemaster") &nbsp;Alex Hajigeorgieva
+    .jumbotron.row
+        .col-xs-5.col-sm-3.text-center
+            img(src="/assets/3monkeys.png")
+            h3
+                code Hear no eval, see no eval,
+                br
+                code speak no eval.
+        .col-sm-8.col-md-offset-1
+            h1.text-center About this project
+            br
+            br
+            p
+                | This is a teamwork project as part of &nbsp;
+                a(href="telerikacademy.com") Telerik Academy 2014-2015
+                | &nbsp;"End-to-end JavaScript applications" course.
+            p
+                | The authors are these three wise JSMonkeys
+                a(href="https://github.com/KonstantinSimeonov") &nbsp;Konstantin Simeonov,
+                a(href="https://github.com/IvoPaunov") &nbsp;Ivo Paunov
+                |  and
+                a(href="https://github.com/Alex-Bubblemaster") &nbsp;Alex Hajigeorgieva.
+            p
+                | Server is powered by
+                a(href="https://nodejs.org/en/") &nbsp;Node.js &reg;
+                | &nbsp; sweetened by &nbsp;
+                a(href="http://expressjs.com/") Express
+                | .
+            p
+                | View engine is
+                a(href="http://jade-lang.com/") &nbsp;Jade
+                    i.fa.fa-rabbit
+                | &nbsp; and we also used Angular, Kendo, Moment and of course Bootstrap.
+            p
+                | Link to the project's repository &nbsp;
+                a(href="https://github.com/JS-Monkeys")
+                        i.fa.fa-github-square.fa-2x

@@ -1,10 +1,6 @@
 'use strict';
 
-let uploading = require('../utils/uploading'),
-  marked = require('marked'),
-  moment = require('moment');
-
-module.exports = function (data) {
+module.exports = function (data, uploadingService, markdownRenderer) {
   return {
     all: function (req, res) {
       data.contests.all()
@@ -14,25 +10,24 @@ module.exports = function (data) {
       data.contests.byName(req.params.name)
         .then(function (contest) {
 
-          console.log(contest);
+          res.status(200)
+            .render('contest/contest', {
+              menuResolver: req.menuResolver,
+              currentContest: contest,
+              marked: markdownRenderer
+            });
 
-          if(!contest){
-            res.status(404).render('shared/not-found', req);
-            return;
-          }
-
-          res.render('contest/contest', {
-            menuResolver: req.menuResolver,
-            currentContest: contest || {},
-            marked: marked
-          });
-        }, error => res.json(error));
+        }, function (error) {
+          res.status(404)
+            .render('not-found', {})
+        });
     },
     addProblemPage: function (req, res) {
-      res.render('contest/add-problem', {
-        currentContest: {name: req.params.name},
-        menuResolver: req.menuResolver
-      });
+      res.status(200)
+        .render('contest/add-problem', {
+          currentContest: {name: req.params.name},
+          menuResolver: req.menuResolver
+        });
     },
     addProblemToContest: function (req, res) {
 
@@ -43,12 +38,17 @@ module.exports = function (data) {
         constraints: {timeout: req.body.timeout}
       };
 
+      if(!problem.name || !problem.description) {
+        res.status(400)
+          .render('<h1>Bad request!</h1>');
+      }
+
       data.contests.addProblemToContest(req.params.name, problem)
         .then(function (dbRes) {
             res.status(201)
               .redirect('/contests/' + req.params.name);
 
-            uploading.createDir('', dbRes.name);
+            uploadingService.createDir('', dbRes.name);
           },
           err => res.status(500).json(err));
     },

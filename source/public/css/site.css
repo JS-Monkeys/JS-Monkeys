@@ -105,6 +105,9 @@ textarea, .task-desc {
  margin-bottom: 50px;
 }
 
+.block{
+    display: inline-block;
+}
 .champ {
     float: left;
 }
