@@ -12,8 +12,8 @@ let contestsController = require('../controllers/contests-controller')(data, upl
     submissionsController = require('../controllers/submissions-controller')(data, evaluateSubmission, moment);
 
 router
-    .get('/:name', contestsController.byName)
-    .post('/:name', auth.isAuthenticated, submissionsController.makeSubmission)
+    .get('/:name',auth.isAuthenticated ,contestsController.byName)
+    .post('/:name',auth.isAuthenticated, submissionsController.makeSubmission)
     .get('/:name/addproblem', auth.isInRole('admin'), contestsController.addProblemPage)
     .post('/:name/addproblem', auth.isInRole('admin'), contestsController.addProblemToContest)
     .get('/:name/:problem', auth.isAuthenticated, submissionsController.userSubmissions)

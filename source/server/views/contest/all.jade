@@ -1,0 +1,31 @@
+extends ../shared/layout
+block main-content
+  .row
+    .col-lg-12
+      h1.page-header Contests
+
+  .row
+    .col-lg-12
+      if(contests && contests.length > 0)
+        .table-responsive
+          table.table.table-striped.table-hover.table-bordered
+            thead
+              tr
+                th Name
+                th Started on
+                th Ends on
+                th Problems
+                th Total submissions
+            tbody
+              each contest in contests
+                tr
+                  td
+                    a(href='/contests/' + contest.name) #{contest.name}
+                  td #{prettyDate(contest.startDate)}
+                  td #{prettyDate(contest.endDate)}
+                  td #{contest.problems.length}
+                  td #{contest.submissionsIds.length}
+      else
+        .text-center
+          h2 No contests yet
+          img(src='/assets/no-result.gif')

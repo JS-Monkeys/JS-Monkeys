@@ -10,6 +10,8 @@ mixin sidebar(contests)
 
 
         ul#contests.collapse
+          li
+            a(href='/contests') All
           each contest in menuResolver.contests
             li
               a(href='/contests/' + contest.name) #{contest.name}

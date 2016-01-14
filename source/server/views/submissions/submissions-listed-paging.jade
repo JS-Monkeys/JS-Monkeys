@@ -1,54 +1,56 @@
 extends ../shared/layout
 block main-content
 
-  .col-lg-12
-    form(action='/submissions/all')
-      fieldset
-        legend Submissions
-        .row
-          .col-md-3
-            .form-group
-              .text-center
-                .label.control-label.label-default(for='sort') Sort by:
-                div
-                  select#sort.form-control(name='sort')
-                    option(value='madeOn') Date
-                    option(value='points') Points
-                    option(value='user') User
-                    option(value='problem') Problem
+  .row
+    .col-lg-12
+      form(action='/submissions/all')
+        fieldset
+          legend Submissions
+          .row
+            .col-md-3
+              .form-group
+                .text-center
+                  .label.control-label.label-default(for='sort') Sort by:
+                  div
+                    select#sort.form-control(name='sort')
+                      option(value='madeOn') Date
+                      option(value='points') Points
+                      option(value='user') User
+                      option(value='problem') Problem
 
-          .col-md-3
-            .form-group
-              .text-center
-                .label.control-label.label-default(for='order') Order by:
-                div
-                  select#order.form-control(name='order')
-                    option(value='1') Ascending
-                    option(value='-1') Descending
+            .col-md-3
+              .form-group
+                .text-center
+                  .label.control-label.label-default(for='order') Order by:
+                  div
+                    select#order.form-control(name='order')
+                      option(value='1') Ascending
+                      option(value='-1') Descending
 
-          .col-md-3
-            .form-group
-              .text-center
-                .label.control-label.label-default(for='fot-contest') For problem:
-                div
-                  select#for-contest.form-control(name='problem')
-                    option(value='') All
-                    each problem in problems
-                      option(value='#{problem.name}') #{problem.name}
+            .col-md-3
+              .form-group
+                .text-center
+                  .label.control-label.label-default(for='fot-contest') For problem:
+                  div
+                    select#for-contest.form-control(name='problem')
+                      option(value='') All
+                      each problem in problems
+                        option(value='#{problem.name}') #{problem.name}
 
-          .col-md-3
-            .form-group
-              .text-center
-                .label.control-label.label-default(for='by-user') By user:
-                div
-                  input#by-user.form-control(type='text', name='user')
-        .row
-          .col-md-2
-            .form-group
-              .text-center
-                div
-                  button.btn.btn-primary(type='submit') Submit
+            .col-md-3
+              .form-group
+                .text-center
+                  .label.control-label.label-default(for='by-user') By user:
+                  div
+                    input#by-user.form-control(type='text', name='user')
+          .row
+            .col-md-2
+              .form-group
+                .text-center
+                  div
+                    button.btn.btn-primary(type='submit') Submit
 
+  .row
     .col-lg-12
       h2 Result submissions:
         if(submissions &&  submissions.length > 0)
@@ -69,7 +71,10 @@ block main-content
                     td #{sub.madeOn}
                     td #{sub.points}
                     td.text-center
-                      a.btn.btn-info.btn-sm(href='#{sub.id}') View code
+                      if(menuResolver.isAuthenticated)
+                        a.btn.btn-success.btn-default(href='#{sub.id}') View code
+                      else
+                        a.btn.btn-success.btn-default(href='/sign-up') Sign-up / in to see
         else
           .text-center
             h2 No secrets in the box, try again!

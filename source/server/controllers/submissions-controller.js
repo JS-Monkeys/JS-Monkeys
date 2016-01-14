@@ -52,6 +52,32 @@ module.exports = function (data, evaluateSubmission, dateFormatter) {
             .render('not-found', {});
         });
     },
+    renderById: function (req, res) {
+      let id = req.params.id || "";
+
+      data.submissions.findById(id)
+        .then(function (submission) {
+
+          let formated = {
+              madeOn: moment(submission.madeOn).fromNow(),
+              points: submission.points,
+              id: submission._id,
+              user: submission.user,
+              problem: submission.problem,
+              code: submission.code
+            };
+
+          let options ={
+            menuResolver: req.menuResolver,
+            submission: formated
+          };
+          res.status(200)
+            .render('submissions/submission-detailed', options);
+        }, function (error) {
+          res.status(404)
+            .render('not-found', {});
+        });
+    },
     userSubmissions: function (req, res) {
 
       console.log("gertting subs");
@@ -84,7 +110,7 @@ module.exports = function (data, evaluateSubmission, dateFormatter) {
             submissions: formated
           };
 
-          console.log(options);
+         // console.log(options);
 
           res.status(200)
             .render('submissions/submissions-by-problem-single', options);
@@ -96,7 +122,7 @@ module.exports = function (data, evaluateSubmission, dateFormatter) {
 
       console.log("gertting filtered submisssions");
 
-      console.log(req.query)
+      //console.log(req.query)
 
       let query = req.query;
       let order = query.order | 0;

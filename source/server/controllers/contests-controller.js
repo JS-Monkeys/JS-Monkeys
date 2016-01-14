@@ -4,7 +4,17 @@ module.exports = function (data, uploadingService, markdownRenderer) {
   return {
     all: function (req, res) {
       data.contests.all()
-        .then(contests => res.json(contests), error => res.json(error));
+        .then(function(result){
+
+          let options = {
+            menuResolver: req.menuResolver,
+            contests: result
+          };
+
+          res.render('contest/all', options)
+        }, function(error){
+          res.status(500).redirect('shared/server-error', req);
+        });
     },
     byName: function (req, res) {
       data.contests.byName(req.params.name)
@@ -19,7 +29,7 @@ module.exports = function (data, uploadingService, markdownRenderer) {
 
         }, function (error) {
           res.status(404)
-            .render('not-found', {})
+            .render('shared/not-found', req)
         });
     },
     addProblemPage: function (req, res) {
@@ -50,12 +60,12 @@ module.exports = function (data, uploadingService, markdownRenderer) {
 
             uploadingService.createDir('', dbRes.name);
           },
-          err => res.status(500).json(err));
+          err => res.status(500).redirect('/server-error', req));
     },
     create: function (req, res) {
       data.contests.create(req.body)
         .then(contest => res.status(201).redirect('/contests/' + contest),
-          error => res.status(500).json(error));
+          error => res.status(500).redirect('/server-error', req));
     }
   };
 };
