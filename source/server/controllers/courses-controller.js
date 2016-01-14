@@ -11,6 +11,9 @@ module.exports = function (data) {
           res.json(error);
         });
     },
+    renderAll: function (req, res) {
+     res.render('course/all', req);
+    },
     byName: function (req, res) {
       data.courses
         .byName(req.params.name)

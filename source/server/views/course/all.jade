@@ -1,0 +1,76 @@
+extends ../shared/layout
+block main-content
+  .row
+    .col-lg-12
+      h1.page-header Courses
+        if(menuResolver.isAdmin)
+          a.btn.btn-success.btn-default.pull-right(href='/courses/add') Add new cou
+  //.row
+  //  .col-lg-12
+  //    form(action='/courses/all')
+  //      fieldset
+  //        .row
+  //          .col-md-3
+  //            .form-group
+  //              .text-center
+  //                .label.control-label.label-default(for='sort') Sort by:
+  //                div
+  //                  select#sort.form-control(name='sort')
+  //                    option(value='madeOn') Date
+  //                    option(value='points') Points
+  //                    option(value='user') User
+  //                    option(value='problem') Problem
+  //
+  //          .col-md-3
+  //            .form-group
+  //              .text-center
+  //                .label.control-label.label-default(for='order') Order by:
+  //                div
+  //                  select#order.form-control(name='order')
+  //                    option(value='1') Ascending
+  //                    option(value='-1') Descending
+  //
+  //          .col-md-3
+  //            .form-group
+  //              .text-center
+  //                .label.control-label.label-default(for='fot-contest') For problem:
+  //                div
+  //                  select#for-contest.form-control(name='problem')
+  //                    option(value='') All
+  //                    each problem in problems
+  //                      option(value='#{problem.name}') #{problem.name}
+  //
+  //          .col-md-3
+  //            .form-group
+  //              .text-center
+  //                .label.control-label.label-default(for='by-user') By user:
+  //                div
+  //                  input#by-user.form-control(type='text', name='user')
+  //        .row
+  //          .col-md-2
+  //            .form-group
+  //              .text-center
+  //                div
+  //                  button.btn.btn-primary(type='submit') Submit
+
+  .row
+    .col-lg-12
+      if(menuResolver.courses && menuResolver.courses.length > 0)
+        .table-responsive
+          table.table.table-striped.table-hover.table-bordered
+            thead
+              tr
+                th Course
+                th Added on
+            tbody
+              each course in menuResolver.courses
+                tr
+                  td
+                      a(href='courses/#{course.name}')
+                        span #{course.name}
+                  td #{prettyDate(course.madeOn)}
+
+      else
+        .text-center
+          h2 No secrets in the box, try again!
+          img(src='/assets/no-result.gif')

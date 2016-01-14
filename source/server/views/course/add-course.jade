@@ -1,18 +1,18 @@
 extends ../shared/layout
 block main-content
-    .jumbotron
-        form.form-horizontal(name='addCourse',action='/courses/add', method="POST")
-            fieldset
-                legend Add Course
-                .form-group
-                    label.col-lg-2.control-label(for='name') Course Name
-                    .col-lg-10
-                        input.form-control(type='text', id="name", name='name' required='required', placeholder='Course name')
-                .form-group
-                    label.col-lg-2.control-label(for='videoUrl') Video Url
-                    .col-lg-10
-                        input.form-control(name='videoUrl', id="videoUrl", type='text', required='required', placeholder='Video Url')
-                .form-group
-                    .col-lg-10.col-lg-offset-2
-                        button.btn.btn-primary(type='submit') Add
+  .col-lg-12.well
+    form.form-horizontal(name='addCourse',action='/courses/add', method="POST")
+      fieldset
+        legend Add Course
+        .form-group
+          label.col-lg-2.control-label(for='name') Course Name
+          .col-lg-10
+            input.form-control(type='text', id="name", name='name' required='required', placeholder='Course name')
+        .form-group
+          label.col-lg-2.control-label(for='videoUrl') Video Url
+          .col-lg-10
+            input.form-control(name='videoUrl', id="videoUrl", type='text', required='required', placeholder='Video Url')
+        .form-group
+          .col-lg-10.col-lg-offset-2
+            button.btn.btn-primary(type='submit') Add
 

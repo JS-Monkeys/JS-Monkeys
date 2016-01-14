@@ -23,6 +23,8 @@ mixin sidebar(contests)
           i.fa.fa-fw.fa-caret-down
 
         ul#courses.collapse
+          li
+            a(href='/courses') All
           each course in menuResolver.courses
             li
               a(href='/courses/' + course.name) #{course.name}

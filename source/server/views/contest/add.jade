@@ -1,9 +1,9 @@
 extends ../shared/layout
 
 block main-content
-  br
-  .row
-    .container
+  .col-lg-12
+    br
+    .row
       .well
         form.form-horizontal(name='addContestForm', ng-submit='addContestForm.$valid', action='/contests', method="POST")
           fieldset
