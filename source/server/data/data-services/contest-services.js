@@ -114,4 +114,4 @@ module.exports = {
         create: create,
         addProblemToContest: addProblemToContest
     }
-}
+};
