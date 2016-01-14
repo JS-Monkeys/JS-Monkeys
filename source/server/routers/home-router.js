@@ -10,6 +10,7 @@ router.get('/favicon.ico', function (req, res) {
 });
 
 router.get('/', homeController.homePage)
+  .get('/about', homeController.aboutPage)
   .get('/private', auth.isAuthenticated, homeController.homePrivate);
 
 

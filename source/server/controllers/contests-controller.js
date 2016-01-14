@@ -13,9 +13,17 @@ module.exports = function (data) {
     byName: function (req, res) {
       data.contests.byName(req.params.name)
         .then(function (contest) {
+
+          console.log(contest);
+
+          if(!contest){
+            res.status(404).render('shared/not-found', req);
+            return;
+          }
+
           res.render('contest/contest', {
             menuResolver: req.menuResolver,
-            currentContest: contest,
+            currentContest: contest || {},
             marked: marked
           });
         }, error => res.json(error));

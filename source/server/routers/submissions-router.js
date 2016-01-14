@@ -8,6 +8,7 @@ let router = require('express').Router(),
 router
     .post('/',  auth.isAuthenticated,submissionsController.makeSubmission)
     .get('/', auth.isInRole('admin'),submissionsController.getSubmissions)
+    .get('/all', submissionsController.getFilteredSubmissions)
     .get('/:id', submissionsController.getById);
 
 module.exports = function (server) {

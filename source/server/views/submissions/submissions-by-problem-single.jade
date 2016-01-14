@@ -1,18 +1,12 @@
 extends ../shared/layout
 block main-content
-
- .container(ng-controller="SubmissionController as vm")
-  .col-md-4
-    .row
-      .col-md-12
-        form
-          input.btn-lg.btn-info.full-width(type="button" VALUE="Go back" onClick="history.go(-1);return true;")
-
-    .panel.panel-primary
-      .panel-heading
-        h3 Latest submissions:
-      .panel-body
-        table.table.table-striped.table-hover
+  .col-lg-12(ng-controller="SubmissionController as vm")
+    .col-md-4
+      form
+        input.btn-lg.btn-info.full-width(type="button" VALUE="Go back" onClick="history.go(-1);return true;")
+      h2 Latest submissions:
+      .table-responsive
+        table.table.table-striped.table-hover.table-bordered
           thead
             tr
               th Submitted at:
@@ -23,8 +17,8 @@ block main-content
                 td #{sub.madeOn}
                 td #{sub.points}
 
-  .col-md-8
-    .panel.panel-default
-      .panel-heading Code for submission from: {{vm.CurrentSubmittion.madeOn | date :'MM/dd/yyyy @ HH:mm:ss'}}
-      .panel-body {{vm.CurrentSubmittion.code}}
+    .col-md-8
+      .panel.panel-default
+        .panel-heading Code for submission from: {{vm.CurrentSubmittion.madeOn | date :'MM/dd/yyyy @ HH:mm:ss'}}
+        .panel-body {{vm.CurrentSubmittion.code}}
 
