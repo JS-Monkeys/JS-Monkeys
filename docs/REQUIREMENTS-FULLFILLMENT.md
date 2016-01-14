@@ -19,6 +19,7 @@
    1. Unauthorized
    1. Not found
    1. Server error
+
 ### Full use of MEAN stack
   + NodeJs MVC architecture with Express, Jade, MongoDB with Mongoose
   + Data services, AngularJS & KendoUI for the rendered pages
@@ -27,6 +28,7 @@
     2. All users
     3. Courses
     4. Contests
+    5. Files for admin
   + Bootstrap for styles
   + Passport with LocalAuthentication/Session strategy
   + AJAX:
@@ -35,8 +37,9 @@
   + Error handling
     * redirects to not-found/unauthorized or server error page
     * Angular & server validations
-  + Unit tests: **4 + 2**
+  + Unit tests: **16**
   + Security measures:
     + Registration/login data restrictions - only latin alphabet letters, "." and "_"
+    + Html escaping
     + Admin content creation
     + Submitted code sandboxing
