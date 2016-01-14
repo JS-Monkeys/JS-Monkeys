@@ -10,6 +10,8 @@ block main-content
   .row
     .col-lg-12
       h1.page-header Contests
+        if(menuResolver.isAdmin)
+          a.btn.btn-success.btn-default.pull-right(href='/admin/add-contest') Add new contest
 
   .row
     .col-lg-12
