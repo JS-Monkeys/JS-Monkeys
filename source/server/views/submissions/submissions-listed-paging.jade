@@ -136,7 +136,8 @@ block main-content
                   th User
                   th Submitted at
                   th Points
-                  th Code
+                  if(menuResolver.isAdmin)
+                    th Code
               tbody
                 each sub in submissions
                   tr
@@ -145,10 +146,8 @@ block main-content
                     td #{sub.madeOn}
                     td #{sub.points}
                     td.text-center
-                      if(menuResolver.isAuthenticated)
+                      if(menuResolver.isAdmin)
                         a.btn.btn-success.btn-default(href='#{sub.id}') View code
-                      else
-                        a.btn.btn-success.btn-default(href='/sign-up') Sign-up / Login to see
         else
           .text-center
             h2 No secrets in the box, try again!
