@@ -12,70 +12,71 @@ block main-content
     .col-lg-12
       form(action='/submissions/all')
         fieldset
-          .row
-            .col-md-3
-              .form-group
-                .text-center
-                  .label.control-label.label-default(for='sort') Sort by:
-                  div
-                    select#sort.form-control(name='sort')
-                      if(params && params.sort && params.sort == 'madeOn')
-                        option(value='madeOn', selected='selected') Date
-                      else
-                        option(value='madeOn') Date
-
-                      if(params && params.sort && params.sort == 'points')
-                        option(value='points', selected='selected') Points
-                      else
-                        option(value='points') Points
-
-                      if(params && params.sort && params.sort == 'user')
-                        option(value='user', selected='selected') User
-                      else
-                        option(value='user') User
-
-                      if(params && params.sort && params.sort == 'problem')
-                        option(value='problem', selected='selected') Problem
-                      else
-                        option(value='problem') Problem
-
-            .col-md-3
-              .form-group
-                .text-center
-                  .label.control-label.label-default(for='order') Order by:
-                  div
-                    select#order.form-control(name='order')
-                      if(params && params.order && params.order == '1')
-                        option(value='1' selected='selected') Ascending
-                      else
-                        option(value='1') Ascending
-
-                      if(params && params.order && params.order == '-1')
-                        option(value='-1' selected='selected') Descending
-                      else
-                        option(value='-1') Descending
-
-            .col-md-3
-              .form-group
-                .text-center
-                  .label.control-label.label-default(for='fot-contest') For problem:
-                  div
-                    select#for-contest.form-control(name='problem')
-                      option(value='') All
-                      each prob in problems
-                        if(params && params.problem && (params.problem == prob.name))
-                          option(value='#{prob.name}' selected='selected') #{prob.name}
+          if(menuResolver.isAuthenticated)
+            .row
+              .col-md-3
+                .form-group
+                  .text-center
+                    .label.control-label.label-default(for='sort') Sort by:
+                    div
+                      select#sort.form-control(name='sort')
+                        if(params && params.sort && params.sort == 'madeOn')
+                          option(value='madeOn', selected='selected') Date
                         else
-                          option(value='#{prob.name}') #{prob.name}
-            .col-md-3
-              .form-group
-                .text-center
-                  .label.control-label.label-default(for='by-user') By user:
-                  div
-                    if(params && params.user)
-                      input#by-user.form-control(type='text', name='user', value='#{params.user}')
-                    else
-                      input#by-user.form-control(type='text', name='user')
+                          option(value='madeOn') Date
+
+                        if(params && params.sort && params.sort == 'points')
+                          option(value='points', selected='selected') Points
+                        else
+                          option(value='points') Points
+
+                        if(params && params.sort && params.sort == 'user')
+                          option(value='user', selected='selected') User
+                        else
+                          option(value='user') User
+
+                        if(params && params.sort && params.sort == 'problem')
+                          option(value='problem', selected='selected') Problem
+                        else
+                          option(value='problem') Problem
+
+              .col-md-3
+                .form-group
+                  .text-center
+                    .label.control-label.label-default(for='order') Order by:
+                    div
+                      select#order.form-control(name='order')
+                        if(params && params.order && params.order == '1')
+                          option(value='1' selected='selected') Ascending
+                        else
+                          option(value='1') Ascending
+
+                        if(params && params.order && params.order == '-1')
+                          option(value='-1' selected='selected') Descending
+                        else
+                          option(value='-1') Descending
+
+              .col-md-3
+                .form-group
+                  .text-center
+                    .label.control-label.label-default(for='fot-contest') For problem:
+                    div
+                      select#for-contest.form-control(name='problem')
+                        option(value='') All
+                        each prob in problems
+                          if(params && params.problem && (params.problem == prob.name))
+                            option(value='#{prob.name}' selected='selected') #{prob.name}
+                          else
+                            option(value='#{prob.name}') #{prob.name}
+              .col-md-3
+                .form-group
+                  .text-center
+                    .label.control-label.label-default(for='by-user') By user:
+                    div
+                      if(params && params.user)
+                        input#by-user.form-control(type='text', name='user', value='#{params.user}')
+                      else
+                        input#by-user.form-control(type='text', name='user')
           .row
             .col-md-3
               .form-group
