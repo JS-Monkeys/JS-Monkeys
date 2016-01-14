@@ -19,12 +19,13 @@ block main-content
                 a(href='/users/#{submission.user.username}') #{submission.user.username}
               td #{submission.madeOn}
               td #{submission.points}
-  .row
-    .col-lg-12
-      .panel.panel-success
-        .panel-heading
-          h3.panel-title Code
-        .panel-body
-          pre #{submission.code}
+  if(menuResolver.isAdmin)
+    .row
+      .col-lg-12
+        .panel.panel-success
+          .panel-heading
+            h3.panel-title Code
+          .panel-body
+            pre #{submission.code}
 
 
