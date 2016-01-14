@@ -55,7 +55,7 @@ function createUser(user) {
         email: user.email,
         salt: salt,
         passHash: encryption.hashPassword(salt, user.password),
-        roles: user.roles || ['standard']
+        roles: user.roles || ['standard'] // TODO: May be change to 'Chief Monkey' for protection (not admin)
     };
 
     let promise = new Promise(function (resolve, reject) {
