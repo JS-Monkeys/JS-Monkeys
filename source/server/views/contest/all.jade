@@ -23,7 +23,15 @@ block main-content
                     a(href='/contests/' + contest.name) #{contest.name}
                   td #{prettyDate(contest.startDate)}
                   td #{prettyDate(contest.endDate)}
-                  td #{contest.problems.length}
+                  td
+                    if(menuResolver.isAdmin)
+                      .col-lg-6 #{contest.problems.length}
+
+                      .col-lg-6
+
+                        a.btn.btn-success.btn-sm(href='/contests/#{contest.name}/addproblem') Add new problem
+                    else
+                      | Submissions
                   td #{contest.submissionsIds.length}
       else
         .text-center

@@ -14,9 +14,10 @@ router.get('/api/users', usersController.all)
     .post('/api/users', usersController.registerUser)
     .get('/users', auth.isInRole('admin'), usersController.allJson)
     .post('/login', auth.login)
-    .post('/logout', auth.logout)
+    .get('/logout', auth.logout)
     .get('/sign-up', usersController.getSignUp)
     .get('/sign-up-success', usersController.getSignUpSuccess)
+    .get('/sign-out', usersController.getSignOutSuccess)
     .get('/unauthorized', usersController.getUnauthorized);
 
 

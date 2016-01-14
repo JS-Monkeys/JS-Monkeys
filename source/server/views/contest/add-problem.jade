@@ -1,24 +1,29 @@
 extends ../shared/layout
 
 block main-content
-    form.form-horizontal(action='/contests/' + currentContest.name + '/addproblem', method="POST")
-      fieldset
-        legend Add problem to #{currentContest.name}
-        .form-group
-          label.col-lg-2.control-label(for='inputName') Name
-          .col-lg-5
-            input#inputName.form-control(type='text', placeholder='Name' name='name')
-        .form-group
-          label.col-lg-2.control-label(for='mdDescription') Md Description
-          .col-lg-5
-            textarea#mdDescription.form-control(rows='5' name='description')
-        .form-group
-          label.col-lg-2.control-label Points
-          .col-lg-2
-            input#points.form-control(type="number", value="100", name='points')
-          label.col-lg-1.control-label Timeout
-          .col-lg-2
-            input#timeout.form-control(type="number", value="1000", name='timeout')
-        .form-group
-          .col-lg-10.col-lg-offset-2
-            button.btn.btn-primary(type='submit') Add
+  .row
+    .col-lg-12
+      h1.page-header Add problem to #{currentContest.name}
+
+  .row
+    .col-lg-12
+      form.form-horizontal(action='/contests/' + currentContest.name + '/addproblem', method="POST")
+        fieldset
+          .form-group
+            label.col-lg-2.control-label(for='inputName') Name
+            .col-lg-5
+              input#inputName.form-control(type='text', placeholder='Name' name='name')
+          .form-group
+            label.col-lg-2.control-label(for='mdDescription') Md Description
+            .col-lg-5
+              textarea#mdDescription.form-control(rows='5' name='description')
+          .form-group
+            label.col-lg-2.control-label Points
+            .col-lg-2
+              input#points.form-control(type="number", value="100", name='points')
+            label.col-lg-1.control-label Timeout
+            .col-lg-2
+              input#timeout.form-control(type="number", value="1000", name='timeout')
+          .form-group
+            .col-lg-10.col-lg-offset-2
+              button.btn.btn-primary(type='submit') Add

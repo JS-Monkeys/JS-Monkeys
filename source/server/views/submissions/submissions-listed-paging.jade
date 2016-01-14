@@ -1,11 +1,12 @@
 extends ../shared/layout
 block main-content
-
+  .row
+    .col-lg-12
+      h1.page-header Submissions
   .row
     .col-lg-12
       form(action='/submissions/all')
         fieldset
-          legend Submissions
           .row
             .col-md-3
               .form-group
@@ -74,7 +75,7 @@ block main-content
                       if(menuResolver.isAuthenticated)
                         a.btn.btn-success.btn-default(href='#{sub.id}') View code
                       else
-                        a.btn.btn-success.btn-default(href='/sign-up') Sign-up / in to see
+                        a.btn.btn-success.btn-default(href='/sign-up') Sign-up / Login to see
         else
           .text-center
             h2 No secrets in the box, try again!
