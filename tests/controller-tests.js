@@ -259,6 +259,31 @@ describe('Courses controller', function () {
              controller.renderAll(req, res);
         });
 
+        it('GET: should respond with json err', function () {
+            let req = {},
+                res = {
+                    status: function (code) {
+                        return this;
+                    },
+                    json: function (error) {
+                        expect(error).to.equal('error');
+                    }
+                };
+
+            controller.all(req, res);
+        });
+
+        it('GET: should respond with status 200 and all courses json', function () {
+            let req = {},
+                res = {
+                    json: function (error) {
+                        expect(error).to.equal('error');
+                    }
+                };
+
+            controller.all(req, res);
+        });
+
     });
     
     describe('/courses/:name', function () {
@@ -315,7 +340,6 @@ describe('Courses controller', function () {
              
              controller.getAddCourse(req, res);
         });
-
     });
 
     describe('/courses/add', function () {
