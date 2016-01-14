@@ -102,14 +102,21 @@ textarea, .task-desc {
 }
 
 .welcome-heading {
- margin-bottom: 50px;
+    margin-bottom: 50px;
 }
 
-.block{
+.block {
     display: inline-block;
 }
+
 .champ {
     float: left;
+}
+
+.course {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 50em;
 }
 
 .profile-pic {

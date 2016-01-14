@@ -1,0 +1,5 @@
+extends ../shared/layout
+block main-content
+    .course
+        h1 #{course.name}
+        iframe.course(src=course.videoUrl)
