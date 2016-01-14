@@ -12,7 +12,63 @@ module.exports = function (data) {
                 });
         },
         renderAll: function (req, res) {
-            res.status(200).render('course/all', req);
+            console.log("gertting filtered courses");
+
+            console.log(req.query)
+
+            let query = req.query;
+            let order = query.order | 0;
+            let page = (req.query.page != undefined && +req.query.page > 0) ? +req.query.page : 1;
+            let pageSize = (query.pageSize | 0) || 10;
+
+            var filter = {};
+
+
+            var sort = {
+                skip: (page - 1) * pageSize,
+                limit: pageSize,
+                sort: {
+                    madeOn: -1
+                }
+            };
+
+            if (query.sort === "madeOn") {
+                sort.sort = {
+                    madeOn: order
+                }
+            }
+
+            console.log(sort);
+
+            data.courses.findFiltered(filter, sort)
+              .then(function (crs) {
+
+                  console.log(crs);
+
+                  let formated = crs.map(function (c) {
+                      return {
+                          madeOn: c.madeOn,
+                          id: c._id,
+                          videoUrl: c.videoUrl,
+                          name: c.name
+                      }
+                  });
+
+                  var options = {
+                      menuResolver: req.menuResolver,
+                      courses: formated || [],
+                      params: {
+                          sort: query.sort,
+                          order: query.order
+                      },
+                      page: page,
+                      pageSize: pageSize
+                  };
+
+                  res.render('course/all', options);
+              }, function (error) {
+                  res.render('shared/server-error', req);
+              });
         },
         byName: function (req, res) {
             data.courses

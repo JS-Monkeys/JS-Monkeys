@@ -1,36 +1,41 @@
 extends ../shared/layout
 block main-content
   .col-md-12
+    .row
     h1.text-center Welcome JS Monkeys
-    h3.row
+    .row
       .list-group.text-center
-        a.list-group-item.block.col-md-6(href="/courses")
+        a.list-group-item.block.col-md-12(href="/courses")
           i.fa.fa-graduation-cap.fa-4x
           h3.list-group-item-heading Courses
           p.list-group-item-text
             | Enroll in courses and study at a rate that suits you.
             br
             | Learn the basics of JavaScript
-        a.list-group-item.block.col-md-6(href="/contests")
+    .row
+      .list-group.text-center
+        a.list-group-item.block.col-md-12(href="/contests")
           i.fa.fa-flag-checkered.fa-4x
           h3.list-group-item-heading Contests
           p.list-group-item-text
             | Test your knowledge by taking part one of the contests
             br
             | All contests
-    h3.row
+    .row
       .list-group.text-center
-        a.list-group-item.block.col-md-6(href="/api/users")
+        a.list-group-item.block.col-md-12(href="/api/users")
           i.fa.fa-users.fa-4x
           h3.list-group-item-heading Users
           p.list-group-item-text
             | Find out how you rank amongst all the users
-        a.list-group-item.block.col-md-6(href="/api/users/rankings")
+    .row
+      .list-group.text-center
+        a.list-group-item.block.col-md-12(href="/api/users/rankings")
           i.fa.fa-trophy.fa-4x
           h3.list-group-item-heading Top 10 users
           p.list-group-item-text
            | Top 10 and search by rank or username
-    h3.row
+    .row
       .list-group.text-center
         a.list-group-item.col-md-12(href="/about")
           i.fa.fa-github-square.fa-4x &nbsp;
