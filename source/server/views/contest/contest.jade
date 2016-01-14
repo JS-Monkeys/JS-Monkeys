@@ -1,6 +1,6 @@
 extends ../shared/layout
 block main-content
-  .row(ng-controller="ContestController as vm")
+  .col-lg-12(ng-controller="ContestController as vm")
     .col-lg-10
       h2#nav-tabs #{currentContest.name} {{vm.toggledName}}
       .bs-component

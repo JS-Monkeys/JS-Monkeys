@@ -6,7 +6,7 @@
       getByUserProblem: function (id) {
         var deferred = $q.defer();
 
-        data.get('/submissions/' + id).then(function (response) {
+        data.get('/submissions/api/' + id).then(function (response) {
 
             console.log(response);
 

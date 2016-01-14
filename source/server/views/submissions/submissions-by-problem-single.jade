@@ -1,24 +1,27 @@
 extends ../shared/layout
 block main-content
+  .col-lg-12(ng-controller="SubmissionController as vm")
+    .col-md-4
+      form
+        input.btn-lg.btn-info.full-width(type="button" VALUE="Go back" onClick="history.go(-1);return true;")
+      h2 Latest submissions:
+      .table-responsive
+        table.table.table-striped.table-hover.table-bordered
+          thead
+            tr
+              th Submitted at:
+              th Points
+          tbody
+            each sub in submissions
+              tr(ng-click='vm.getCode("#{sub.id}")')
+                td #{sub.madeOn}
+                td #{sub.points}
 
- .container(ng-controller="SubmissionController as vm")
-  .col-md-4
-    .row
-      .col-md-12
-        form
-          input.btn-lg.btn-info.full-width(type="button" VALUE="Go back" onClick="history.go(-1);return true;")
-    each sub in submissions
-     .row(ng-click='vm.getCode("#{sub.id}")')
-       .col-md-12
-         .btn-sm.btn-default.full-width
-            span Submitted at: #{sub.madeOn}
 
-            strong.label-info.pull-right Points:  #{sub.points | 0}
+    .col-md-8
+      .panel.panel-default
+        .panel-heading Code for submission from: {{vm.CurrentSubmittion.madeOn | date :'MM/dd/yyyy @ HH:mm:ss'}}
+        .panel-body
+          pre {{vm.CurrentSubmittion.code}}
 
-       //.col-md-6
-       //  .btn-sm.btn-success.full-width Points:  #{sub.points}
-  .col-md-8
-    .panel.panel-default
-      .panel-heading  Submission from: {{vm.CurrentSubmittion.madeOn | date :'MM/dd/yyyy @ h:mma'}}
-      .panel-body {{vm.CurrentSubmittion.code}}
 

@@ -10,9 +10,11 @@ let submissionsController = require('../controllers/submissions-controller')(dat
 
 // TODO: refactor those routes
 router
-// .post('/',  auth.isAuthenticated,submissionsController.makeSubmission)
-// .get('/', auth.isInRole('admin'),submissionsController.getSubmissions)
-    .get('/:id', submissionsController.getById);
+    .post('/',  auth.isAuthenticated,submissionsController.makeSubmission)
+    .get('/', auth.isInRole('admin'),submissionsController.getSubmissions)
+    .get('/all', submissionsController.getFilteredSubmissions)
+    .get('/:id', submissionsController.renderById)
+    .get('/api/:id', submissionsController.getById);
 
 module.exports = function (server) {
     server.use('/submissions', router);

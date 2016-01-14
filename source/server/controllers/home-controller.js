@@ -8,7 +8,9 @@ module.exports = function (data) {
         },
         homePrivate: function (req, res) {
             res.send('<h1>Authorized!</h1>');
+        },
+        aboutPage:function (req, res) {
+            res.render('shared/about', req);
         }
     };
-
-}
+};

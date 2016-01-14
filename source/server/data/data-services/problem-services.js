@@ -3,77 +3,78 @@
 let _ = require('underscore');
 
 let mongoose = require('mongoose'),
-    Problem = mongoose.model('Problem'),
-    Contest = mongoose.model('Contest');
+  Problem = mongoose.model('Problem'),
+  Contest = mongoose.model('Contest');
 
 function createProblem(problem) {
-    if (problem) {
+  if (problem) {
 
-        problem = {
-            name: problem.name,
-            points: problem.points,
-            constraints: problem.constraints,
-            description: problem.description
-        };
-    }
-    
-    let promise = new Promise(function (resolve, reject) {
-        Problem.create(problem, function (error, dbProblem) {
-            if (error) {
-                return reject(error);
-            }
+    problem = {
+      name: problem.name,
+      points: problem.points,
+      constraints: problem.constraints,
+      description: problem.description
+    };
+  }
 
-            resolve(dbProblem);
-        });
+  let promise = new Promise(function (resolve, reject) {
+    Problem.create(problem, function (error, dbProblem) {
+      if (error) {
+        return reject(error);
+      }
+
+      resolve(dbProblem);
     });
+  });
 
-    return promise;
+  return promise;
 }
 
 function findProblemByContest(contestName, problemName) {
 
-    let promise = new Promise(function (resolve, reject) {
-        Contest.findOne({ name: contestName }, function (dbError, contest) {
-            if (dbError) {
-                return reject(dbError);
-            }
-            
-            for (let i = 0, length = contest.problems.length; i < length; i += 1) {
-                if (contest.problems[i].name === problemName) {
-                    
-                    return resolve(contest.problems[i]);
-                }
-            }
+  let promise = new Promise(function (resolve, reject) {
+    Contest.findOne({name: contestName}, function (dbError, contest) {
+      if (dbError) {
+        return reject(dbError);
+      }
 
-            reject({
-                error: `no problem with name "${problemName}" in contest "${contestName}"`
-            });
-        });
+      for (let i = 0, length = contest.problems.length; i < length; i += 1) {
+        if (contest.problems[i].name === problemName) {
+
+          return resolve(contest.problems[i]);
+        }
+      }
+
+      reject({
+        error: `no problem with name "${problemName}" in contest "${contestName}"`
+      });
     });
+  });
 
-    return promise;
+  return promise;
 }
 
 function all() {
-    let promise = new Promise(function (resolve, reject) {
-        Contest.find({}, function (error, contests) {
-            if (error) {
-                return reject(error);
-            }
+  let promise = new Promise(function (resolve, reject) {
+    Contest.find({}, function (error, contests) {
+      if (error) {
+        return reject(error);
+      }
+      let result = _.pluck(contests, 'problems');
+      var merged = [].concat.apply([], result);
 
-            let result = _.pluck(contests, 'problems');
-            resolve(result);
-        });
+      resolve(merged);
     });
+  });
 
-    return promise;
+  return promise;
 }
 
 module.exports = {
-    name: 'problems',
-    services: {
-        createProblem,
-        findProblemByContest,
-        all
-    }
+  name: 'problems',
+  services: {
+    createProblem,
+    findProblemByContest,
+    all
+  }
 };
