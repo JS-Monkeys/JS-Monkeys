@@ -1,9 +1,9 @@
 extends ../shared/layout
-
 block main-content
-  br
-  .row
-    .container(ng-controller="SignUpController as vm")
+
+  .col-lg-12(ng-controller="SignUpController as vm")
+    br
+    .row
       .well
         form.form-horizontal(name='registerForm', ng-submit='registerForm.$valid')
           fieldset
@@ -11,22 +11,22 @@ block main-content
             .text-center.error(ng-show='registerForm.inputUsername.$error.minlength || registerForm.inputUsername.$error.minlength') Username must be between 6 and 50 symbols
             .form-group
               label.col-lg-2.control-label(for='inputUsername') Username
-              .col-lg-10
+              .col-lg-6
                 input#inputUsername.form-control(type='text', name='inputUsername', ng-model='user.username', ng-minlength='6', ng-maxlength='50' required='required', placeholder='Username')
             .text-center.error(ng-show='registerForm.userMail.$error.pattern') Email is not valid !
             .form-group
               label.col-lg-2.control-label(for='inputEmail') Email
-              .col-lg-10
+              .col-lg-6
                 input#inputEmail.form-control(name='userMail', type='text', ng-model='user.email', required='required', placeholder='Email', ng-pattern='/^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$/')
             .text-center.error(ng-show='registerForm.userPassword.$error.minlength') Pasword must be at least 6 symbols long !
             .form-group
               label.col-lg-2.control-label(for='inputPassword') Password
-              .col-lg-10
+              .col-lg-6
                 input#inputPassword.form-control(type='password', name='userPassword', ng-model='user.password', ng-minlength='6', required='required', placeholder='Password')
             .text-center.error(ng-show='user.password !== user.confirmPassword && registerForm.confirmPassword.$dirty') Confirm password is not the same as password!
             .form-group
               label.col-lg-2.control-label(for='confirmPassword') Confirm Password
-              .col-lg-10
+              .col-lg-6
                 input#confirmPassword.form-control(type='password', name='confirmPassword', ng-model='user.confirmPassword', ng-minlength='6', required='required', placeholder='Confirm Password')
             .form-group
               .col-lg-10.col-lg-offset-2.pull-right

@@ -37,14 +37,13 @@ function add(course) {
  //console.log(course);
     let dbCourse = {
         name: course.name,
-        videoUrl: course.url
+        videoUrl: course.videoUrl
     };
 
     let promise = new Promise(function (resolve, reject) {
         Course.create(dbCourse, function (error, createdCourse) {
             if (error) {
 
-                console.log(error);
                 reject(error);
             }
 
@@ -59,7 +58,7 @@ module.exports = {
     name: 'courses',
     services: {
         byName: function (name) {
-            return findCourse({ name: name});
+            return findCourse(name);
         },
         all: all,
         add: add

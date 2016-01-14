@@ -23,9 +23,9 @@ mixin sidebar(contests)
           i.fa.fa-fw.fa-caret-down
 
         ul#courses.collapse
-          each course in ['course 1', 'course 2']
+          each course in menuResolver.courses
             li
-              a(href='courses/' + course) #{course}
+              a(href='/courses/' + course.name) #{course.name}
 
       li
         a(href='/api/users/rankings')

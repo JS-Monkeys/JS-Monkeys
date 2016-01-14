@@ -1,5 +1,9 @@
 extends ../shared/layout
 block main-content
-    .course
-        h1 #{course.name}
-        iframe.course(src=course.videoUrl)
+  .col-lg-12
+    .row
+      h1.page-header #{course.name}
+
+  .col-lg-12
+    .row
+      iframe.course(src=course.videoUrl, frameborder=0, allowfullscreen)
