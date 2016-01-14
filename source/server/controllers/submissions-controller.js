@@ -59,15 +59,15 @@ module.exports = function (data, evaluateSubmission, dateFormatter) {
         .then(function (submission) {
 
           let formated = {
-              madeOn: moment(submission.madeOn).fromNow(),
-              points: submission.points,
-              id: submission._id,
-              user: submission.user,
-              problem: submission.problem,
-              code: submission.code
-            };
+            madeOn: moment(submission.madeOn).fromNow(),
+            points: submission.points,
+            id: submission._id,
+            user: submission.user,
+            problem: submission.problem,
+            code: submission.code
+          };
 
-          let options ={
+          let options = {
             menuResolver: req.menuResolver,
             submission: formated
           };
@@ -110,7 +110,7 @@ module.exports = function (data, evaluateSubmission, dateFormatter) {
             submissions: formated
           };
 
-         // console.log(options);
+          // console.log(options);
 
           res.status(200)
             .render('submissions/submissions-by-problem-single', options);
@@ -122,12 +122,12 @@ module.exports = function (data, evaluateSubmission, dateFormatter) {
 
       console.log("gertting filtered submisssions");
 
-      //console.log(req.query)
+      console.log(req.query)
 
       let query = req.query;
       let order = query.order | 0;
-      let skip = ((query.page | 0)) || 0;
-      let limit = (query.psgeSize | 0) || 0;
+      let page = (req.query.page != undefined && +req.query.page > 0) ? +req.query.page : 1;
+      let pageSize =  (query.pageSize | 0) || 10;
 
       var filter = {};
 
@@ -148,32 +148,32 @@ module.exports = function (data, evaluateSubmission, dateFormatter) {
       console.log(filter);
 
       var sort = {
-        skip: skip,
-        limit: limit,
+        skip: (page - 1) * pageSize,
+        limit: pageSize,
         sort: {
           madeOn: -1
         }
       };
 
-      if(query.sort === "madeOn"){
+      if (query.sort === "madeOn") {
         sort.sort = {
           madeOn: order
         }
       }
 
-      if(query.sort === "points"){
+      if (query.sort === "points") {
         sort.sort = {
           points: order
         }
       }
 
-      if(query.sort === "user"){
+      if (query.sort === "user") {
         sort.sort = {
           'user.username': order
         }
       }
 
-      if(query.sort === "problem"){
+      if (query.sort === "problem") {
         sort.sort = {
           'problem.name': order
         }
@@ -199,14 +199,22 @@ module.exports = function (data, evaluateSubmission, dateFormatter) {
             var options = {
               menuResolver: req.menuResolver,
               problems: problems || [],
-              submissions: formated || []
+              submissions: formated || [],
+              params: {
+                problem: query.problem,
+                user: query.user,
+                sort: query.sort,
+                order: query.order
+              },
+              page: page,
+              pageSize: pageSize
             };
 
             res.render('submissions/submissions-listed-paging', options);
           }, function (error) {
             res.render('shared/not-found', req);
           });
-        }, function(err){
+        }, function (err) {
           res.render('shared/not-found', req); // TODO: redirect 500
         });
     }

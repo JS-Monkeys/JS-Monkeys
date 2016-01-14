@@ -1,5 +1,10 @@
 extends ../shared/layout
 block main-content
+
+  - var nextPage = page + 1;
+  - var prevPage = ((page - 1) > 0) ? page - 1 : page;
+  - var maxPage = Math.ceil((submissions.length + 1 ) / pageSize);
+
   .row
     .col-lg-12
       h1.page-header Submissions
@@ -14,10 +19,25 @@ block main-content
                   .label.control-label.label-default(for='sort') Sort by:
                   div
                     select#sort.form-control(name='sort')
-                      option(value='madeOn') Date
-                      option(value='points') Points
-                      option(value='user') User
-                      option(value='problem') Problem
+                      if(params && params.sort && params.sort == 'madeOn')
+                        option(value='madeOn', selected='selected') Date
+                      else
+                        option(value='madeOn') Date
+
+                      if(params && params.sort && params.sort == 'points')
+                        option(value='points', selected='selected') Points
+                      else
+                        option(value='points') Points
+
+                      if(params && params.sort && params.sort == 'user')
+                        option(value='user', selected='selected') User
+                      else
+                        option(value='user') User
+
+                      if(params && params.sort && params.sort == 'problem')
+                        option(value='problem', selected='selected') Problem
+                      else
+                        option(value='problem') Problem
 
             .col-md-3
               .form-group
@@ -25,8 +45,15 @@ block main-content
                   .label.control-label.label-default(for='order') Order by:
                   div
                     select#order.form-control(name='order')
-                      option(value='1') Ascending
-                      option(value='-1') Descending
+                      if(params && params.order && params.order == '1')
+                        option(value='1' selected='selected') Ascending
+                      else
+                        option(value='1') Ascending
+
+                      if(params && params.order && params.order == '-1')
+                        option(value='-1' selected='selected') Descending
+                      else
+                        option(value='-1') Descending
 
             .col-md-3
               .form-group
@@ -35,21 +62,66 @@ block main-content
                   div
                     select#for-contest.form-control(name='problem')
                       option(value='') All
-                      each problem in problems
-                        option(value='#{problem.name}') #{problem.name}
-
+                      each prob in problems
+                        if(params && params.problem && (params.problem == prob.name))
+                          option(value='#{prob.name}' selected='selected') #{prob.name}
+                        else
+                          option(value='#{prob.name}') #{prob.name}
             .col-md-3
               .form-group
                 .text-center
                   .label.control-label.label-default(for='by-user') By user:
                   div
-                    input#by-user.form-control(type='text', name='user')
+                    if(params && params.user)
+                      input#by-user.form-control(type='text', name='user', value='#{params.user}')
+                    else
+                      input#by-user.form-control(type='text', name='user')
           .row
-            .col-md-2
+            .col-md-3
               .form-group
-                .text-center
-                  div
-                    button.btn.btn-primary(type='submit') Submit
+                button.btn-primary.btn(type='submit', name='page', value='#{prevPage}') «
+                if(prevPage !== page)
+
+                  button.btn-primary.btn(type='submit', name='page', value='#{prevPage}')= prevPage
+
+                button.btn-success.btn(type='submit', name='page', value='#{page}')= page
+                if(maxPage >= page)
+
+                  button.btn-primary.btn(type='submit', name='page', value='#{nextPage}')= nextPage
+
+                  button.btn-primary.btn(type='submit', name='page', value='#{nextPage}') »
+
+            .col-md-2.text-right Page size:
+
+            .col-md-2.text-left
+              .form-group
+                select#page-size.form-control(name='pageSize')
+                  if(pageSize && pageSize === 5)
+                    option(value='5' selected='selected') 5
+                  else
+                    option(value='5') 5
+
+                  if(pageSize && pageSize === 10)
+                    option(value='10' selected='selected') 10
+                  else
+                    option(value='10') 10
+
+                  if(pageSize && pageSize === 20)
+                    option(value='20' selected='selected') 20
+                  else
+                    option(value='20') 20
+
+                  if(pageSize && pageSize === 50)
+                    option(value='50' selected='selected') 50
+                  else
+                    option(value='50') 50
+
+
+
+            .col-md-5.text-right
+              .form-group
+                div
+                  button.btn.btn-primary.full-width(type='submit') Submit
 
   .row
     .col-lg-12
