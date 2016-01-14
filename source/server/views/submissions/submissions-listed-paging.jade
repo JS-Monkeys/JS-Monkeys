@@ -145,8 +145,8 @@ block main-content
                     td #{sub.user}
                     td #{sub.madeOn}
                     td #{sub.points}
-                    td.text-center
-                      if(menuResolver.isAdmin)
+                    if(menuResolver.isAdmin)
+                      td.text-center
                         a.btn.btn-success.btn-default(href='#{sub.id}') View code
         else
           .text-center
